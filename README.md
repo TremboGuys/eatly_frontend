@@ -1,8 +1,9 @@
 # Projeto Integrador - Modelo
-*(Coloque aqui o nome do seu projeto.)*
+# Eatly
 
 Um modelo para o desenvolvimento do Projeto Integrador do Curso de Técnico em Desenvolvimento de Sistemas para a Internet Integrado ao Ensino Médio do IFC - Campus Araquari.
-*(Coloque aqui uma breve descrição do seu projeto.)*
+
+A Eatly busca expandir seus lucros intermediando vendas e entregas, além da hospedagem de restaurantes. O novo sistema permitirá pedidos online, rastreamento de entregas e avaliações. Restaurantes poderão gerenciar pedidos e cardápios, enquanto entregadores terão suporte via GPS. Administradores controlarão taxas, suporte e políticas da plataforma. A transparência será reforçada com relatórios detalhados para os restaurantes.
 
 **IMPORTANTE**: [**Cadastre seu projeto nesse link**](https://docs.google.com/spreadsheets/d/1KXuMJ9TK7GPyahR_BfLwfn4ec7vX7DgiHx42vFc4E7g/edit?usp=sharing).
 
@@ -28,7 +29,7 @@ Links do projeto:
 
 ### 1.1.1 Ordem de vendas
 
-O dono de uma empresa chamada *Eatly* nos contatou com o intuito de aumentar os lucros de sua empresa. A Eatly faz parte do ramo de serviço de hospedagem de restaurantes, e há um rápido crescimento do interesse de mais restaurante em ingressar no site. Sua forma lucrativa é por meio do aluguel da hospedagem de restaurantes no site, mas quer aumentar os seus lucros, por isso nos contactou.
+O dono de uma empresa chamada *Eatly* nos contatou com o intuito de aumentar os lucros de sua empresa. A Eatly faz parte do ramo de serviço de hospedagem de restaurantes, e há um rápido crescimento do interesse de mais restaurantes em ingressar no site. Sua forma lucrativa é por meio do aluguel da hospedagem de restaurantes no site, mas quer aumentar os seus lucros, por isso nos contactou.
 
 # 2. Situação Problema
 
@@ -38,13 +39,13 @@ No site do Sr. Diniz (Eatly), é necessário o cliente informar seu endereço, a
 
 A forma como seu sistema lucra atualmente é com o pagamento dos restaurantes para que seus nomes apareçam nas pesquisas. Mas Diniz quer aumentar seus lucros, e conta com a gente para isso, ele pensa em além de ganhar com o aluguel dos restaurantes no sistema, também ganhar uma porcentagem das vendas realizadas no site, expandindo os serviços prestados pela empresa.
 
-Um dos problemas que percebi no Eatly é a falta de transparência a empresa hospedada sobre quanto suas vendas aumentaram com a hospedagem no site de Sr. Diniz, e se vale apena ou não continuar pagando sua hospedagem no sistema. Uma boa de ajustar é informando um relatório individual ao restaurante, sobre quantas vezes sua página foi acessada pelos clientes do Eatly, além é claro, de quantas **vendas** foram realizadas. Como vimos, o Sr. Diniz tem um pequeno software, e ele já vê os frutos da ajuda de um, mas agora, com seu software expandindo ainda mais e ficando mais robusto, ele poderá ver ainda mais benefícios, como receber outras fontes de lucro, por pagamentos de vendas realizadas, uma maior confiança dos restaurantes, com a garantia de possíveis relatórios e etc.
+Um dos problemas que percebi no Eatly é a falta de transparência a empresa hospedada sobre quanto suas vendas aumentaram com a hospedagem no site de Sr. Diniz, e se vale apena ou não continuar pagando sua hospedagem no sistema. Uma boa maneira de ajustar é informando um relatório individual ao restaurante, sobre quantas vezes sua página foi acessada pelos clientes do Eatly, além é claro, de quantas **vendas** foram realizadas. Como vimos, o Sr. Diniz tem um pequeno software, e ele já vê os frutos da ajuda de um, mas agora, com seu software expandindo ainda mais e ficando mais robusto, ele poderá ver ainda mais benefícios, como receber outras fontes de lucro, por pagamentos de vendas realizadas, uma maior confiança dos restaurantes, com a garantia de possíveis relatórios e etc.
 
 # 3. Descrição da Proposta
 
 O foco de nosso software será ainda na hospedagem dos restaurantes e na sua visibilidade para pesquisas do usuário, mas agora principalmente para as vendas dos produtos desses restaurantes, e por fim na entrega de tais produtos ao usuário, agindo assim como um intermediador entre o restaurante e o cliente.
 
-Falando agora de níveis de usuário do sistema, no planejamento é pensado em 4 tipos de usuário: cliente, restaurante e administradores. Falaremos sobre as diferenças mais a frente.
+Falando agora de níveis de usuário do sistema, no planejamento é pensado em  tipos de usuário: cliente, restaurante, entregadores e administradores. Falaremos sobre as diferenças mais a frente.
 
 As ações que um usuário poderá realizar em nosso software seriam:
 
