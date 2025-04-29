@@ -53,3 +53,60 @@ Agora sobre as diferenças de usuário:
 - **Restaurantes**: poderão gerenciar os pedidos que receberem, atualizar as opções de cardápio, bem como seus preços, responder avaliações de clientes e também atualizar o tempo de entrega mostrado no app conforme necessidade.
 - **Entregadores**: recebem e realizam entregas, terão um GPS para a rota, bem como o valor a ser ganho na entrega, além de poder realizar avaliações a clientes e restaurantes.
 - **Administradores**: gerenciam as taxas aos pedidos e mudam as políticas de privacidade caso necessário. Oferecem suporte a clientes, restaurantes e entregadores.
+
+# 4. Modelo Entidade-Relacionamento
+
+![image desc](./docs/modelagem_eatly.png)
+[PDF da Modelagem](https://drive.google.com/drive/folders/1E8S3AcIBVeQJAK0EMntGa760i8VUi3qH?hl=pt-br)
+
+# 4. Requisitos Funcionais
+
+RF-001: O sistema deve manter um usuário cliente.
+
+RF-002: O sistema deve manter restaurantes.
+
+RF-003: O sistema deve manter proprietários de restaurantes.
+
+RF-004: O sistema deve manter entregadores.
+
+RF-005: O sistema deve manter veículos.
+
+RF-006: O sistema deve manter produtos.
+
+RF-007: O sistema deve manter pedidos.
+
+RF-008: O sistema deve oferecer suporte a rastreamento em tempo real da entrega, exibindo a localização do entregador e atualizações de status.
+
+RF-009: O sistema deve manter cupons.
+
+RF-010: O sistema deve oferecer cupons de frete grátis em compras acima de R$150,00.
+
+RF-011: O sistema deve disponibilizar uma interface onde o usuário possa visualizar, adquirir e resgatar cupons, considerando regras de uso, validade, valor mínimo e limite de uso por usuário.
+
+RF-012: O sistema deve permitir que os usuários realizem pagamentos via cartão de crédito/débito, Pix ou dinheiro.
+
+RF-013: O sistema deve manter os planos de restaurantes (básico e de entregadores).
+
+RF-014: O sistema deve permitir que o usuário cliente e o entregador se autentiquem por e-mail e senha ou autenticação via Google.
+
+RF-015: O sistema fornecerá ao restaurante a autenticação via CNPJ e senha.
+
+RF-016: O sistema deve permitir a redefinição de senha via e-mail em caso de esquecimento da mesma.
+
+RF-017: O sistema deve permitir ao usuário cliente o salvamento de múltiplos endereços.
+
+RF-018: O sistema deve permitir ao usuário cliente o salvamento de múltiplos números de telefone.
+
+RF-019: O sistema deve permitir a busca de produtos e restaurantes por nome, preço, categoria e localização.
+
+RF-020: O sistema deve permitir a filtragem de produtos dentro do cardápio do restaurante por categoria, faixa de preço e disponibilidade.
+
+RF-021: O sistema deve permitir que o usuário acompanhe os status do seu pedido *("pendente", "em preparação", "saiu para entrega", "entregue")*.
+
+RF-022: O sistema deve permitir que o usuário avalie um restaurante ou entregador após cada pedido.
+
+RF-023: O sistema deve permitir ao usuário que adicione/remova um produto a seção de favoritos.
+
+RF-024: O sistema deve manter um log de todas as alterações críticas (pedidos, pagamentos e cadastros).
+
+RF-025: O sistema deve permitir a geração de relatórios de vendas, entregas, cupons usados e o faturamento total gerado.
