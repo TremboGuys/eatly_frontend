@@ -1,0 +1,33 @@
+@media (max-width: 425px) {
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        .face-button {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+            width: 80vw;
+            border-radius: 40px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            border: 1px solid #ccc;
+            transition: 0.3s;
+            gap: 15px;
+            img {
+                margin: 0.5rem 0 0 0;
+                width: 1.7rem;
+                height: 1.7rem;
+            }
+            &:hover {
+                background-color: #eeeeee;
+            }
+        }
+    }
+}
