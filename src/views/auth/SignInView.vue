@@ -40,9 +40,9 @@ import GoogleButton from '@/components/signIn/GoogleButton.vue';
   font-family: 'Poppins', sans-serif;
 }
 .hr {
-  width: 100%;
+  width: 80vw;
   height: 1px;
-  background-color: #ccc;
+  background-color: #dddddd;
   margin-bottom: 2rem;
 }
 .or {
