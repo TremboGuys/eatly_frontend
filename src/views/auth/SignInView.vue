@@ -4,6 +4,7 @@ import PasswordInput from '@/components/signIn/PasswordInput.vue';
 import SendButton from '@/components/signIn/SendButton.vue';
 import FaceButton from '@/components/signIn/FaceButton.vue';
 import GoogleButton from '@/components/signIn/GoogleButton.vue';
+import HaveAnAccount from '@/components/signIn/HaveAnAccount.vue';
 </script>
 
 <template>
@@ -18,11 +19,13 @@ import GoogleButton from '@/components/signIn/GoogleButton.vue';
     <div class="hr"></div>
     <FaceButton />
     <GoogleButton />
+    <HaveAnAccount />
   </div>
 </template>
 
 <style scoped>
-.container {
+@media (max-width: 425px) {
+  .container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -50,5 +53,6 @@ import GoogleButton from '@/components/signIn/GoogleButton.vue';
   margin: 1rem 0;
   font-family: 'Poppins', sans-serif;
   color: #666;
+}
 }
 </style>
