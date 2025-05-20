@@ -19,10 +19,11 @@
             text-decoration: none;
             border: 1px solid #ccc;
             transition: 0.3s;
+            gap: 15px;
             img {
-                width: 2rem;
-                height: 2rem;
-                margin-right: 10px;
+                margin: 0.5rem 0 0 0;
+                width: 1.7rem;
+                height: 1.7rem;
             }
             &:hover {
                 background-color: #eeeeee;

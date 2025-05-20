@@ -29,12 +29,12 @@ import GoogleButton from '@/components/signIn/GoogleButton.vue';
   justify-content: center;
 }
 .logo {
-  width: 180px;
+  width: 140px;
   height: auto;
   margin-bottom: 2rem;
 }
 .title {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 1rem;
   font-family: 'Poppins', sans-serif;

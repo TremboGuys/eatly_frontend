@@ -4,6 +4,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        font-family: 'Poppins', sans-serif;
         .form-group {
             position: relative;
             margin-bottom: 20px;
@@ -20,7 +21,6 @@
                 background: none;
                 border: none;
                 border-bottom: 1px solid #ccc;
-
                 outline: none;
                 &:focus {
                     outline: none;
