@@ -1,12 +1,5 @@
 <script setup>
-import InputEmail from '@/components/signUp/InputEmail.vue';
-import PasswordInput from '@/components/signUp/PasswordInput.vue';
-import SendButton from '@/components/signUp/SendButton.vue';
-import FaceButton from '@/components/signUp/FaceButton.vue';
-import GoogleButton from '@/components/signUp/GoogleButton.vue';
-import PhoneInput from '@/components/signUp/PhoneInput.vue';
-import CPFInput from '@/components/signUp/CPFInput.vue';
-import HaveAnAccount from '@/components/signUp/HaveAnAccount.vue';
+import { InputEmail, PasswordInput, PhoneInput, CPFInput, SendButton, FaceButton, GoogleButton, HaveAnAccount } from '@/components/index.js';
 </script>
 
 <template>

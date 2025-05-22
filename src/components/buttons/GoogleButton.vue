@@ -10,5 +10,5 @@
     </div>
 </template>
 <style scoped>
-@import '@/assets/sass/signIn/_googleButton.scss';
+@import '@/assets/sass/buttons/_googleButton.scss';
 </style>

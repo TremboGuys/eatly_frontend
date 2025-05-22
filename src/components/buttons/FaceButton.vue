@@ -10,5 +10,5 @@
     </div>
 </template>
 <style scoped>
-@import '@/assets/sass/signUp/_faceButton.scss';
+@import '@/assets/sass/buttons/_faceButton.scss';
 </style>

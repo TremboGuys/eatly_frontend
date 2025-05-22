@@ -4,5 +4,5 @@
     </div>
 </template>
 <style scoped>
-@import '@/assets/sass/signIn/_sendButton.scss';
+@import '@/assets/sass/buttons/_sendButton.scss';
 </style>
