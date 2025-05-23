@@ -1,5 +1,5 @@
 <script setup>
-import { NavigationBar } from "@/components" 
+import { NavigationBar } from "@/components"
 </script>
 
 <template>
