@@ -4,6 +4,7 @@ import SignInSubmit from "@/components/buttons/SignInSubmit.vue";
 import FaceButton from "@/components/buttons/FaceButton.vue";
 import GoogleButton from "@/components/buttons/GoogleButton.vue";
 import HaveAnAccount from "@/components/buttons/HaveAnAccount.vue";
+import NavigationBar from "@/components/navigationBar/NavigationBar.vue";
 
 export {
     InputsProps,
@@ -12,4 +13,5 @@ export {
     FaceButton,
     GoogleButton,
     HaveAnAccount,
+    NavigationBar
 }
