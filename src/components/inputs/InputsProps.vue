@@ -1,22 +1,22 @@
 <script setup>
-import { defineProps, defineEmits } from 'vue';
+import { useUserStore } from '@/stores';
+
 const props = defineProps({
-    type: {
-        type: String,
-        default: 'text',
-    },
-    modelValue: String,
+    type: String,
+    field: String,
+    forId: String,
     label: String,
-    placeholder: String
+    maxlength: String
 })
-const emit = defineEmits(['update:modelValue'])
+
+const userStore = useUserStore();
 </script>
 <template>
     <div class="container">
         <div class="input">
             <div class="form-group">
-                <input :type="type" class="form-control" :placeholder="placeholder" :value="value" @input="emit('', $event.target.value)" />
-                <label class="labelInput" for="">{{ label }}</label>
+                <input :type="type" class="form-control" :maxlength="maxlength" v-model="userStore.user[field]" :placeholder="' '" />
+                <label class="labelInput" :for="forId">{{ label }}</label>
             </div>
         </div>
     </div>

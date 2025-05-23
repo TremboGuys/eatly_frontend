@@ -1,8 +1,12 @@
+<script setup>
+</script>
+
 <template>
     <div class="container">
-        <button class="send-button">Fazer Login</button>
+        <button type="submit" class="send-button">Realizar Cadastro</button>
     </div>
 </template>
+
 <style scoped>
 @import '@/assets/sass/buttons/_sendButton.scss';
 </style>

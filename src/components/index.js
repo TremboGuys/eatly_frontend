@@ -1,21 +1,15 @@
-import InputEmail from "./inputs/InputEmail.vue";
-import PasswordInput from "./inputs/PasswordInput.vue";
-import CPFInput from "./inputs/CPFInput.vue";
-import PhoneInput from "./inputs/PhoneInput.vue";
-import InputsProps from "./inputs/InputsProps.vue";
-import FaceButton from "./buttons/FaceButton.vue";
-import GoogleButton from "./buttons/GoogleButton.vue";
-import SendButton from "./buttons/SendButton.vue";
-import HaveAnAccount from "./buttons/HaveAnAccount.vue";
+import InputsProps from "@/components/inputs/InputsProps.vue";
+import SignUpSubmit from "@/components/buttons/SignUpSubmit.vue";
+import SignInSubmit from "@/components/buttons/SignInSubmit.vue";
+import FaceButton from "@/components/buttons/FaceButton.vue";
+import GoogleButton from "@/components/buttons/GoogleButton.vue";
+import HaveAnAccount from "@/components/buttons/HaveAnAccount.vue";
 
 export {
-    InputEmail,
-    PasswordInput,
-    CPFInput,
-    PhoneInput,
     InputsProps,
+    SignUpSubmit,
+    SignInSubmit,
     FaceButton,
     GoogleButton,
-    SendButton,
     HaveAnAccount,
 }

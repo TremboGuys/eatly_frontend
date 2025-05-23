@@ -1,5 +1,5 @@
 <script setup>
-import { InputEmail, PasswordInput, PhoneInput, CPFInput, SendButton, FaceButton, GoogleButton, HaveAnAccount } from '@/components/index.js';
+import { InputsProps, SignUpSubmit, FaceButton, GoogleButton, HaveAnAccount } from '@/components';
 </script>
 
 <template>
@@ -7,11 +7,14 @@ import { InputEmail, PasswordInput, PhoneInput, CPFInput, SendButton, FaceButton
     <img src="@/assets/img/logo.png" class="logo" alt="">
     <h1 class="title">Cadastre-se</h1>
     <div class="hr"></div>
-    <InputEmail />
-    <PasswordInput />
-    <PhoneInput />
-    <CPFInput />
-    <SendButton />
+    <form @submit.prevent="">
+      <InputsProps :type="text" field="name" for-id="name" label="Nome" maxlength="" />
+      <InputsProps :type="text" field="email" for-id="email" label="Email" maxlength="255" />
+      <InputsProps :type="password" field="password" for-id="password" label="Senha" maxlength="50" />
+      <InputsProps :type="text" field="cellphone" for-id="cellphone" label="Telefone" maxlength="15" />
+      <InputsProps :type="date" field="dateBirth" for-id="dateBirth" label="Data de Nascimento" />
+      <SignUpSubmit />
+    </form>
     <div class="or">Ou</div>
     <div class="hr"></div>
     <FaceButton />
@@ -31,6 +34,7 @@ import { InputEmail, PasswordInput, PhoneInput, CPFInput, SendButton, FaceButton
 .logo {
   width: 140px;
   height: auto;
+  margin-top: 20px;
   margin-bottom: 2rem;
 }
 .title {
