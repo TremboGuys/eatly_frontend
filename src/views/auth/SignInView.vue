@@ -1,10 +1,5 @@
 <script setup>
-import InputEmail from '@/components/signIn/InputEmail.vue';
-import PasswordInput from '@/components/signIn/PasswordInput.vue';
-import SendButton from '@/components/signIn/SendButton.vue';
-import FaceButton from '@/components/signIn/FaceButton.vue';
-import GoogleButton from '@/components/signIn/GoogleButton.vue';
-import HaveAnAccount from '@/components/signIn/HaveAnAccount.vue';
+import { InputsProps, SignInSubmit, FaceButton, GoogleButton, HaveAnAccount } from '@/components';
 </script>
 
 <template>
@@ -12,9 +7,11 @@ import HaveAnAccount from '@/components/signIn/HaveAnAccount.vue';
     <img src="@/assets/img/logo.png" class="logo" alt="">
     <h1 class="title">Bem vindo de volta!</h1>
     <div class="hr"></div>
-    <InputEmail />
-    <PasswordInput />
-    <SendButton />
+    <form @submit.prevent="">
+      <InputsProps :type="text" field="email" for-id="email" label="Email" maxlength="255" />
+      <InputsProps :type="password" field="password" for-id="password" label="Senha" maxlength="50" />
+      <SignInSubmit />
+    </form>
     <div class="or">Ou</div>
     <div class="hr"></div>
     <FaceButton />
@@ -25,15 +22,17 @@ import HaveAnAccount from '@/components/signIn/HaveAnAccount.vue';
 
 <style scoped>
 @media (max-width: 425px) {
-  .container {
+.container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  font-family: "poppins", sans-serif;
 }
 .logo {
   width: 140px;
   height: auto;
+  margin-top: 20px;
   margin-bottom: 2rem;
 }
 .title {

@@ -1,12 +1,5 @@
 <script setup>
-import InputEmail from '@/components/signUp/InputEmail.vue';
-import PasswordInput from '@/components/signUp/PasswordInput.vue';
-import SendButton from '@/components/signUp/SendButton.vue';
-import FaceButton from '@/components/signUp/FaceButton.vue';
-import GoogleButton from '@/components/signUp/GoogleButton.vue';
-import PhoneInput from '@/components/signUp/PhoneInput.vue';
-import CPFInput from '@/components/signUp/CPFInput.vue';
-import HaveAnAccount from '@/components/signUp/HaveAnAccount.vue';
+import { InputsProps, SignUpSubmit, FaceButton, GoogleButton, HaveAnAccount } from '@/components';
 </script>
 
 <template>
@@ -14,11 +7,14 @@ import HaveAnAccount from '@/components/signUp/HaveAnAccount.vue';
     <img src="@/assets/img/logo.png" class="logo" alt="">
     <h1 class="title">Cadastre-se</h1>
     <div class="hr"></div>
-    <InputEmail />
-    <PasswordInput />
-    <PhoneInput />
-    <CPFInput />
-    <SendButton />
+    <form @submit.prevent="">
+      <InputsProps :type="text" field="name" for-id="name" label="Nome" maxlength="" />
+      <InputsProps :type="text" field="email" for-id="email" label="Email" maxlength="255" />
+      <InputsProps :type="password" field="password" for-id="password" label="Senha" maxlength="50" />
+      <InputsProps :type="text" field="cellphone" for-id="cellphone" label="Telefone" maxlength="15" />
+      <InputsProps :type="date" field="dateBirth" for-id="dateBirth" label="Data de Nascimento" />
+      <SignUpSubmit />
+    </form>
     <div class="or">Ou</div>
     <div class="hr"></div>
     <FaceButton />
@@ -38,6 +34,7 @@ import HaveAnAccount from '@/components/signUp/HaveAnAccount.vue';
 .logo {
   width: 140px;
   height: auto;
+  margin-top: 20px;
   margin-bottom: 2rem;
 }
 .title {
