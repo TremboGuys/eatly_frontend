@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+  <!-- telhado -->
+  <path d="M3 12 L13 3 L23 12" />
+  <!-- paredes -->
+  <path d="M5 12 V22 H21 V12" />
+  <!-- porta com topo arredondado -->
+  <path d="M10 22 V17 A3 3 0 0 1 16 17 V22" />
+</svg>
+
