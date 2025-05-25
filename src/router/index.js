@@ -18,6 +18,26 @@ const router = createRouter({
           name: 'dashboard',
           component: () => import('@/views/DashboardView.vue')
         },
+        {
+          path: 'search',
+          name: 'search',
+          component: () => import('@/views/SearchView.vue')
+        },
+        {
+          path: 'favorites',
+          name : 'favorites',
+          component: () => import('@/views/FavoritesView.vue')
+        },
+        {
+          path: 'profile',
+          name: 'profile',
+          component: () => import('@/views/ProfileView.vue')
+        },
+        {
+          path: 'cart',
+          name: 'cart',
+          component: () => import("@/views/CartView.vue")
+        }
       ]
     },
     {
