@@ -10,12 +10,14 @@ const props = defineProps({
 })
 
 const userStore = useUserStore();
+
+const emit = defineEmits(['changeDataUser']);
 </script>
 <template>
     <div class="container">
         <div class="input">
             <div class="form-group">
-                <input :type="type" class="form-control" :maxlength="maxlength" v-model="userStore.user[field]" :placeholder="' '" />
+                <input :type="type" class="form-control" :maxlength="maxlength" @input="emit('changeDataUser', {field: props.type, value: $event.target.value})" :placeholder="' '" />
                 <label class="labelInput" :for="forId">{{ label }}</label>
             </div>
         </div>
