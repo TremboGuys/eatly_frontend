@@ -1,5 +1,20 @@
 <script setup>
 import { InputsProps, SignUpSubmit, FaceButton, GoogleButton, HaveAnAccount } from '@/components';
+import { reactive } from 'vue';
+
+const user = reactive({
+        name: '',
+        genre: '',
+        dateBirth: '',
+        email: '',
+        password: '',
+        cellphone: ''
+})
+
+function changeDataUser(data) {
+  user[data.field] = data.value;
+  console.log(user[data.field]);
+}
 </script>
 
 <template>
@@ -8,11 +23,11 @@ import { InputsProps, SignUpSubmit, FaceButton, GoogleButton, HaveAnAccount } fr
     <h1 class="title">Cadastre-se</h1>
     <div class="hr"></div>
     <form @submit.prevent="">
-      <InputsProps :type="text" field="name" for-id="name" label="Nome" maxlength="" />
-      <InputsProps :type="text" field="email" for-id="email" label="Email" maxlength="255" />
-      <InputsProps :type="password" field="password" for-id="password" label="Senha" maxlength="50" />
-      <InputsProps :type="text" field="cellphone" for-id="cellphone" label="Telefone" maxlength="15" />
-      <InputsProps :type="date" field="dateBirth" for-id="dateBirth" label="Data de Nascimento" />
+      <InputsProps type="text" field="name" for-id="name" label="Nome" maxlength="" @change-data-user="changeDataUser" />
+      <InputsProps type="text" field="email" for-id="email" label="Email" maxlength="255" @change-data-user="changeDataUser" />
+      <InputsProps type="password" field="password" for-id="password" label="Senha" maxlength="50" @change-data-user="changeDataUser" />
+      <InputsProps type="text" field="cellphone" for-id="cellphone" label="Telefone" maxlength="15" @change-data-user="changeDataUser" />
+      <InputsProps type="date" field="dateBirth" for-id="dateBirth" label="Data de Nascimento" @change-data-user="changeDataUser" />
       <SignUpSubmit />
     </form>
     <div class="or">Ou</div>
