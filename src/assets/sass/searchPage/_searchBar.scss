@@ -1,0 +1,57 @@
+.input-container{
+    position: relative; 
+    
+    .search-input{
+        border: none;
+        height: 5vh;
+        width: 70vw;
+        border-radius: 30px;
+        background-color: #EDEDED;
+        padding-left: 45px;
+        font-size: 1em;
+        transition: ease-in-out 0.2s;
+
+        &:active .search-input{
+            width: 20vw;
+        }
+    
+        &:focus{
+            outline: none;
+            width: 80vw;
+            transition: ease-in-out 0.2s;
+
+            &::placeholder{
+                color: transparent;
+            }
+        }
+
+        &::placeholder{
+            color: black;
+            font-family: "Poppins", sans-serif;
+            font-weight: 100;
+        
+        }
+
+    }
+    .search-icon{
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 23px;
+        height: 23px;
+        pointer-events: none;
+                    
+    }
+
+    .cancel{
+        border: none;
+        background: none;
+        font-size: 2em;
+        position: absolute;
+        right: 10px;
+        font-weight: 300;
+    }
+
+
+}
