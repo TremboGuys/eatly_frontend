@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <div></div>
+    <div class="ctg-container"></div>
 </template>
 
 <style scoped>

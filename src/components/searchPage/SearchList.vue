@@ -1,12 +1,33 @@
 <script setup>
+import FoodCategory from './FoodCategory.vue';
+
+
 </script>
 
 <template>
-  <div></div>
+  <div class="list-container">
+<FoodCategory/>
+<FoodCategory/>
+<FoodCategory/>
+<FoodCategory/>
+<FoodCategory/>
+<FoodCategory/>
+<FoodCategory/>
+<FoodCategory/>
+<FoodCategory/>
+<FoodCategory/>
+<FoodCategory/>
+<FoodCategory/>
+<FoodCategory/>
+<FoodCategory/>
+
+
+
+
+  </div>
 </template>
 
 <style scoped>
-@import "@/assets/sass/searchPage/_foodCategory.scss";
 @import "@/assets/sass/searchPage/_searchList.scss";
 
 </style>
