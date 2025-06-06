@@ -1,46 +1,23 @@
-import { ref } from "vue";
-import { CategoryService } from "@/services";
+import { ref } from "vue"
+import APICategory from "@/api/category"
 import { useToastStore } from "@/stores/toastStore";
 
-export const useCategoryComposable = () => {
-  const toastStore = useToastStore();
-  async function getCategories() {
+export const useCategory = () => {
+    async function getCategories() {
+        let data;
 
-    try {
-      const data = await CategoryService.getCategories(); // <- AQUI o await
+        data = APICategory.getCategories();
 
-      if (data.length == 0) {
-        toastStore.notify("Nenhuma categoria encontrada.", "error");
-        return [];
-      }
+        const toastStore = useToastStore();
 
-      return data;
+        if (data == false) {
+            toastStore.toast("Erro interno ao encontrar categorias. Por favor, reinicie a página", error)
+            return;
+        }
 
-    } catch (error) {
-      toastStore.notify(
-        "Erro ao buscar categorias. Por favor, tente novamente.",
-        "error"
-      );
-      return false;
+        return data;
     }
-  }
-
-  async function createCategory(category) {
-    try {
-      const categoryFormData = new FormData();
-      categoryFormData.append("name", category.name);
-      categoryFormData.append("file", category.file);
-
-      await CategoryService.createCategory(categoryFormData);
-      toastStore.notify("Categoria criada com sucesso!", "success");
-    } catch(error) {
-      toastStore.notify("Erro ao criar categoria.", "error");
-      return false;
+    return {
+        getCategories
     }
-  }
-
-  return {
-    getCategories,
-    createCategory
-  };
-};
+}
