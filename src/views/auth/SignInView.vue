@@ -1,5 +1,20 @@
 <script setup>
 import { InputsProps, SignInSubmit, FaceButton, GoogleButton, HaveAnAccount } from '@/components';
+import { reactive } from 'vue';
+
+const user = reactive({
+        name: '',
+        genre: '',
+        dateBirth: '',
+        email: '',
+        password: '',
+        cellphone: ''
+})
+
+function changeDataUser(data) {
+  user[data.field] = data.value;
+  console.log(user[data.field]);
+}
 </script>
 
 <template>
@@ -8,8 +23,8 @@ import { InputsProps, SignInSubmit, FaceButton, GoogleButton, HaveAnAccount } fr
     <h1 class="title">Bem vindo de volta!</h1>
     <div class="hr"></div>
     <form @submit.prevent="">
-      <InputsProps :type="text" field="email" for-id="email" label="Email" maxlength="255" />
-      <InputsProps :type="password" field="password" for-id="password" label="Senha" maxlength="50" />
+      <InputsProps type="text" field="email" for-id="email" label="Email" maxlength="255" @change-data-user="changeDataUser" />
+      <InputsProps type="password" field="password" for-id="password" label="Senha" maxlength="50" @change-data-user="changeDataUser" />
       <SignInSubmit />
     </form>
     <div class="or">Ou</div>
