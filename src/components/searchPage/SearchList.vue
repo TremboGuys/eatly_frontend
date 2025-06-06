@@ -1,11 +1,11 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import { ref } from 'vue';
 import FoodCategory from './FoodCategory.vue';
-import { useCategoryComposable } from '@/composables/';
+import { useCategory } from '@/composables/category';
 
 const categories = ref([]);
 onMounted(async () => {
-  categories.value = await useCategoryComposable().getCategories();
+  categories.value = await useCategory().getCategories()
 })
 </script>
 <template>
@@ -13,7 +13,7 @@ onMounted(async () => {
     <FoodCategory
       v-for="category in categories"
       :key="category.id"
-      :category.="category"
+      :category="category"
     />
   </div>
 </template>
