@@ -69,6 +69,11 @@ const router = createRouter({
       path: '/restaurant/:id/reviews/create',
       name: 'createReview',
       component: () => import('@/views/restaurant/CreateReviewView.vue')
+    },
+    {
+      path: '/registercategory',
+      name: 'registerCategory',
+      component: () => import('@/views/RegisterCategoryView.vue')
     }
   ],
 })
