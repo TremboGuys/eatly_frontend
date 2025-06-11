@@ -1,0 +1,88 @@
+$gray-bg: #eeeeee;
+$gray-hover: #e0e0e0;
+$text-color: #333;
+$label-color: #555;
+$success-green: #2ecc71;
+$radius: 6px;
+@media (max-width: 425px) {
+    .container-file {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 8px;
+    }
+
+    .input {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-group {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        .form-control {
+            padding: 12px 16px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: $radius;
+            outline: none;
+
+            &:focus {
+                border-color: #999;
+            }
+        }
+
+        .labelInput {
+            font-size: 13px;
+            font-weight: 500;
+            color: $label-color;
+            margin-bottom: 4px;
+        }
+    }
+
+    .file-upload-wrapper {
+        .custom-file-label {
+            width: 70vw;
+            background-color: $gray-bg;
+            border-radius: $radius;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+
+            &:hover {
+                background-color: $gray-hover;
+            }
+
+            .icon-upload {
+                margin-right: 12px;
+                font-size: 18px;
+            }
+
+            .upload-text {
+                flex-grow: 1;
+                font-size: 14px;
+                color: $text-color;
+                font-weight: 500;
+            }
+
+            .icon-check {
+                color: $success-green;
+                font-size: 18px;
+            }
+        }
+
+        .labelInput {
+            font-size: 13px;
+            font-weight: 500;
+            color: $label-color;
+            margin-top: 4px;
+        }
+    }
+}
