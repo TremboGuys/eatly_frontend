@@ -5,7 +5,7 @@ import { useCategory } from '@/composables/category';
 
 const categories = ref([]);
 onMounted(async () => {
-  categories.value = await useCategory().getCategories()
+  categories.value = await useCategory().getCategories();
 })
 </script>
 

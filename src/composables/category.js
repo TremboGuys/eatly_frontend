@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import APICategory from "@/api/category";
+import { CategoryService } from "@/services";
 import { useToastStore } from "@/stores/toastStore";
 
 export const useCategory = () => {
@@ -7,12 +7,14 @@ export const useCategory = () => {
     const toastStore = useToastStore();
 
     try {
-      const data = await APICategory.getCategories(); // <- AQUI o await
+      const data = await CategoryService.getCategories(); // <- AQUI o await
 
-      if (!data || data.length === 0) {
+      if (data.length == 0) {
         toastStore.notify("Nenhuma categoria encontrada.", "error");
         return [];
       }
+
+      console.log(data);
 
       return data;
 
@@ -22,7 +24,7 @@ export const useCategory = () => {
         "error"
       );
       console.error("Erro em getCategories:", error);
-      return [];
+      return false;
     }
   }
 
