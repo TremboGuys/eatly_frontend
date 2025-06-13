@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import FoodCategory from './FoodCategory.vue';
 import { useCategory } from '@/composables/category';
 
@@ -14,7 +14,7 @@ onMounted(async () => {
     <FoodCategory
       v-for="category in categories"
       :key="category.id"
-      :category="category"
+      :category.="category"
     />
   </div>
 </template>
