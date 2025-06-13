@@ -2,9 +2,9 @@ import { ref } from "vue";
 import { CategoryService } from "@/services";
 import { useToastStore } from "@/stores/toastStore";
 
-export const useCategory = () => {
+export const useCategoryComposable = () => {
+  const toastStore = useToastStore();
   async function getCategories() {
-    const toastStore = useToastStore();
 
     try {
       const data = await CategoryService.getCategories(); // <- AQUI o await
@@ -28,7 +28,20 @@ export const useCategory = () => {
     }
   }
 
+  async function createCategory(category) {
+    try {
+      const data = await CategoryService.createCategory(category);
+      return data;
+
+      console.log(data);
+    } catch(error) {
+      toastStore.notify("Erro ao criar categoria.", "error");
+      return false;
+    }
+  }
+
   return {
     getCategories,
+    createCategory
   };
 };

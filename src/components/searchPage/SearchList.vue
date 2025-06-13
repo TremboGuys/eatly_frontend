@@ -1,11 +1,11 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 import FoodCategory from './FoodCategory.vue';
-import { useCategory } from '@/composables/category';
+import { useCategoryComposable } from '@/composables/';
 
 const categories = ref([]);
 onMounted(async () => {
-  categories.value = await useCategory().getCategories();
+  categories.value = await useCategoryComposable().getCategories();
 })
 </script>
 
