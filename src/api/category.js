@@ -1,15 +1,8 @@
 import { api } from "@/plugins/axios"
 
-class APICategory {
+export default {
     async getCategories() {
-        try {
-            const response = await api.get('/categories');
-            return response;
-        } catch(error) {
-            console.error('Error in request for categories: ', error)
-            return false;
-        }  
+      const response = await api.get('/api/categories/');
+      return response.data;
     }
-}
-
-export default new APICategory();
+  };
