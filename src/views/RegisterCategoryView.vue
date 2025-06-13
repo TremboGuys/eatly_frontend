@@ -30,41 +30,5 @@ function changeDataCategory(data) {
 </template>
 
 <style scoped>
-@media (max-width: 425px) {
-    .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        font-family: "poppins", sans-serif;
-    }
-
-    .logo {
-        width: 140px;
-        height: auto;
-        margin-top: 20px;
-        margin-bottom: 2rem;
-    }
-
-    .title {
-        font-size: 1.5rem;
-        font-weight: bold;
-        margin-bottom: 1rem;
-        font-family: 'Poppins', sans-serif;
-    }
-
-    .hr {
-        width: 80vw;
-        height: 1px;
-        background-color: #dddddd;
-        margin-bottom: 2rem;
-    }
-
-    .or {
-        font-size: 1.2rem;
-        margin: 1rem 0;
-        font-family: 'Poppins', sans-serif;
-        color: #666;
-    }
-}
+@import '@/assets/sass/registerCategory/_registerCategory.scss';
 </style>
