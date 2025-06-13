@@ -5,4 +5,12 @@
     height: 7vh;
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+
+    .title{
+        color: white;
+    }
 }
