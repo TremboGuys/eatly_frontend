@@ -17,7 +17,7 @@ const emit = defineEmits(['changeDataUser']);
     <div class="container">
         <div class="input">
             <div class="form-group">
-                <input :type="type" class="form-control" :maxlength="maxlength" @input="emit('changeDataUser', {field: props.type, value: $event.target.value})" :placeholder="' '" />
+                <input :type="type" class="form-control" :maxlength="maxlength" @input="emit('changeDataUser', {field: props.field, value: $event.target.value})" :placeholder="' '" />
                 <label class="labelInput" :for="forId">{{ label }}</label>
             </div>
         </div>
