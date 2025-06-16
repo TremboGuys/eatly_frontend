@@ -13,7 +13,6 @@ const user = reactive({
 
 function changeDataUser(data) {
   user[data.field] = data.value;
-  console.log(user[data.field]);
 }
 </script>
 

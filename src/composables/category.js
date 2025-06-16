@@ -14,8 +14,6 @@ export const useCategoryComposable = () => {
         return [];
       }
 
-      console.log(data);
-
       return data;
 
     } catch (error) {
@@ -23,17 +21,18 @@ export const useCategoryComposable = () => {
         "Erro ao buscar categorias. Por favor, tente novamente.",
         "error"
       );
-      console.error("Erro em getCategories:", error);
       return false;
     }
   }
 
   async function createCategory(category) {
     try {
-      const data = await CategoryService.createCategory(category);
-      return data;
+      const categoryFormData = new FormData();
+      categoryFormData.append("name", category.name);
+      categoryFormData.append("file", category.file);
 
-      console.log(data);
+      await CategoryService.createCategory(categoryFormData);
+      toastStore.notify("Categoria criada com sucesso!", "success");
     } catch(error) {
       toastStore.notify("Erro ao criar categoria.", "error");
       return false;
