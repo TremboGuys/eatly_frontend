@@ -2,6 +2,14 @@
     .container {
         width: 100vw;
         .card {
+            h2 {
+                font-size: 1.5rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-family: 'Poppins', sans-serif;
+                font-weight: 600;
+            }
             .orderOptions {
                 width: 95vw;
                 padding: 0 10px;
