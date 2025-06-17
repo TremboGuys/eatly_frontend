@@ -7,7 +7,7 @@ export const useCategoryComposable = () => {
   async function getCategories() {
 
     try {
-      const data = await CategoryService.getCategories(); // <- AQUI o await
+      const data = await CategoryService.getCategories();
 
       if (data.length == 0) {
         toastStore.notify("Nenhuma categoria encontrada.", "error");

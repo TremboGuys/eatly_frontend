@@ -19,7 +19,6 @@ class CategoryService {
       }
       catch (error) {
         console.error("Error in POST category: ", error);
-        console.error(error.response.data);
         throw error;
       }
     }
