@@ -1,0 +1,37 @@
+@media (max-width: 425px) {
+    .container {
+        width: 100vw;
+        .card {
+            .orderOptions {
+                width: 95vw;
+                padding: 0 10px;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                text-align: center;
+                .option {
+                    width: 30vw;
+                    font-family: "Poppins", sans-serif;
+                    .circle {
+                        width: 25vw;
+                        height: 25vw;
+                        border: 1px solid #444801;
+                        border-radius: 100px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        img {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            width: 80%;
+                            height: 80%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

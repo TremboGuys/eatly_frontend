@@ -7,6 +7,7 @@ import HaveAnAccount from "@/components/buttons/HaveAnAccount.vue";
 import NavigationBar from "@/components/navigationBar/NavigationBar.vue";
 import ButtonSubmit from "./buttons/ButtonSubmit.vue";
 import InputFile from "./inputs/InputFile.vue";
+import OrderButton from "./buttons/OrderButton.vue";
 
 export {
     InputsProps,
@@ -17,5 +18,6 @@ export {
     HaveAnAccount,
     NavigationBar,
     ButtonSubmit,
-    InputFile
+    InputFile, 
+    OrderButton
 }
