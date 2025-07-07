@@ -1,6 +1,14 @@
 @media (max-width: 425px) {
     .container {
         width: 100vw;
+        .order-button {
+            .btn {
+                width: 20vw;
+                border-radius: 2rem;
+                font-size: 18px;
+                border: none;
+            }
+        }
         .card {
             h2 {
                 font-size: 1.5rem;
