@@ -9,72 +9,52 @@ const dropdown = () => {
 };
 const selectedOption = ref(1);
 function selectOption(id) {
+  if (selectedOption.value === id) {
+    selectedOption.value = 1;
+  } else {
     selectedOption.value = id;
+  }
 }
 const data = reactive({
     options: [
         {
             id: 1,
             name: 'Ordenação Padrão',
-            image: Transfer,
+            original: Transfer,
+            filtered: TransferBlack,
             default: true,
         },
         {
             id: 2,
             name: 'Preço',
-            image: Coin,
+            original: Coin,
+            filtered: CoinBlack,
         },
         {
             id: 3,
             name: 'Avaliação',
-            image: Star,
+            original: Star,
+            filtered: StarBlack,
         },
         {
             id: 4,
             name: 'Tempo de Entrega',
-            image: Clock,
+            original: Clock,
+            filtered: ClockBlack
         },
         {
             id: 5,
             name: 'Taxa de Entrega',
-            image: Helmet,
+            original: Helmet,
+            filtered: HelmetBlack
         },
         {
             id: 6,
             name: 'Localização',
-            image: Location,
+            original: Location,
+            filtered: LocationBlack,
         },
-        // {
-        //     id: 7,
-        //     name: 'Ordenação Padrão (Escuro)',
-        //     image: TransferBlack,
-        // },
-        // {
-        //     id: 8,
-        //     name: 'Preço (Escuro)',
-        //     image: CoinBlack,
-        // },
-        // {
-        //     id: 9,
-        //     name: 'Avaliação (Escuro)',
-        //     image: StarBlack,
-        // },
-        // {
-        //     id: 10,
-        //     name: 'Tempo de Entrega (Escuro)',
-        //     image: ClockBlack,
-        // },
-        // {
-        //     id: 11,
-        //     name: 'Capacidades (Escuro)',
-        //     image: HelmetBlack,
-        // },
-        // {
-        //     id: 12,
-        //     name: 'Localização (Escuro)',
-        //     image: LocationBlack,
-        //     default: false
-        // },
+
     ],
 })
 </script>
@@ -87,7 +67,7 @@ const data = reactive({
                 <div class="orderOptions" v-if="state.isOpen">
                     <div class="option" v-for="option in data.options" :key="option.id" :class=" {active: selectedOption === option.id}" @click.stop="selectOption(option.id)">
                         <div class="circle">
-                            <img :src="option.image" alt="Option Image" />
+                            <img :src="selectedOption === option.id ? option.filtered : option.original" alt="Option Image" />
                         </div>
                         <div class="text">
                             <p>{{ option.name }}</p>
