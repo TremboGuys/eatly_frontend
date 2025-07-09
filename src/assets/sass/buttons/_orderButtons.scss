@@ -1,15 +1,48 @@
 @media (max-width: 425px) {
     .container {
         width: 100vw;
+        height: 100vh;
+        position: fixed;
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(2px);
+            z-index: 9;
+        }
+
         .order-button {
+            position: relative;
+            width: 100vw;
+
             .btn {
-                width: 20vw;
+                width: 30vw;
+                height: 3vh;
                 border-radius: 2rem;
                 font-size: 18px;
                 border: none;
+
+                img {
+                    width: 2.5vw;
+                    height: 1.2vh;
+                }
             }
         }
+
         .card {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            z-index: 20;
+            width: 100vw;
+            background-color: #FFF;
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+
             h2 {
                 font-size: 1.5rem;
                 display: flex;
@@ -18,6 +51,7 @@
                 font-family: 'Poppins', sans-serif;
                 font-weight: 600;
             }
+
             .orderOptions {
                 width: 95vw;
                 padding: 0 10px;
@@ -27,9 +61,11 @@
                 flex-wrap: wrap;
                 justify-content: space-between;
                 text-align: center;
+
                 .option {
                     width: 30vw;
                     font-family: "Poppins", sans-serif;
+
                     .circle {
                         width: 25vw;
                         height: 25vw;
@@ -38,6 +74,7 @@
                         display: flex;
                         justify-content: center;
                         align-items: center;
+
                         img {
                             display: flex;
                             justify-content: center;
@@ -49,5 +86,28 @@
                 }
             }
         }
+    }
+
+    .slide-up-down-enter-active,
+    .slide-up-down-leave-active {
+      transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+    
+    .slide-up-down-enter-from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    .slide-up-down-enter-to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    
+    .slide-up-down-leave-from {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .slide-up-down-leave-to {
+      transform: translateY(100%);
+      opacity: 0;
     }
 }
