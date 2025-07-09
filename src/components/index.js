@@ -8,6 +8,7 @@ import NavigationBar from "@/components/navigationBar/NavigationBar.vue";
 import ButtonSubmit from "./buttons/ButtonSubmit.vue";
 import InputFile from "./inputs/InputFile.vue";
 import OrderButton from "./buttons/OrderButton.vue";
+import FreeDeliveryButton from "./buttons/FreeDeliveryButton.vue";
 
 export {
     InputsProps,
@@ -19,5 +20,6 @@ export {
     NavigationBar,
     ButtonSubmit,
     InputFile, 
-    OrderButton
+    OrderButton,
+    FreeDeliveryButton
 }
