@@ -10,6 +10,11 @@
                 border-radius: 2rem;
                 font-size: 18px;
                 border: none;
+                transition: all 0.3s ease-in-out;
+                &.active {
+                    background-color: #d6d6d6;
+                    color: #000000;
+                }
             }
         }
     }

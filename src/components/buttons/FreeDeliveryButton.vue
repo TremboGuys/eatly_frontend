@@ -1,16 +1,14 @@
 <script setup>
-import { reactive } from 'vue';
-const state = reactive({
-    isSelect: false,
-});
-const select = () => {
-    state.isSelect = !state.isSelect;
+import { ref } from 'vue';
+const selected = ref(false);
+function select() {
+    selected.value = !selected.value;
 }
 </script>
 <template>
     <div class="container">
-        <div class="order-button" @click="select">
-            <button class="btn">
+        <div class="order-button">
+            <button class="btn" @click="select" :class="{ active: selected }"">
                 Entrega Grátis
             </button>
         </div>
