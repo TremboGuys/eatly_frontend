@@ -9,6 +9,7 @@ import ButtonSubmit from "./buttons/ButtonSubmit.vue";
 import InputFile from "./inputs/InputFile.vue";
 import OrderButton from "./buttons/OrderButton.vue";
 import FreeDeliveryButton from "./buttons/FreeDeliveryButton.vue";
+import SortingButtons from "./buttons/SortingButtons.vue";
 
 export {
     InputsProps,
@@ -21,5 +22,6 @@ export {
     ButtonSubmit,
     InputFile, 
     OrderButton,
-    FreeDeliveryButton
+    FreeDeliveryButton,
+    SortingButtons
 }

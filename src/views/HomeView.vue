@@ -1,10 +1,9 @@
 <script setup>
-import { OrderButton, FreeDeliveryButton } from '@/components';
+import { SortingButtons } from '@/components';
 </script>
 
 <template>
   <main>
-    <OrderButton />
-    <FreeDeliveryButton />
+    <SortingButtons />
   </main>
 </template>

@@ -1,8 +1,6 @@
 @media (max-width: 425px) {
     .container {
-        width: 100vw;
-        height: 100vh;
-        position: fixed;
+        width: auto;
         .overlay {
             position: fixed;
             top: 0;
@@ -14,11 +12,9 @@
             z-index: 9;
         }
         .order-button {
-            position: relative;
-            width: 0px;
             .btn {
                 width: 30vw;
-                height: 3vh;
+                height: 4vh;
                 border-radius: 2rem;
                 font-size: 18px;
                 border: none;
@@ -55,6 +51,7 @@
                 justify-content: space-between;
                 text-align: center;
                 .option {
+                    text-align: center;
                     width: 30vw;
                     font-family: "Poppins", sans-serif;
                     .circle {

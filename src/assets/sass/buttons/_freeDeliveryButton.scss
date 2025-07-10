@@ -1,16 +1,16 @@
-.container {
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    .order-button {
-        position: relative;
-        width: 0px;
-        .btn {
-            width: 40vw;
-            height: 3.5vh;
-            border-radius: 2rem;
-            font-size: 18px;
-            border: none;
+@media (max-width: 425px) {
+    .container {
+        width: auto;
+        .order-button {
+            position: relative;
+            width: 0px;
+            .btn {
+                width: 40vw;
+                height: 4vh;
+                border-radius: 2rem;
+                font-size: 18px;
+                border: none;
+            }
         }
     }
 }
