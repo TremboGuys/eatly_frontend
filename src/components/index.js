@@ -11,6 +11,7 @@ import OrderButton from "./buttons/OrderButton.vue";
 import FreeDeliveryButton from "./buttons/FreeDeliveryButton.vue";
 import SortingButtons from "./buttons/SortingButtons.vue";
 
+
 export {
     InputsProps,
     SignUpSubmit,

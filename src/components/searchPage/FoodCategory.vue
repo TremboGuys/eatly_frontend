@@ -8,8 +8,6 @@ defineProps({
     }
 
 });
-
-
 </script>
 
 <template>
