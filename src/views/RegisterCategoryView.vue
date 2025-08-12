@@ -22,8 +22,8 @@ function changeDataCategory(data) {
         <div class="hr"></div>
         <form @submit.prevent="useCategory.createCategory(category)">
             <InputsProps type="text" field="name" for-id="name" label="Nome" maxlength="40" @change-data-user="changeDataCategory" />
-            <!-- <InputsProps type="text" field="description" for-id="description" label="Descrição" maxlength="255"
-                @change-data-user="changeDataCategory" /> -->
+            <InputsProps type="text" field="description" for-id="description" label="Descrição" maxlength="255"
+                @change-data-user="changeDataCategory" />
             <InputFile field="file" for-id="file" label="Imagem" @change-data-user="changeDataCategory" />
             <ButtonSubmit />
         </form>
