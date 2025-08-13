@@ -1,0 +1,58 @@
+@media (max-width: 425px) {
+    .custom-select {
+        width: 100%;
+        position: relative;
+        font-family: 'Poppins', sans-serif;
+
+        .select-box {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+
+            .arrow {
+                transition: transform 0.3s;
+            }
+
+            .arrow.open {
+                transform: rotate(180deg);
+            }
+        }
+
+        .options-list {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 10;
+            margin-top: 4px;
+            padding: 0;
+            list-style: none;
+
+            li {
+                padding: 0.8rem;
+                font-size: 1rem;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #f0f0f0;
+                }
+
+                &.selected {
+                    background-color: #eee;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}

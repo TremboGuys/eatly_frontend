@@ -1,14 +1,14 @@
 <script setup>
 import { InputsProps, ButtonSubmit, InputFile } from '@/components';
 import { useCategoryComposable, useRestaurantComposable } from '@/composables';
-import { reactive, onMounted } from 'vue';
+import { reactive, ref, onMounted } from 'vue';
 
-// onMounted(async () => {
-//     const data = await useCategoryComposable.getCategories();
-//     categories.value = data;
-// })
+onMounted(async () => {
+    const data = await useCategoryComposable.getCategories();
+    categories.value = data;
+})
 
-// const categories = ref([]);
+const categories = ref([]);
 
 const restaurant = reactive({
     name: '',
@@ -41,9 +41,9 @@ const arrayFormData = [
         maxlength: 14
     },
     {
-        field: "date",
-        type: "date",
-        forId: "date",
+        field: "time",
+        type: "datetime",
+        forId: "time",
         label: "Horário de funcionamento",
         maxlength: 10
     },
@@ -113,10 +113,12 @@ function changeDataRestaurant(data) {
         <form @submit.prevent="useRestaurant.createRestaurant(restaurant)">
             <InputsProps v-for="index in 2" :type="arrayFormData[index - 1].type" :field="arrayFormData[index - 1].field" :for-id="arrayFormData[index - 1].forId" :label="arrayFormData[index - 1].label" :maxlength="arrayFormData[index - 1].maxlength"
                 @change-data-user="changeDataRestaurant" />
-            <!-- <select name="">
-                <option value="" disabled selected>Selecione a categoria do restaurante</option>
-                <option v-for="category in categories" :key="category.id" :value="category.id">{{ category.name }}</option>
-            </select> -->
+                <div class="select">
+                    <select name="">
+                        <option value="" disabled selected>Selecione a categoria do restaurante</option>
+                        <option v-for="category in categories" :key="category.id" :value="category.id">{{ category.name }}</option>
+                    </select>
+                </div>
             <InputsProps v-for="index in 8" :type="arrayFormData[index + 1].type" :field="arrayFormData[index + 1].field" :for-id="arrayFormData[index + 1].forId" :label="arrayFormData[index + 1].label" :maxlength="arrayFormData[index + 1].maxlength"
                 @change-data-user="changeDataRestaurant" />
             <div class="bar">
@@ -132,5 +134,5 @@ function changeDataRestaurant(data) {
 </template>
 
 <style scoped>
-@import '@/assets/sass/registerOwner/_registerOwner.scss';
+@import '@/assets/sass/registerRestaurant/_registerRestaurant.scss';
 </style>
