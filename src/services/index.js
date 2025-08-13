@@ -1,7 +1,7 @@
 import CategoryService from "@/services/category";
-import RestaurantService from "@/services/restaurant";
+import OwnerService from "@/services/owner";
 
 export {
     CategoryService,
-    RestaurantService
+    OwnerService
 };

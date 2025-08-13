@@ -1,7 +1,7 @@
 import { useCategoryComposable } from "./category";
-import { useRestaurantComposable } from "./restaurant";
+import { useOwnerComposable } from "./owner";
 
 export {
     useCategoryComposable,
-    useRestaurantComposable
+    useOwnerComposable
 };
