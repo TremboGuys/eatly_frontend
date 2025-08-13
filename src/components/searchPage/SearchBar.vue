@@ -1,18 +1,19 @@
 <script setup>
-import { ref } from 'vue';
-const search = ref('');
+import { useSearchCategory } from '@/composables';
+
+const useSearch = useSearchCategory();
 
 
 function clearSearch() {
-search.value = '';
+  useSearch.searchInput = "";
 }
 </script>
 
 <template>
-  <div :class="['input-container', { active: search }]">
-    <input v-model="search" type="text" placeholder="O que você vai pedir hoje?" class="search-input" />
+  <div :class="['input-container', { active: useSearch.searchInput }]">
+    <input v-model="useSearch.searchInput.value" type="text" placeholder="O que você vai pedir hoje?" class="search-input" />
     <img class="search-icon" src="../../assets/img/navigationBar/search.svg" alt="">
-    <button v-if="search" class="cancel" @click="clearSearch">x</button>
+    <button v-if="useSearch.searchInput" class="cancel" @click="clearSearch">x</button>
   </div>
 </template>
 

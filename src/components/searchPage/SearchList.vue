@@ -1,18 +1,28 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, computed } from 'vue';
 import FoodCategory from './FoodCategory.vue';
-import { useCategory } from '@/composables/category';
+import { useCategory, useSearchCategory } from '@/composables';
 
-const categories = ref([]);
+const useSearch = useSearchCategory();
+const currentCategories = computed(() => {
+  return allCategories.value.filter(category =>
+    category.name.toLowerCase().startsWith(useSearch.searchInput.value.toLowerCase())
+  );
+});
+
 onMounted(async () => {
-  categories.value = await useCategory().getCategories();
-})
+  allCategories.value = await useCategory().getCategories();
+  currentCategories.value = allCategories.value;
+});
+
+const allCategories = ref([]);
+
 </script>
 
 <template>
   <div class="list-container">
     <FoodCategory
-      v-for="category in categories"
+      v-for="category in currentCategories"
       :key="category.id"
       :category.="category"
     />
