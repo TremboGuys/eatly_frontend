@@ -4,13 +4,12 @@ import { useToastStore } from "@/stores/toastStore";
 
 export const useOwnerComposable = () => {
   const toastStore = useToastStore();
-  async function getOwners() {
-
+  async function getOwner(id) {
     try {
-      const data = await OwnerService.getOwners();
+      const data = await OwnerService.getOwner(id);
 
       if (data.length == 0) {
-        toastStore.notify("Nenhuma proprietário encontrada.", "error");
+        toastStore.notify("Nenhum proprietário encontrado.", "warning");
         return [];
       }
 
@@ -18,7 +17,7 @@ export const useOwnerComposable = () => {
 
     } catch (error) {
       toastStore.notify(
-        "Erro ao buscar proprietários. Por favor, tente novamente.",
+        "Erro ao buscar o proprietário. Por favor, tente novamente.",
         "error"
       );
       return false;
@@ -27,12 +26,9 @@ export const useOwnerComposable = () => {
 
   async function createOwner(owner) {
     try {
-      const ownerFormData = new FormData();
-      ownerFormData.append("name", owner.name);
-      ownerFormData.append("file", owner.file);
-
-      await OwnerService.createOwner(ownerFormData);
+      const data = await OwnerService.createOwner(owner);
       toastStore.notify("Proprietário criado com sucesso!", "success");
+      return data;
     } catch(error) {
       toastStore.notify("Erro ao criar proprietário.", "error");
       return false;
@@ -40,7 +36,7 @@ export const useOwnerComposable = () => {
   }
 
   return {
-    getOwners,
+    getOwner,
     createOwner
   };
 };
