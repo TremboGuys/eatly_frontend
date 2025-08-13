@@ -1,13 +1,13 @@
 import { api } from "@/plugins/axios"
 
 class OwnerService {
-    async getOwner() {
+    async getOwner(id) {
       try {
-        const response = await api.get('/api/owners/');
+        const response = await api.get(`/api/owners/${id}`);
         return response.data;
       }
       catch (error) {
-        console.error("Error in GET owners: ", error);
+        console.error("Error in GET owner: ", error);
         throw error;
       }
     }
@@ -23,9 +23,9 @@ class OwnerService {
       }
     }
 
-    async updateOwner(owner) {
+    async updateOwner(id, owner) {
       try {
-        const response = await api.patch('/api/owners/', owner);
+        const response = await api.patch(`/api/owners/${id}`, owner);
         return response.data;
       }
       catch (error) {
