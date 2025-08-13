@@ -5,7 +5,17 @@ import { reactive } from 'vue';
 
 const restaurant = reactive({
     name: '',
-    file: null
+    cpf: '',
+    orgao: '',
+    date: '',
+    email: '',
+    password: '',
+    phone: '',
+    cep: '',
+    address: '',
+    district: '',
+    city: '',
+    state: '',
 })
 
 const useRestaurant = useRestaurantComposable();
@@ -23,7 +33,7 @@ function changeDataRestaurant(data) {
         <form @submit.prevent="useRestaurant.createRestaurant(restaurant)">
             <InputsProps type="text" field="name" for-id="name" label="Nome" maxlength="40"
                 @change-data-user="changeDataRestaurant" />
-            <InputsProps type="number" field="cpf" for-id="cf" label="CPF" maxlength="11"
+            <InputsProps type="number" field="cpf" for-id="cpf" label="CPF" maxlength="11"
                 @change-data-user="changeDataRestaurant" />
             <InputsProps type="text" field="orgao" for-id="orgao" label="Órgão Emissor" maxlength="11"
                 @change-data-user="changeDataRestaurant" />
