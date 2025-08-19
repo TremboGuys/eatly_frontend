@@ -1,4 +1,5 @@
 <script setup>
+import { ref, onMounted } from 'vue';
 
 defineProps({
     category: {
@@ -7,9 +8,6 @@ defineProps({
     }
 
 });
-
-import { ref, onMounted } from 'vue';
-
 </script>
 
 <template>
