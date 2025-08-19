@@ -25,5 +25,6 @@ export {
     InputFile, 
     OrderButton,
     FreeDeliveryButton,
-    SortingButtons
+    SortingButtons,
+    CustomSelect
 }
