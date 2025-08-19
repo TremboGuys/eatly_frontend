@@ -1,18 +1,20 @@
 <script setup>
-import { InputsProps, ButtonSubmit, InputFile } from '@/components';
+import { InputsProps, ButtonSubmit, CustomSelect } from '@/components';
 import { useCategoryComposable, useRestaurantComposable } from '@/composables';
 import { reactive, ref, onMounted } from 'vue';
+import { categories } from '@/metaDatas/categories.js';
 
-onMounted(async () => {
-    const data = await useCategoryComposable.getCategories();
-    categories.value = data;
-})
+// onMounted(async () => {
+//     const data = await useCategoryComposable.getCategories();
+//     categories.value = data;
+// })
 
-const categories = ref([]);
+// const categories = ref([]);
 
 const restaurant = reactive({
     name: '',
     cnpj: '',
+    category: null,
     orgao: '',
     date: '',
     email: '',
@@ -111,15 +113,18 @@ function changeDataRestaurant(data) {
         <h1 class="title">Cadastro de novo proprietário</h1>
         <div class="hr"></div>
         <form @submit.prevent="useRestaurant.createRestaurant(restaurant)">
-            <InputsProps v-for="index in 2" :type="arrayFormData[index - 1].type" :field="arrayFormData[index - 1].field" :for-id="arrayFormData[index - 1].forId" :label="arrayFormData[index - 1].label" :maxlength="arrayFormData[index - 1].maxlength"
+            <InputsProps v-for="index in 2" :type="arrayFormData[index - 1].type"
+                :field="arrayFormData[index - 1].field" :for-id="arrayFormData[index - 1].forId"
+                :label="arrayFormData[index - 1].label" :maxlength="arrayFormData[index - 1].maxlength"
                 @change-data-user="changeDataRestaurant" />
-                <div class="select">
-                    <select name="">
-                        <option value="" disabled selected>Selecione a categoria do restaurante</option>
-                        <option v-for="category in categories" :key="category.id" :value="category.id">{{ category.name }}</option>
-                    </select>
-                </div>
-            <InputsProps v-for="index in 8" :type="arrayFormData[index + 1].type" :field="arrayFormData[index + 1].field" :for-id="arrayFormData[index + 1].forId" :label="arrayFormData[index + 1].label" :maxlength="arrayFormData[index + 1].maxlength"
+            <div class="select">
+                <CustomSelect v-model="restaurant.category"
+                    :options="categories.map(c => ({ value: c.id, label: c.name }))"
+                    placeholder="Selecione a categoria do restaurante" />
+            </div>
+            <InputsProps v-for="index in 8" :type="arrayFormData[index + 1].type"
+                :field="arrayFormData[index + 1].field" :for-id="arrayFormData[index + 1].forId"
+                :label="arrayFormData[index + 1].label" :maxlength="arrayFormData[index + 1].maxlength"
                 @change-data-user="changeDataRestaurant" />
             <div class="bar">
                 0 de 2 concluídos
