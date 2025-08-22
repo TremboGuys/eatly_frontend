@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import FoodCategory from './FoodCategory.vue';
 import { useCategory } from '@/composables/category';
 
