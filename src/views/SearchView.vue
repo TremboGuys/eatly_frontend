@@ -1,8 +1,9 @@
 <script setup>
+import SearchPageContainer from '@/components/searchPage/SearchPageContainer.vue';
 </script>
 
 <template>
-  <div></div>
+  <SearchPageContainer />
 </template>
 
 <style scoped>
