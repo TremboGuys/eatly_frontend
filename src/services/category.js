@@ -14,7 +14,7 @@ class CategoryService {
 
     async createCategory(category) {
       try {
-        const response = await api.post('/api/categories/', category);
+        const response = await api.post('api/categories/', category);
         return response.data;
       }
       catch (error) {
