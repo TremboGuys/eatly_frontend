@@ -13,6 +13,5 @@ import SearchList from './SearchList.vue';
 </template>
 
 <style scoped>
-@import "@/assets/sass/searchPage/_searchPage.scss";
 
 </style>
