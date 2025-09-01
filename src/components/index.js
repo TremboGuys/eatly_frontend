@@ -17,6 +17,8 @@ import ItemsMenu from "./restaurantPage/menu/ItemsMenu.vue";
 import ItemMenu from "./restaurantPage/menu/ItemMenu.vue";
 import CartItem from "./cart/CartItem.vue";
 import CartPage from "./cart/CartPage.vue";
+import PreLoader from "./preloader/PreLoader.vue";
+
 
 export {
     InputsProps,
@@ -38,4 +40,5 @@ export {
     ItemMenu,
     CartItem,
     CartPage,
+    PreLoader
 }
