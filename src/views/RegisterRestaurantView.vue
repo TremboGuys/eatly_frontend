@@ -1,5 +1,6 @@
 <script setup>
 import { InputsProps, ButtonSubmit, CustomSelect, InputFile } from '@/components';
+import { InputsProps, ButtonSubmit, CustomSelect, InputFile } from '@/components';
 import { useCategoryComposable, useRestaurantComposable } from '@/composables';
 import { reactive, ref, onMounted } from 'vue';
 import { categories } from '@/metaDatas/categories.js';
