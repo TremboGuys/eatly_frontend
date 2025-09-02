@@ -80,7 +80,7 @@ const router = createRouter({
       path: '/registerrestaurant',
       name: 'registerRestaurant',
       component: () => import('@/views/RegisterRestaurantView.vue')
-    },
+    }
   ],
 });
 

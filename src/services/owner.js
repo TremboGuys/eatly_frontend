@@ -8,7 +8,7 @@ class OwnerService {
       }
       catch (error) {
         console.error("Error in GET owner: ", error);
-        throw error;
+        return false;
       }
     }
 
@@ -45,5 +45,3 @@ class OwnerService {
       }
     }
 }
-
-export default new OwnerService();

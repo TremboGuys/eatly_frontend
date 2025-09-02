@@ -4,6 +4,7 @@ import { useToastStore } from "@/stores/toastStore";
 
 export const useOwnerComposable = () => {
   const toastStore = useToastStore();
+  
   async function getOwner(id) {
     try {
       const data = await OwnerService.getOwner(id);

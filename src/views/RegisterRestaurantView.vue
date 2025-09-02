@@ -1,12 +1,104 @@
 <script setup>
-import { InputsProps, ButtonSubmit, InputFile } from '@/components';
-import { useRestaurantComposable } from '@/composables';
-import { reactive } from 'vue';
+import { InputsProps, ButtonSubmit, CustomSelect } from '@/components';
+import { useCategoryComposable, useRestaurantComposable } from '@/composables';
+import { reactive, ref, onMounted } from 'vue';
+import { categories } from '@/metaDatas/categories.js';
+
+// onMounted(async () => {
+//     const data = await useCategoryComposable.getCategories();
+//     categories.value = data;
+// })
+
+// const categories = ref([]);
 
 const restaurant = reactive({
     name: '',
-    file: null
+    cnpj: '',
+    category: null,
+    orgao: '',
+    date: '',
+    email: '',
+    password: '',
+    phone: '',
+    cep: '',
+    address: '',
+    district: '',
+    city: '',
+    state: '',
 })
+
+const arrayFormData = [
+    {
+        field: "name",
+        type: "text",
+        forId: "name",
+        label: "Nome do restaurante",
+        maxlength: 50
+    },
+    {
+        field: "cnpj",
+        type: "number",
+        forId: "cnpj",
+        label: "CNPJ",
+        maxlength: 14
+    },
+    {
+        field: "time",
+        type: "datetime",
+        forId: "time",
+        label: "Horário de funcionamento",
+        maxlength: 10
+    },
+    {
+        field: "email",
+        type: "email",
+        forId: "email",
+        label: "Email",
+        maxlength: 60
+    },
+    {
+        field: "phone",
+        type: "number",
+        forId: "phone",
+        label: "Telefone",
+        maxlength: 20
+    },
+    {
+        field: "cep",
+        type: "number",
+        forId: "cep",
+        label: "CEP",
+        maxlength: 8
+    },
+    {
+        field: "address",
+        type: "text",
+        forId: "address",
+        label: "Endereço",
+        maxlength: 100
+    },
+    {
+        field: "district",
+        type: "text",
+        forId: "district",
+        label: "Bairro",
+        maxlength: 50
+    },
+    {
+        field: "city",
+        type: "text",
+        forId: "city",
+        label: "Cidade",
+        maxlength: 50
+    },
+    {
+        field: "state",
+        type: "text",
+        forId: "state",
+        label: "Estado",
+        maxlength: 50
+    }
+];
 
 const useRestaurant = useRestaurantComposable();
 
