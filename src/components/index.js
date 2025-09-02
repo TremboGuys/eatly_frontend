@@ -26,5 +26,4 @@ export {
     OrderButton,
     FreeDeliveryButton,
     SortingButtons,
-    CustomSelect
 }
