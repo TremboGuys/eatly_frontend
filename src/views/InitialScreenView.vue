@@ -6,19 +6,20 @@ import InitialScreen from '@/components/initialScreen/InitialScreen.vue';
     <InitialScreen />
   </main>
 </template>
-<style scoped>
+<style>
 @media (max-width: 425px) {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
   main {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     background-color: #444801;
+    
   }
-}
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
 }
 </style>
