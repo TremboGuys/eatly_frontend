@@ -33,70 +33,70 @@ const arrayFormData = [
         type: "text",
         forId: "name",
         label: "Nome do restaurante",
-        maxlength: 50
+        maxlength: "50"
     },
     {
         field: "cnpj",
         type: "number",
         forId: "cnpj",
         label: "CNPJ",
-        maxlength: 14
+        maxlength: "14"
     },
     {
         field: "time",
         type: "datetime",
         forId: "time",
         label: "Horário de funcionamento",
-        maxlength: 10
+        maxlength: "10"
     },
     {
         field: "email",
         type: "email",
         forId: "email",
         label: "Email",
-        maxlength: 60
+        maxlength: "60"
     },
     {
         field: "phone",
         type: "number",
         forId: "phone",
         label: "Telefone",
-        maxlength: 20
+        maxlength: "20"
     },
     {
         field: "cep",
         type: "number",
         forId: "cep",
         label: "CEP",
-        maxlength: 8
+        maxlength: "8"
     },
     {
         field: "address",
         type: "text",
         forId: "address",
         label: "Endereço",
-        maxlength: 100
+        maxlength: "100"
     },
     {
         field: "district",
         type: "text",
         forId: "district",
         label: "Bairro",
-        maxlength: 50
+        maxlength: "50"
     },
     {
         field: "city",
         type: "text",
         forId: "city",
         label: "Cidade",
-        maxlength: 50
+        maxlength: "50"
     },
     {
         field: "state",
         type: "text",
         forId: "state",
         label: "Estado",
-        maxlength: 50
+        maxlength: "50"
     }
 ];
 
@@ -122,7 +122,7 @@ function changeDataRestaurant(data) {
                     :options="categories.map(c => ({ value: c.id, label: c.name }))"
                     placeholder="Selecione a categoria do restaurante" />
                 </div>
-            <InputFile @change-data-user="changeDataRestaurant" />
+            <InputFile field="file" for-id="restaurant-file" @change-data-user="changeDataRestaurant" />
             <InputsProps v-for="index in 8" :type="arrayFormData[index + 1].type"
                 :field="arrayFormData[index + 1].field" :for-id="arrayFormData[index + 1].forId"
                 :label="arrayFormData[index + 1].label" :maxlength="arrayFormData[index + 1].maxlength"
