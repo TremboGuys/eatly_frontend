@@ -1,8 +1,11 @@
 <script setup>
+import { BannerComp } from '@/components';
 </script>
 
 <template>
-  <div></div>
+  <div>
+    <BannerComp />
+  </div>
 </template>
 
 <style scoped>
