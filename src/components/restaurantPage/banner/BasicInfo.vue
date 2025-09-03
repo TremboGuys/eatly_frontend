@@ -3,10 +3,14 @@ import NameComp from './NameComp.vue';
 import PriceTime from './PriceTime.vue';
 import AssessmentStar from './AssessmentStar.vue';
 import DeliveryComp from './DeliveryComp.vue';
+import RestaurantImage from './RestaurantImage.vue';
 </script>
 <template>
     <div class="container">
         <div class="content">
+            <div class="logo">
+                <RestaurantImage />
+            </div>
             <div class="banner-info">
                 <div class="title">
                     <NameComp />
