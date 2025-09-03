@@ -1,6 +1,8 @@
 <script setup>
 import NameComp from './NameComp.vue';
 import PriceTime from './PriceTime.vue';
+import AssessmentStar from './AssessmentStar.vue';
+import DeliveryComp from './DeliveryComp.vue';
 </script>
 <template>
     <div class="container">
@@ -10,7 +12,11 @@ import PriceTime from './PriceTime.vue';
                     <NameComp />
                     <PriceTime />
                 </div>
-                <div class="description">
+                <div class="description title">
+                    <AssessmentStar />
+                </div>
+                <div class="delivery">
+                    <DeliveryComp />
                 </div>
             </div>
         </div>
