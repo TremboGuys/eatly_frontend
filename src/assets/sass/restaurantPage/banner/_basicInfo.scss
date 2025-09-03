@@ -1,0 +1,27 @@
+@media (max-width: 425px) {
+    .container {
+        position: relative;
+        width: 100%;
+        height: auto;
+
+        .content {
+            position: absolute;
+            left: 50%;
+            bottom: -40px;
+            transform: translateX(-50%);
+            background-color: #fff;
+            width: 90%;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            text-align: center;
+
+            .banner-info {
+                .title {
+                    padding: 0 0 .7rem 0;
+                    border-bottom: 2px solid rgba(104, 104, 104, 0.5);
+                }
+            }
+        }
+    }
+}

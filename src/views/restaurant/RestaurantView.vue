@@ -1,10 +1,11 @@
 <script setup>
-import { BannerComp } from '@/components';
+import { BannerComp, BasicInfo } from '@/components';
 </script>
 
 <template>
   <div>
     <BannerComp />
+    <BasicInfo />
   </div>
 </template>
 
