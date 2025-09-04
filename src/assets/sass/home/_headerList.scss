@@ -1,0 +1,21 @@
+@media(max-width:425px){
+    .HeaderList{
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 0.5px solid #ADADAD;
+
+
+        .headerTitle{
+            font-weight: 600;
+            font-size: 18px;
+
+        }
+        .viewMore{
+            color: #585D03;
+            cursor: pointer;
+            font-size: 15px;
+
+        }
+    }
+
+}

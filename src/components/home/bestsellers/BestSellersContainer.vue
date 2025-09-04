@@ -1,9 +1,10 @@
 <script setup>
+import BestSellersList from './BestSellersList.vue';
 </script>
 
 <template>
     <div class="bestSellerContainer">
-        <p>categorias</p>
+        <BestSellersList />
     </div>
 </template>
 

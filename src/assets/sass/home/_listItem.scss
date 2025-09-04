@@ -1,0 +1,55 @@
+@media(max-width:425px){
+    .listItem{
+        border-bottom: 0.5px solid #ADADAD;
+        // border-top: 1px solid #ADADAD;
+        height: 9vh;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px 0;
+
+        .left-side{
+            display: flex;
+            gap: 10px;
+                .image-restaurant{
+                    height: 8vh;
+                    width: 8vh;
+                    background-color: rgb(95, 156, 4);
+                }
+                .description{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    .bottom-info{
+                        .prices{
+                            color: #37941F;
+                            font-size: 0.9em;
+                        }
+                        .time-delivery{
+                            color: #636363;
+                            font-size: 10px;
+                        }
+                    }
+                }
+ 
+        }
+        .right-side{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: end;
+            height: 100%;
+
+            .sale{
+                background-color: #444801;
+                padding: 5px 12px;
+                border-radius: 4px;
+                color: white;
+                font-size: 10px;
+
+            }
+
+        }
+    }
+
+}
