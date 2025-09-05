@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import { useAuthStore } from '@/stores';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -7,7 +7,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: () => import('@/views/HomeView.vue')
+      component: () => import('@/views/InitialScreenView.vue')
     },
     {
       path: '/',
@@ -37,8 +37,24 @@ const router = createRouter({
           path: 'cart',
           name: 'cart',
           component: () => import("@/views/CartView.vue")
-        }
-      ]
+        },
+        {
+          path: '/restaurant/:id',
+          name: 'restaurant',
+          component: () => import('@/views/restaurant/RestaurantView.vue')
+        },
+        {
+          path: '/restaurant/:id/reviews',
+          name: 'reviews',
+          component: () => import('@/views/restaurant/ReviewsView.vue')
+        },
+        {
+          path: '/restaurant/:id/reviews/create',
+          name: 'createReview',
+          component: () => import('@/views/restaurant/CreateReviewView.vue')
+        },
+      ],
+      meta: { requiresAuth: true }
     },
     {
       path: '/signup',
@@ -46,36 +62,47 @@ const router = createRouter({
       component: () => import('@/views/auth/SignUpView.vue')
     },
     {
-      path: '/initial',
-      name: 'initial',
-      component: () => import('@/views/InitialScreenView.vue')
-    },
-    {
       path: '/signin',
       name: 'signin',
       component: () => import('@/views/auth/SignInView.vue')
     },
     {
-      path: '/restaurant/:id',
-      name: 'restaurant',
-      component: () => import('@/views/restaurant/RestaurantView.vue')
-    },
-    {
-      path: '/restaurant/:id/reviews',
-      name: 'reviews',
-      component: () => import('@/views/restaurant/ReviewsView.vue')
-    },
-    {
-      path: '/restaurant/:id/reviews/create',
-      name: 'createReview',
-      component: () => import('@/views/restaurant/CreateReviewView.vue')
-    },
-    {
       path: '/registercategory',
       name: 'registerCategory',
       component: () => import('@/views/RegisterCategoryView.vue')
+    },
+    {
+      path: '/registerowner',
+      name: 'registerOwner',
+      component: () => import('@/views/RegisterOwnerView.vue')
+    },
+    {
+      path: '/registerrestaurant',
+      name: 'registerRestaurant',
+      component: () => import('@/views/RegisterRestaurantView.vue')
     }
   ],
+});
+
+router.beforeEach(async (to, from, next) => {
+  const authStore = useAuthStore();
+
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (authStore.state.logged) {
+      next();
+    }
+    else {
+      if (authStore.verifyAuth()) {
+        next();
+      }
+      else {
+        next('/signin');
+      }
+    }
+  }
+  else {
+    next();
+  }
 })
 
 export default router

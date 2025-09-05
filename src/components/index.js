@@ -7,10 +7,10 @@ import HaveAnAccount from "@/components/buttons/HaveAnAccount.vue";
 import NavigationBar from "@/components/navigationBar/NavigationBar.vue";
 import ButtonSubmit from "./buttons/ButtonSubmit.vue";
 import InputFile from "./inputs/InputFile.vue";
+import CustomSelect from "./inputs/CustomSelect.vue";
 import OrderButton from "./buttons/OrderButton.vue";
 import FreeDeliveryButton from "./buttons/FreeDeliveryButton.vue";
 import SortingButtons from "./buttons/SortingButtons.vue";
-
 
 export {
     InputsProps,
@@ -21,8 +21,9 @@ export {
     HaveAnAccount,
     NavigationBar,
     ButtonSubmit,
+    CustomSelect,
     InputFile, 
     OrderButton,
     FreeDeliveryButton,
-    SortingButtons
+    SortingButtons,
 }
