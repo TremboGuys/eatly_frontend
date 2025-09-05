@@ -11,7 +11,7 @@ const props = defineProps({
 
 const useClient = useClientComposable();
 
-const textError = ref(false);
+// const textError = ref(false);
 
 const emit = defineEmits(['changeDataUser']);
 
