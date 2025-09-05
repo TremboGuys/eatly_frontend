@@ -70,6 +70,16 @@ const router = createRouter({
       path: '/registercategory',
       name: 'registerCategory',
       component: () => import('@/views/RegisterCategoryView.vue')
+    },
+    {
+      path: '/registerowner',
+      name: 'registerOwner',
+      component: () => import('@/views/RegisterOwnerView.vue')
+    },
+    {
+      path: '/registerrestaurant',
+      name: 'registerRestaurant',
+      component: () => import('@/views/RegisterRestaurantView.vue')
     }
   ],
 });
