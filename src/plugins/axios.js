@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useAuthStore } from '@/stores';
 
 export const api = axios.create({
   baseURL: 'https://eatly-backend-cbai.onrender.com/api/',
@@ -8,7 +9,7 @@ export const api = axios.create({
 
 api.interceptors.request.use(config => {
   const token = localStorage.getItem('access');
-  if (token) {
+  if (token != null) {
     config.headers.Authorization = `Bearer ${token}`;
   }
   return config;

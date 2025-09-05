@@ -18,28 +18,40 @@ export const useAuthStore = defineStore('auth', () => {
     }
 
     async function verifyAuth() {
-        if (!isExpiredToken(localStorage.getItem('access'))) {
-            state.logged = true;
-            return true;
+        const token = localStorage.getItem('access');
+
+        console.log(token == null);
+        
+        if (token == null) {
+            return false;
         }
-        else {
+        if (isExpiredToken(token)) {
+            const refresh = localStorage.getItem('refresh');
+            if (refresh == null || localStorage.getItem(refresh)) {
+                return false;
+            }
             if (!isExpiredToken(localStorage.getItem('refresh'))) {
-                const response = await AuthService.refresh({refresh: localStorage.getItem('refresh')});
+                const response = await AuthService.refresh({refresh: refresh});
     
                 if (response == false) {
                     toastStore.notify("error", "Erro ao realizar o login");
                     return false;
                 }
+
                 localStorage.setItem('access', response.access);
                 state.logged = true;
                 return true;
             }
-            return false;
+        }
+        if (!isExpiredToken(localStorage.getItem('access'))) {
+            state.logged = true;
+            return true;
         }
     }
 
     return {
         state,
-        verifyAuth
+        verifyAuth,
+        isExpiredToken
     }
 })
