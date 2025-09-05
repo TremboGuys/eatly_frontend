@@ -17,7 +17,10 @@ function SetActive(index) {
 <template>
     <div class="container">
         <div class="options" ref="scrollContainer">
-            <div v-for="(option, index) in options" :key="index" :class="[]"></div>
+            <div v-for="(option, index) in options" :key="index" :class="['option', { active: activeTab === index }]" @click="SetActive(index)">{{ option }}</div>
         </div>
     </div>
 </template>
+<style scoped>
+@import '@/assets/sass/restaurantPage/options/_optionsScroll.scss';
+</style>

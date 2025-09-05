@@ -13,6 +13,7 @@ import FreeDeliveryButton from "./buttons/FreeDeliveryButton.vue";
 import SortingButtons from "./buttons/SortingButtons.vue";
 import BannerComp from "./restaurantPage/banner/BannerComp.vue";
 import BasicInfo from "./restaurantPage/banner/BasicInfo.vue";
+import OptionsScroll from "./restaurantPage/options/OptionsScroll.vue";
 
 export {
     InputsProps,
@@ -29,5 +30,6 @@ export {
     FreeDeliveryButton,
     SortingButtons,
     BannerComp,
-    BasicInfo
+    BasicInfo,
+    OptionsScroll
 }
