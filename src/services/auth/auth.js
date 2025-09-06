@@ -14,7 +14,7 @@ class AuthService {
 
     async refresh(token) {
         try {
-            const request = await api.post('/token/refresh/', token);
+            const request = await api.post('/token/refresh/', { refresh: token }, { headers: { skipAuth: true } });
             return request.data;
         }
         catch(error) {

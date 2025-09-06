@@ -7,9 +7,12 @@ export const api = axios.create({
   withCredentials: true,        
 });
 
-api.interceptors.request.use(config => {
-  const token = localStorage.getItem('access');
-  if (token != null) {
+api.interceptors.request.use(async (config) => {
+  if (config.headers?.skipAuth) return config;
+
+  const authStore = useAuthStore();
+  if (await authStore.verifyAuth()) {
+    const token = localStorage.getItem('access');
     config.headers.Authorization = `Bearer ${token}`;
   }
   return config;
