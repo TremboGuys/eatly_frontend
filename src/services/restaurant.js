@@ -3,7 +3,7 @@ import { api } from "@/plugins/axios"
 class RestaurantService {
     async getRestaurant() {
       try {
-        const response = await api.get('/api/restaurants/');
+        const response = await api.get('restaurants/');
         return response.data;
       }
       catch (error) {
@@ -14,7 +14,7 @@ class RestaurantService {
 
     async createRestaurant(restaurant) {
       try {
-        const response = await api.post('/api/restaurants/', restaurant);
+        const response = await api.post('restaurants/', restaurant);
         return response.data;
       }
       catch (error) {
@@ -25,7 +25,7 @@ class RestaurantService {
 
     async updateRestaurant(restaurant) {
       try {
-        const response = await api.patch('/api/restaurants/', restaurant);
+        const response = await api.patch('restaurants/', restaurant);
         return response.data;
       }
       catch (error) {
@@ -36,7 +36,7 @@ class RestaurantService {
 
     async deleteRestaurant(id) {
       try {
-        const response = await api.delete(`/api/restaurants/${id}`);
+        const response = await api.delete(`restaurants/${id}`);
         return true;
       }
       catch (error) {

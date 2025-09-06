@@ -3,7 +3,7 @@ import { api } from "@/plugins/axios"
 class OwnerService {
     async getOwner(id) {
       try {
-        const response = await api.get(`/api/owners/${id}`);
+        const response = await api.get(`owners/${id}`);
         return response.data;
       }
       catch (error) {
@@ -14,7 +14,7 @@ class OwnerService {
 
     async createOwner(owner) {
       try {
-        const response = await api.post('/api/owners/', owner);
+        const response = await api.post('owners/', owner);
         return response.data;
       }
       catch (error) {

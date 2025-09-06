@@ -48,7 +48,7 @@ export const useAuthStore = defineStore('auth', () => {
     }
 
     async function refreshToken(token) {
-        const response = await AuthService.refresh({refresh: token});
+        const response = await AuthService.refresh(token);
 
         if (!response) {
             return false;
