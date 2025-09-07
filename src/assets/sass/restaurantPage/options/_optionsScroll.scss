@@ -4,7 +4,11 @@
         overflow-x: auto;
         white-space: nowrap;
         scrollbar-width: none;
-        margin-bottom: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Poppins', sans-serif;
+        height: 6vh;
 
         &::-webkit-scrollbar {
             display: none;
@@ -15,18 +19,19 @@
         display: flex;
         gap: 1.5rem;
         padding: 0.5rem 1rem;
+        margin-left: 10rem;
     }
 
     .option {
-        // position: relative;
-        font-size: 14px;
+        position: relative;
+        font-size: 16px;
         font-weight: 500;
         color: #999;
         cursor: pointer;
         transition: color 0.3s ease;
 
         &.active {
-            color: #e63946;
+            color: #444801;
         }
 
         &.active::after {
@@ -36,7 +41,7 @@
             right: 0;
             bottom: -5px;
             height: 2px;
-            background-color: #e63946;
+            background-color: #444801;
             border-radius: 2px;
         }
     }
