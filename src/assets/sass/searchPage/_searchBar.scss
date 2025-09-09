@@ -1,57 +1,119 @@
-.input-container{
-    position: relative; 
-    
-    .search-input{
-        border: none;
-        height: 5vh;
-        width: 70vw;
-        border-radius: 30px;
-        background-color: #EDEDED;
-        padding-left: 45px;
-        font-size: 1em;
+.input-container {
+    position: relative;
+  
+    .search-input {
+      border: none;
+      height: 5vh;
+      border-radius: 30px;
+      padding-left: 45px;
+      font-size: 1em;
+      transition: ease-in-out 0.2s;
+      width: 70vw;
+      background-color: white;
+      border: 1px solid #000;
+  
+      &:active {
+        width: 20vw;
+      }
+  
+      &:focus {
+        outline: none;
+        width: 80vw;
         transition: ease-in-out 0.2s;
-
-        &:active .search-input{
-            width: 20vw;
+  
+        &::placeholder {
+          color: transparent;
         }
+      }
+  
+      &::placeholder {
+        color: black;
+        font-family: "Poppins", sans-serif;
+        font-weight: 100;
+      }
+    }
+  
+    .search-icon {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 23px;
+      height: 23px;
+      pointer-events: none;
+    }
+  
+    .cancel {
+      border: none;
+      background: none;
+      font-size: 2em;
+      position: absolute;
+      right: 10px;
+      font-weight: 300;
+    }
+  
     
-        &:focus{
-            outline: none;
-            width: 80vw;
-            transition: ease-in-out 0.2s;
-
-            &::placeholder{
-                color: transparent;
+    @media (min-width: 425px) {
+        .search-input {
+            width: 40vw;
+            height: 4vh;
+            font-size: 0.9em;
+            &:focus {
+                width: 30vw;
+                
             }
         }
+    }
+    
+    @media (min-width: 625px) {
+        .search-input{
+            width: 35vw;
+            &:focus {
+                width: 40vw;
+                
 
-        &::placeholder{
-            color: black;
-            font-family: "Poppins", sans-serif;
-            font-weight: 100;
-        
+            }
         }
-
     }
-    .search-icon{
-        position: absolute;
-        left: 10px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 23px;
-        height: 23px;
-        pointer-events: none;
-                    
-    }
+    @media (min-width: 900px) {
+        .search-input{
+            width: 30vw;
+            &:focus {
+                width: 45vw;
+                
 
-    .cancel{
-        border: none;
-        background: none;
-        font-size: 2em;
-        position: absolute;
-        right: 10px;
-        font-weight: 300;
+            }
+        }
     }
 
+    @media (min-width: 1275px) {
+        .search-input{
+            width: 25vw;
+            &:focus {
+                width: 30vw;
+                
 
-}
+            }
+        }
+    }
+    @media (min-width: 1500px) {
+        .search-input{
+            width: 20vw;
+            &:focus {
+                width: 25vw;
+                
+
+            }
+        }
+    }
+    @media (min-width: 1750px) {
+        .search-input{
+            width: 15vw;
+            &:focus {
+                width: 20vw;
+                
+
+            }
+        }
+    }
+  }
