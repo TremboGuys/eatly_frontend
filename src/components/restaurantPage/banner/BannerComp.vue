@@ -17,7 +17,7 @@ const toggleFavorite = () => {
 <template>
     <div class="container">
         <div class="buttons">
-            <router-link to="/">
+            <router-link class="router" to="/">
                 <div class="back">
                     <i class="fa-solid fa-arrow-left"></i>
                 </div>

@@ -21,7 +21,25 @@
             justify-content: space-between;
             padding: 0 10px;
             z-index: 10;
-            .back, .favorite {
+            text-decoration: none;
+            .router {
+                text-decoration: none;
+                .back {
+                    background-color: rgba(0, 0, 0, 0.7);
+                    border-radius: 50%;
+                    height: 40px;
+                    width: 40px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    i {
+                        font-size: 20px;
+                        color: #fff;
+                    }
+                }
+            }
+            .favorite {
                 background-color: rgba(0, 0, 0, 0.7);
                 border-radius: 50%;
                 height: 40px;
@@ -30,6 +48,7 @@
                 align-items: center;
                 justify-content: center;
                 cursor: pointer;
+
                 i {
                     font-size: 20px;
                     color: #fff;
