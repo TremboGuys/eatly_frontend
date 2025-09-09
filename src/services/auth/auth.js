@@ -2,25 +2,14 @@ import { api } from "@/plugins/axios";
 
 class AuthService {
     async login(user) {
-        try {
-            const request = await api.post('/token/', user);
-            return request.data;
-        }
-        catch(error) {
-            console.error(error);
-            return false;
-        }
+        console.log(user);
+        const request = await api.post('/token/', user, { headers: { skipAuth: true } });
+        return request.data;
     }
 
     async refresh(token) {
-        try {
-            const request = await api.post('/token/refresh/', { refresh: token }, { headers: { skipAuth: true } });
-            return request.data;
-        }
-        catch(error) {
-            console.error(error);
-            return false;
-        }
+        const request = await api.post('/token/refresh/', { refresh: token }, { headers: { skipAuth: true } });
+        return request.data;
     }
 }
 

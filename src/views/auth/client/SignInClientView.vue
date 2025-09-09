@@ -1,15 +1,14 @@
 <script setup>
-import { InputsProps, SignInSubmit, FaceButton, GoogleButton, HaveAnAccount } from '@/components';
 import { reactive } from 'vue';
+import { InputsProps, SignInSubmit, FaceButton, GoogleButton, HaveAnAccount } from '@/components';
+import { useClientStore } from '@/stores';
 
 const user = reactive({
-        name: '',
-        genre: '',
-        dateBirth: '',
-        email: '',
-        password: '',
-        cellphone: ''
-})
+    email: '',
+    password: '',
+});
+
+const clientStore = useClientStore();
 
 function changeDataUser(data) {
   user[data.field] = data.value;
@@ -24,7 +23,7 @@ function changeDataUser(data) {
     <form @submit.prevent="">
       <InputsProps type="text" field="email" for-id="email" label="Email" maxlength="255" @change-data-user="changeDataUser" />
       <InputsProps type="password" field="password" for-id="password" label="Senha" maxlength="50" @change-data-user="changeDataUser" />
-      <SignInSubmit />
+      <SignInSubmit @submit-login="clientStore.login(user)" />
     </form>
     <div class="or">Ou</div>
     <div class="hr"></div>

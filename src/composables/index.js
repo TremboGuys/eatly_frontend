@@ -1,13 +1,13 @@
 import { useCategoryComposable } from "./category";
 import { useOwnerComposable } from "./owner";
-import { useClientComposable } from "./auth/client";
+import { useRegisterClientComposable } from "./auth/registerClient";
+import { useLoginComposable } from "./auth/login";
 import { useRestaurantComposable } from "./restaurant";
 
-
-useCategoryComposable();
 export {
     useCategoryComposable,
     useOwnerComposable,
-    useClientComposable,
+    useRegisterClientComposable,
     useRestaurantComposable,
+    useLoginComposable
 };
