@@ -14,6 +14,8 @@ import SortingButtons from "./buttons/SortingButtons.vue";
 import BannerComp from "./restaurantPage/banner/BannerComp.vue";
 import BasicInfo from "./restaurantPage/banner/BasicInfo.vue";
 import OptionsScroll from "./restaurantPage/options/OptionsScroll.vue";
+import MoreOrders from "./restaurantPage/menu/MoreOrders.vue";
+import ItemMenu from "./restaurantPage/menu/ItemMenu.vue";
 
 export {
     InputsProps,
@@ -31,5 +33,7 @@ export {
     SortingButtons,
     BannerComp,
     BasicInfo,
-    OptionsScroll
+    OptionsScroll,
+    MoreOrders,
+    ItemMenu,
 }
