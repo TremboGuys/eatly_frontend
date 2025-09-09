@@ -1,17 +1,40 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted, onBeforeUnmount, watch } from 'vue';
 import { menu } from '@/metaDatas/menuData';
-
 const menuItems = ref(menu);
+const categoryRefs = ref([]);
+const addToCart = (item) => console.log(item);
+const activeIndex = ref(0);
+const emit = defineEmits(['update:activeIndex']);
 
-
-const addToCart = () => {
-    console.log('Add to cart clicked');
-};
+function scrollToCategory(index) {
+  const el = categoryRefs.value[index];
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    activeIndex.value = index;
+    emit('update:activeIndex', index);
+  }
+}
+function onScroll() {
+  for (let i = 0; i < categoryRefs.value.length; i++) {
+    const el = categoryRefs.value[i];
+    const rect = el.getBoundingClientRect();
+    if (rect.top <= 150 && rect.bottom > 150) {
+      if (activeIndex.value !== i) {
+        activeIndex.value = i;
+        emit('update:activeIndex', i);
+      }
+      break;
+    }
+  }
+}
+onMounted(() => window.addEventListener('scroll', onScroll));
+onBeforeUnmount(() => window.removeEventListener('scroll', onScroll));
+defineExpose({ scrollToCategory });
 </script>
 <template>
     <div class="container">
-        <div v-for="(category, catIndex) in menuItems" :key="catIndex" class="categorySection">
+        <div v-for="(category, categoryIndex) in menuItems" :key="categoryIndex" class="categorySection" :ref="el => categoryRefs[categoryIndex] = el">
             <div class="titleSection">
                 <span class="text">{{ category.title }}</span>
                 <div class="hr"></div>

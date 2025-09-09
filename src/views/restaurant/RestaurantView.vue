@@ -1,5 +1,11 @@
 <script setup>
+import { ref } from 'vue';
 import { BannerComp, BasicInfo, OptionsScroll, ItemMenu } from '@/components';
+const activeIndex = ref(0);
+const itemsMenu = ref(null);
+function scrollToCategory(index) {
+  itemsMenu.value.scrollToCategory(index);
+}
 </script>
 
 <template>
@@ -9,10 +15,12 @@ import { BannerComp, BasicInfo, OptionsScroll, ItemMenu } from '@/components';
       <BasicInfo />
     </div>
     <div class="optionsScroll">
-      <OptionsScroll />
-    </div class="menu">
-      <ItemMenu />
+      <OptionsScroll :activeIndex="activeIndex" @selectCategory="scrollToCategory" />
     </div>
+    <div class="menu">
+      <ItemMenu ref="itemsMenu" v-model="activeIndex" />
+    </div>
+  </div>
 </template>
 
 <style scoped>
