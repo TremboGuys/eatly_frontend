@@ -12,7 +12,7 @@ const owner = reactive({
     password: '',
     phone: '',
     cep: '',
-    address: '',
+    street: '',
     district: '',
     city: '',
     state: '',
@@ -76,9 +76,9 @@ const arrayFormData = [
         maxlength: 8
     },
     {
-        field: "address",
+        field: "street",
         type: "text",
-        forId: "address",
+        forId: "street",
         label: "Endereço",
         maxlength: 100
     },

@@ -5,10 +5,12 @@ defineProps({
     default: ''
   }
 });
+
+const emit = defineEmits(['submitLogin'])
 </script>
 <template>
     <div class="container">
-        <button type="submit" class="send-button" :class="['signInButton', 'customClass']" >Fazer Login</button>
+        <button type="submit" class="send-button" :class="['signInButton', 'customClass']" @click="emit('submitLogin')" >Fazer Login</button>
     </div>
 </template>
 <style scoped>

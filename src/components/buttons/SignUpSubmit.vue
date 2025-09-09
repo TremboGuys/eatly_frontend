@@ -1,21 +1,16 @@
 <script setup>
 import { ref, watch } from 'vue';
-import { useClientComposable } from '@/composables';
+import { useRegisterClientComposable } from '@/composables';
 
-const useClient = useClientComposable();
+const useRegisterClient = useRegisterClientComposable();
 
 const emit = defineEmits(['submitRegister'])
 
-console.log(useClient.enable.value);
-
-// watch(() => useClient.formState, () => {
-//   disabled.value = verifyFields();
-// }, { deep: true })
 </script>
 
 <template>
     <div class="container">
-        <button type="submit" class="send-button" :disabled="useClient.enable.value" @click="emit('submitRegister')" :class="useClient.enable.value ? 'disabled' : 'enabled'">Realizar Cadastro</button>
+        <button type="submit" class="send-button" @click="emit('submitRegister')" :class="useRegisterClient.enable.value ? 'disabled' : 'enabled'">Realizar Cadastro</button>
     </div>
 </template>
 

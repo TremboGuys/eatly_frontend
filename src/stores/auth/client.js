@@ -1,37 +1,52 @@
 import { defineStore } from "pinia";
-import { ClientService, AuthService } from "@/services";
+import { UserService, AuthService } from "@/services";
+import { useRegisterClientComposable, useLoginComposable } from "@/composables";
 import { useToastStore, useAuthStore } from "@/stores";
 import { useRouter } from "vue-router";
 
 export const useClientStore = defineStore('client', () => {
+    const useRegisterClient = useRegisterClientComposable();
+    const useLogin = useLoginComposable();
     const toastStore = useToastStore();
     const authStore = useAuthStore();
     const router = useRouter();
+    
     async function register(user) {
-        const response = await ClientService.register(user);
-
-        console.log(response);
-
-        if (response) {
-            login({email: user.email, password: user.password});
+        if (!useRegisterClient.enable) {
+            toastStore.notify("Preencha todos os campos corretamente!", "warning");
+            return;
         }
-        else {
-            toastStore.notify("error", "Erro ao criar o usuário");
+
+        try {
+            await UserService.register(user);
+            await login({email: user.user.email, password: user.user.password});
+        } catch(error) {
+            console.error('Erro ao criar o cadastro do cliente: ', error);
+
+            if (Object.hasOwn(error.response.data, "email")) {
+                toastStore.notify("Já existe um usuário com este email!", "error");
+            }
         }
     }
 
     async function login(user) {
-        const response = await AuthService.login(user);
+        if (!useLogin.enable) {
+            toastStore.notify("Preencha todos os campos corretamente!", "warning");
+            return;
+        }
 
-        if (response != false) {
+        console.log(user);
+
+        try {
+            const response = await AuthService.login(user);
             localStorage.setItem('access', response.access);
             localStorage.setItem('refresh', response.refresh);
             authStore.state.logged = true;
-            toastStore.notify("success", "Usuário criado com sucesso!");
+            toastStore.notify("Login realizado com sucesso!", "success");
             router.push('/dashboard');
-        }
-        else {
-            toastStore.notify("error", "Erro ao realizar o login");
+        } catch(error) {
+            console.error('Erro ao realizar o login: ', error);
+            toastStore.notify("Erro ao realizar o login", "error");
         }
     }
 

@@ -17,10 +17,6 @@ export const useAuthStore = defineStore('auth', () => {
     }
 
     async function verifyAuth() {
-        if (state.logged) {
-            return true;
-        }
-        
         const access = localStorage.getItem('access');
         const refresh = localStorage.getItem('refresh');
 
@@ -28,34 +24,37 @@ export const useAuthStore = defineStore('auth', () => {
             return false;
         }
 
-        const isExpiredAccess = isExpiredToken(access);
+        const isExpiredAccess = (access != null) ? isExpiredToken(access) : true;
         const isExpiredRefresh = isExpiredToken(refresh);
 
-        if (!isExpiredAccess) {
-            state.logged = true;
-            return true;
-        }
-
-        if (isExpiredAccess && isExpiredRefresh) {
+        if (isExpiredRefresh) {
             localStorage.removeItem('access');
             localStorage.removeItem('refresh');
+            state.logged = false;
             return false;
         }
 
         if (isExpiredAccess && !isExpiredRefresh) {
             return await refreshToken(refresh);
         }
+
+        if (!isExpiredAccess) {
+            state.logged = true;
+            return true;
+        }
+
+        return false;
     }
 
     async function refreshToken(token) {
-        const response = await AuthService.refresh(token);
-
-        if (!response) {
-            return false;
+        try {
+            const response = await AuthService.refresh(token);
+            localStorage.setItem("access", response.access);
+            return true;
+        } catch(error) {
+            console.error('Erro no refresh token: ', error);
+            return false;   
         }
-
-        localStorage.setItem("access", response.access);
-        return true;
     }
 
     return {

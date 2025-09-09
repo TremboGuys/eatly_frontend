@@ -1,6 +1,6 @@
-import { computed, reactive, watch } from "vue"
+import { computed, reactive } from "vue"
 
-export const useClientComposable = () => {
+export const useRegisterClientComposable = () => {
     const enable = computed(() => {
         return Object.values(formState).every(value => !!value);
     })
@@ -10,10 +10,6 @@ export const useClientComposable = () => {
         email: undefined,
         date_birth: undefined
     });
-
-    watch(enable, () => {
-        console.log('Foi', enable);
-    })
 
     return {
         enable,
