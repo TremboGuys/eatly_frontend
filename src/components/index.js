@@ -11,6 +11,11 @@ import CustomSelect from "./inputs/CustomSelect.vue";
 import OrderButton from "./buttons/OrderButton.vue";
 import FreeDeliveryButton from "./buttons/FreeDeliveryButton.vue";
 import SortingButtons from "./buttons/SortingButtons.vue";
+import BannerComp from "./restaurantPage/banner/BannerComp.vue";
+import BasicInfo from "./restaurantPage/banner/BasicInfo.vue";
+import OptionsScroll from "./restaurantPage/options/OptionsScroll.vue";
+import ItemsMenu from "./restaurantPage/menu/ItemsMenu.vue";
+import ItemMenu from "./restaurantPage/menu/ItemMenu.vue";
 
 export {
     InputsProps,
@@ -26,4 +31,9 @@ export {
     OrderButton,
     FreeDeliveryButton,
     SortingButtons,
+    BannerComp,
+    BasicInfo,
+    OptionsScroll,
+    ItemsMenu,
+    ItemMenu,
 }

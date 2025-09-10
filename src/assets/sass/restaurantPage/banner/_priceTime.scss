@@ -1,0 +1,26 @@
+@media (max-width: 425px) {
+    .container {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 10px;
+
+        .description {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+
+            .distance, .price {
+                font-size: 1rem;
+                font-weight: 500;
+                color: #838383;
+                font-family: 'Poppins', sans-serif;
+            }
+            .fas {
+                color: #838383;
+                font-size: 0.2rem;
+            }
+        }
+    }
+}

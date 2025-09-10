@@ -1,0 +1,49 @@
+@media (max-width: 425px) {
+    .container {
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+        scrollbar-width: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Poppins', sans-serif;
+        height: 8vh;
+        margin-top: .5rem;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+    .options {
+        display: flex;
+        gap: 1.5rem;
+        padding: 0.5rem 1rem;
+        margin-left: 10rem;
+    }
+
+    .option {
+        position: relative;
+        font-size: 16px;
+        font-weight: 500;
+        color: #999;
+        cursor: pointer;
+        transition: color 0.3s ease;
+
+        &.active {
+            color: #444801;
+        }
+
+        &.active::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -5px;
+            height: 2px;
+            background-color: #444801;
+            border-radius: 2px;
+        }
+    }
+}
