@@ -1,11 +1,18 @@
 <script setup>
-import { ref, onMounted, onBeforeUnmount, watch } from 'vue';
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { menu } from '@/metaDatas/menuData';
+import { useCartStore } from '@/stores/cartStore';
+
 const menuItems = ref(menu);
+const cartStore = useCartStore(); // <-- chamada correta
+
 const categoryRefs = ref([]);
-const addToCart = (item) => console.log(item);
 const activeIndex = ref(0);
 const emit = defineEmits(['update:activeIndex']);
+
+function addItem(item) {
+  cartStore.addToCart(item);
+}
 
 function scrollToCategory(index) {
   const el = categoryRefs.value[index];
@@ -15,6 +22,7 @@ function scrollToCategory(index) {
     emit('update:activeIndex', index);
   }
 }
+
 function onScroll() {
   for (let i = 0; i < categoryRefs.value.length; i++) {
     const el = categoryRefs.value[i];
@@ -28,8 +36,10 @@ function onScroll() {
     }
   }
 }
+
 onMounted(() => window.addEventListener('scroll', onScroll));
 onBeforeUnmount(() => window.removeEventListener('scroll', onScroll));
+
 defineExpose({ scrollToCategory });
 </script>
 <template>
@@ -51,10 +61,10 @@ defineExpose({ scrollToCategory });
                     </div>
                 </div>
                 <div class="bottom">
-                    <div class="price">{{ item.price }}</div>
+                    <div class="price">R${{ item.price.toFixed(2).replace('.', ',') }}</div>
                 </div>
                 <div class="addToCart">
-                    <button class="button" @click="addToCart(item)">Adicionar</button>
+                    <button class="button" @click="addItem(item)">Adicionar</button>
                 </div>
             </div>
         </div>
