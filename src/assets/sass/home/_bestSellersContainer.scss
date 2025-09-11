@@ -3,5 +3,7 @@
 .bestSellerContainer{
     min-height: 48vh;
     padding: 8px 16px;
+    display: flex;
+    flex-direction: column;
 }
 }
