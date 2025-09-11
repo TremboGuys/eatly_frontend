@@ -16,6 +16,8 @@ import BasicInfo from "./restaurantPage/banner/BasicInfo.vue";
 import OptionsScroll from "./restaurantPage/options/OptionsScroll.vue";
 import ItemsMenu from "./restaurantPage/menu/ItemsMenu.vue";
 import ItemMenu from "./restaurantPage/menu/ItemMenu.vue";
+import CartItem from "./cart/CartItem.vue";
+import CartPage from "./cart/CartPage.vue";
 
 export {
     InputsProps,
@@ -36,4 +38,6 @@ export {
     OptionsScroll,
     ItemsMenu,
     ItemMenu,
+    CartItem,
+    CartPage
 }

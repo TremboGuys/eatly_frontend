@@ -1,8 +1,11 @@
 <script setup>
+import { CartPage } from '@/components';
 </script>
 
 <template>
-  <div></div>
+  <div class="container">
+    <CartPage />
+  </div>
 </template>
 
 <style scoped>
