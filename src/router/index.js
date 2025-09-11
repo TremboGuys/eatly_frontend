@@ -53,6 +53,11 @@ const router = createRouter({
           name: 'createReview',
           component: () => import('@/views/restaurant/CreateReviewView.vue')
         },
+        {
+          path: '/product/',
+          name: 'product',
+          component: () => import('@/views/restaurant/ProductView.vue')
+        }
       ],
       // meta: { requiresAuth: true } 
     },
