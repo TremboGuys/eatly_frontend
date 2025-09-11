@@ -54,7 +54,7 @@ const router = createRouter({
           component: () => import('@/views/restaurant/CreateReviewView.vue')
         },
       ],
-      // meta: { requiresAuth: true } 
+      meta: { requiresAuth: true } 
     },
     {
       path: '/signup',
