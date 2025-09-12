@@ -19,6 +19,8 @@ import CartItem from "./cart/CartItem.vue";
 import CartPage from "./cart/CartPage.vue";
 import ImageProduct from "./productPage/ImageProduct.vue";
 import TitleProduct from "./productPage/TitleProduct.vue";
+import RatingProduct from "./productPage/RatingProduct.vue";
+import DescriptionProduct from "./productPage/DescriptionProduct.vue";
 
 export {
     InputsProps,
@@ -41,5 +43,7 @@ export {
     CartItem,
     CartPage,
     ImageProduct,
-    TitleProduct
+    TitleProduct,
+    RatingProduct,
+    DescriptionProduct,
 }
