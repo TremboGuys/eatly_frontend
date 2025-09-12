@@ -1,9 +1,9 @@
 import { useAuthStore } from "./auth/auth"
 import { useToastStore } from "./toastStore"
-import { useClientStore } from "./auth/client"
+import { useUserStore } from "./auth/user"
 
 export {
     useToastStore,
     useAuthStore,
-    useClientStore
+    useUserStore
 }

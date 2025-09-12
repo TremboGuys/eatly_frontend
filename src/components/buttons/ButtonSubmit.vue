@@ -1,6 +1,10 @@
 <script setup>
-defineProps({
+const props = defineProps({
   customClass: {
+    type: String,
+    default: ''
+  },
+  name: {
     type: String,
     default: ''
   }
@@ -8,7 +12,7 @@ defineProps({
 </script>
 <template>
   <div class="container">
-    <button type="submit" class="send-button" :class="['submitButton', 'customClass']">Finalizar Cadastro</button>
+    <button type="submit" class="send-button" :class="['submitButton', 'customClass']">{{ props.name }}</button>
   </div>
 </template>
 <style scoped>

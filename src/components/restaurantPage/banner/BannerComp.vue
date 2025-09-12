@@ -11,7 +11,6 @@ import { ref } from 'vue';
 // });
 const toggleFavorite = () => {
     // Lógica para favoritar o restaurante
-    console.log('Favorito toggled');
 };
 </script>
 <template>

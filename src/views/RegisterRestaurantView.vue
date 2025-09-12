@@ -113,7 +113,7 @@ function changeDataRestaurant(data) {
         <h1 class="title">Cadastro de novo restaurante</h1>
         <div class="hr"></div>
         <form @submit.prevent="useRestaurant.createRestaurant(restaurant)">
-            <InputsProps v-for="index in 2" :type="arrayFormData[index - 1].type"
+            <InputsProps v-for="index in 2" :type="arrayFormData[index - 1].type" :key="index"
                 :field="arrayFormData[index - 1].field" :for-id="arrayFormData[index - 1].forId"
                 :label="arrayFormData[index - 1].label" :maxlength="arrayFormData[index - 1].maxlength"
                 @change-data-user="changeDataRestaurant" />
@@ -123,7 +123,7 @@ function changeDataRestaurant(data) {
                     placeholder="Selecione a categoria do restaurante" />
                 </div>
             <InputFile field="file" for-id="restaurant-file" @change-data-user="changeDataRestaurant" />
-            <InputsProps v-for="index in 8" :type="arrayFormData[index + 1].type"
+            <InputsProps v-for="index in 8" :type="arrayFormData[index + 1].type" :key="index"
                 :field="arrayFormData[index + 1].field" :for-id="arrayFormData[index + 1].forId"
                 :label="arrayFormData[index + 1].label" :maxlength="arrayFormData[index + 1].maxlength"
                 @change-data-user="changeDataRestaurant" />
