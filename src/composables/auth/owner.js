@@ -1,9 +1,28 @@
-import { ref } from "vue";
+import { computed, reactive, ref } from "vue";
 import { OwnerService } from "@/services";
 import { useToastStore } from "@/stores/toastStore";
 
 export const useOwnerComposable = () => {
   const toastStore = useToastStore();
+
+  const enable = computed(() => {
+    return Object.values(formState).every(value => !!value);
+  });
+
+  const formState = reactive({
+    email: false,
+    password: false,
+    name: false,
+    type_document: false,
+    number_document: false,
+    date_birth: false,
+    street: false,
+    number: false,
+    district: false,
+    zipcode: false,
+    city: false,
+    number_e164: false,
+  })
   
   async function getOwner(id) {
     try {
@@ -37,6 +56,8 @@ export const useOwnerComposable = () => {
   }
 
   return {
+    enable,
+    formState,
     getOwner,
     createOwner
   };

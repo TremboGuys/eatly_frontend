@@ -75,8 +75,7 @@ const router = createRouter({
     {
       path: '/registerowner',
       name: 'registerOwner',
-      component: () => import('@/views/RegisterOwnerView.vue'),
-      meta: { requiresAuth: true }
+      component: () => import('@/views/auth/owner/SignUpOwnerView.vue'),
     },
     {
       path: '/registerrestaurant',

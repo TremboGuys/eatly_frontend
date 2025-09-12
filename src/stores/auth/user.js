@@ -1,18 +1,20 @@
 import { defineStore } from "pinia";
 import { UserService, AuthService } from "@/services";
-import { useRegisterClientComposable, useLoginComposable } from "@/composables";
+import { useLoginComposable } from "@/composables";
 import { useToastStore, useAuthStore } from "@/stores";
 import { useRouter } from "vue-router";
 
-export const useClientStore = defineStore('client', () => {
-    const useRegisterClient = useRegisterClientComposable();
+export const useUserStore = defineStore('client', () => {
     const useLogin = useLoginComposable();
     const toastStore = useToastStore();
     const authStore = useAuthStore();
     const router = useRouter();
     
-    async function register(user) {
-        if (!useRegisterClient.enable) {
+    async function register(user, isAllowed, formState) {
+        if (!isAllowed) {
+            if (Object.hasOwn(formState, "date_birth") && !formState.date_birth) {
+                toastStore.notify("Você deve ser maior de 18 anos para criar uma conta!", "error");
+            }
             toastStore.notify("Preencha todos os campos corretamente!", "warning");
             return;
         }
@@ -34,8 +36,6 @@ export const useClientStore = defineStore('client', () => {
             toastStore.notify("Preencha todos os campos corretamente!", "warning");
             return;
         }
-
-        console.log(user);
 
         try {
             const response = await AuthService.login(user);
