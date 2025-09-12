@@ -1,8 +1,9 @@
 <script setup>
-import { ImageProduct } from '@/components';
+import { ImageProduct, TitleProduct } from '@/components';
 </script>
 <template>
     <div class="container">
         <ImageProduct />
+        <TitleProduct />
     </div>
 </template>
