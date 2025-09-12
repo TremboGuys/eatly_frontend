@@ -8,10 +8,7 @@ import CategoryBox from './CategoryBox.vue';
         <CategoryBox />
         <CategoryBox />
         <CategoryBox />
-        <CategoryBox />
-        <CategoryBox />
-        <CategoryBox />
-        <CategoryBox />
+
 
 
     </div>

@@ -2,20 +2,20 @@
 import { ref } from 'vue';
 
 const categories = ref([
-  { id: 1, name: "Lanches", url_image: "/img/lanche.jpg" },
-  { id: 2, name: "Pizzas", url_image: "/img/pizza.jpg" },
-  { id: 3, name: "Japonesa", url_image: "/img/japonesa.jpg" },
-  { id: 4, name: "Bebidas", url_image: "/img/bebidas.jpg" },
-  { id: 5, name: "Sobremesas", url_image: "/img/sobremesa.jpg" }
+  { id: 1, name: "Lanches", bannerImage: "https://template.canva.com/EAFh8EnFLW4/1/0/1600w-xPGAjV9zPS0.jpg" },
+  { id: 2, name: "Pizzas", bannerImage: "https://template.canva.com/EAFKIvQG0XE/2/0/1600w-02i-a7aM_k8.jpg" },
+  { id: 3, name: "Japonesa", bannerImage: "https://template.canva.com/EAE75YWNr84/1/0/1600w-2AqTRj1JTvQ.jpg" },
+  { id: 4, name: "Bebidas", bannerImage: "https://template.canva.com/EAE5PJ2iSJs/1/0/1600w-ETpMxiC9aXg.jpg" },
+  { id: 5, name: "Sobremesas", bannerImage: "/img/sobremesa.jpg" }
 ]);
 
 const carousel = ref(null);
 
 function scrollLeft() {
-  carousel.value.scrollBy({ left: -200, behavior: "smooth" });
+  carousel.value.scrollBy({ left: -405, behavior: "smooth" });
 }
 function scrollRight() {
-  carousel.value.scrollBy({ left: 200, behavior: "smooth" });
+  carousel.value.scrollBy({ left: 405, behavior: "smooth" });
 }
 </script>
 
@@ -28,9 +28,8 @@ function scrollRight() {
         v-for="category in categories" 
         :key="category.id" 
         class="card"
-        :style="{ backgroundImage: `url(${category.url_image})` }"
+        :style="{ backgroundImage: `url(${category.bannerImage})` }"
       >
-        <h3>{{ category.name }}</h3>
       </div>
     </div>
 
