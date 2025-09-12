@@ -13,9 +13,20 @@ defineProps({
 </script>
 
 <template>
-    <div class="ctg-container" :style="{backgroundImage: `url(${category.url_image})`, BackgroundSize: 'cover', backgroundPosition: 'center'}">
-        <h2 class="title">{{ category.name }}</h2>
-    </div>
+    
+<RouterLink class="food-card" to="/">
+    <div
+  class="ctg-container"
+  :style="{
+    backgroundImage: `url(${category.url_image})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center'
+  }"
+>
+  <h2 class="title">{{ category.name }}</h2>
+</div>
+</RouterLink>
+
 </template>
 
 <style scoped>

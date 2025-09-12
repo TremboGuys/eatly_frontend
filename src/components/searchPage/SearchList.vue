@@ -1,35 +1,46 @@
 <script setup>
-import { onMounted, ref, computed } from 'vue';
-import FoodCategory from './FoodCategory.vue';
-import { useCategory, useSearchCategory } from '@/composables';
+import { ref, computed, onMounted } from 'vue'
+import FoodCategory from './FoodCategory.vue'
+import { useCategory } from '@/composables/category'
 
-const useSearch = useSearchCategory();
-const currentCategories = computed(() => {
-  return allCategories.value.filter(category =>
-    category.name.toLowerCase().startsWith(useSearch.searchInput.value.toLowerCase())
-  );
-});
+const props = defineProps({
+  query: { type: String, default: '' }
+})
+
+const allCategories = ref([])
+const { getCategories } = useCategory()
 
 onMounted(async () => {
-  allCategories.value = await useCategory().getCategories();
-  currentCategories.value = allCategories.value;
-});
+  //MOCK temporário
+  // allCategories.value = [
+  //   { id: 1, name: 'Pizzas',   url_image: 'pizza-category.png' },
+  //   { id: 2, name: 'Burgers',  url_image: 'burger-category.png' },
+  //   { id: 3, name: 'Sushi',    url_image: 'sushi-category.png' },
+  //   { id: 4, name: 'Salads',   url_image: 'salad-category.png' },
+  //   { id: 5, name: 'Desserts', url_image: 'dessert-category.png' }
+  // ]
 
-const allCategories = ref([]);
+  allCategories.value = await getCategories()
+})
 
+const currentCategories = computed(() => {
+  const q = props.query?.trim().toLowerCase()
+  if (!q) return allCategories.value
+  return allCategories.value.filter(c => c.name.toLowerCase().includes(q))
+})
 </script>
 
 <template>
   <div class="list-container">
+    <h1>Categorias</h1>
     <FoodCategory
       v-for="category in currentCategories"
       :key="category.id"
-      :category.="category"
+      :category="category"
     />
   </div>
 </template>
 
 <style scoped>
 @import "@/assets/sass/searchPage/_searchList.scss";
-
 </style>
