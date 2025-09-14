@@ -39,7 +39,7 @@ const router = createRouter({
           component: () => import("@/views/CartView.vue")
         },
         {
-          path: '/restaurant/',
+          path: '/restaurant/:id',
           name: 'restaurant',
           component: () => import('@/views/restaurant/RestaurantView.vue')
         },
@@ -54,7 +54,7 @@ const router = createRouter({
           component: () => import('@/views/restaurant/CreateReviewView.vue')
         },
         {
-          path: '/product/',
+          path: '/product/:id',
           name: 'product',
           component: () => import('@/views/restaurant/ProductView.vue')
         }
