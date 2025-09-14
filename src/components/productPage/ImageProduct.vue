@@ -49,6 +49,14 @@ const trackStyle = computed(() => {
 </script>
 <template>
     <div class="container">
+        <div class="back">
+            <router-link to="/restaurant" class="back-link">
+                <i class="fa-solid fa-arrow-left"></i>
+            </router-link>
+            <div class="nameRestaurant">
+                <span class="name">Hamburgueria Magia Urbana</span>
+            </div>
+        </div>
         <div class="carousel" @pointerdown="onPointerDown" @pointermove="onPointerMove" @pointerup="onPointerUp"
             @pointercancel="onPointerCancel" @mouseleave="onPointerCancel">
             <div class="track" :style="trackStyle">
