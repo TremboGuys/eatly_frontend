@@ -1,55 +1,48 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 
-const isLoading = ref(true);
+const loading = ref(true);
 
-// Simulate a data fetch
-setTimeout(() => {
-    isLoading.value = false;
-}, 2000);
+// Exemplo de como remover o preloader depois de 2s
+onMounted(() => {
+    setTimeout(() => {
+        loading.value = false;
+    }, 2000);
+});
 </script>
 
 <template>
-    <div class="container">
-        <div class="shine"></div>
+    <div class="preloader" v-if="loading">
+        <div class="spinner"></div>
     </div>
 </template>
 
 <style scoped>
-.container {
-    width: 300px;
-    height: 200px;
-    background-color: #222;
-    position: relative;
-    overflow: hidden;
-    border-radius: 10px;
-    color: white;
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
     display: flex;
-    align-items: center;
     justify-content: center;
-    font-family: sans-serif;
+    align-items: center;
+    z-index: 9999;
 }
 
-.shine {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
-    transform: rotate(0deg);
-    animation: shineMove 2s infinite;
-    box-shadow: 20px 20px 30px rgba(255, 255, 255, 0.5);
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 6px solid #ccc;
+    border-top-color: #444801;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
 }
 
-@keyframes shineMove {
-    0% {
-        transform: translate(-100%, -100%) rotate(45deg);
-    }
-
-    100% {
-        transform: translate(100%, 100%) rotate(45deg);
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
     }
 }
 </style>
