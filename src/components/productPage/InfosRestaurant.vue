@@ -15,7 +15,7 @@
                 <button class="follow">Seguir</button>
             </div>
             <div class="status">
-                <span class="medal">🏅 MercadoLíder Platinum</span>
+                <span class="medal">🏅 Restaurante Platinum</span>
                 <p>É um dos melhores do site!</p>
                 <div class="progress">
                     <div class="bar"></div>
