@@ -1,5 +1,5 @@
 <script setup>
-import { ImageProduct, TitleProduct, RatingProduct, DescriptionProduct } from '@/components';
+import { ImageProduct, TitleProduct, RatingProduct, DescriptionProduct, InfosRestaurant } from '@/components';
 </script>
 <template>
     <div class="container">
@@ -10,6 +10,7 @@ import { ImageProduct, TitleProduct, RatingProduct, DescriptionProduct } from '@
             <TitleProduct />
             <RatingProduct />
             <DescriptionProduct />
+            <InfosRestaurant />
         </div>
     </div>
 </template>
