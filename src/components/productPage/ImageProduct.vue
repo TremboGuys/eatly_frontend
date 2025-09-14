@@ -50,7 +50,7 @@ const trackStyle = computed(() => {
 <template>
     <div class="container">
         <div class="back">
-            <router-link to="/restaurant" class="back-link">
+            <router-link :to="`/restaurant/${restaurantId}`" class="back-link">
                 <i class="fa-solid fa-arrow-left"></i>
             </router-link>
             <div class="nameRestaurant">
