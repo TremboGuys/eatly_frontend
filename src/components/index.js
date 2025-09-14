@@ -21,7 +21,7 @@ import ImageProduct from "./productPage/ImageProduct.vue";
 import TitleProduct from "./productPage/TitleProduct.vue";
 import RatingProduct from "./productPage/RatingProduct.vue";
 import DescriptionProduct from "./productPage/DescriptionProduct.vue";
-import InfosRestaurant from "./productPage/InfosRestaurant.vue";
+import ProductCart from "./productPage/ProductCart.vue";
 
 export {
     InputsProps,
@@ -47,5 +47,5 @@ export {
     TitleProduct,
     RatingProduct,
     DescriptionProduct,
-    InfosRestaurant
+    ProductCart
 }
