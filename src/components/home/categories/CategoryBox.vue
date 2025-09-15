@@ -1,5 +1,6 @@
 <template>
     <div class="categoryBox">
+        <img src="../../../assets/img/burger.png" alt="">
     </div>
 </template>
 

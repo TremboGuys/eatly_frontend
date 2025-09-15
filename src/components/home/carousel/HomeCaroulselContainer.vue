@@ -1,5 +1,8 @@
 <script setup>
 import { ref } from 'vue';
+import { useWindowSize } from '@vueuse/core'
+
+const { width } = useWindowSize();
 
 const categories = ref([
   { id: 1, name: "Lanches", bannerImage: "https://template.canva.com/EAFh8EnFLW4/1/0/1600w-xPGAjV9zPS0.jpg" },
@@ -12,10 +15,21 @@ const categories = ref([
 const carousel = ref(null);
 
 function scrollLeft() {
-  carousel.value.scrollBy({ left: -405, behavior: "smooth" });
+  if (width.value < 768) {
+    carousel.value.scrollBy({ left: -405, behavior: "smooth" });
+  }
+  else{
+    carousel.value.scrollBy({ left: -770, behavior: "smooth" });
+  }
+
 }
 function scrollRight() {
-  carousel.value.scrollBy({ left: 405, behavior: "smooth" });
+  if (width.value < 768) {
+    carousel.value.scrollBy({ left: 405, behavior: "smooth" });
+  }
+  else{
+    carousel.value.scrollBy({ left: 770, behavior: "smooth" });
+  }
 }
 </script>
 

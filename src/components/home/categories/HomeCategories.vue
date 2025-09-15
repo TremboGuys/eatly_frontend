@@ -9,8 +9,6 @@ import CategoryBox from './CategoryBox.vue';
         <CategoryBox />
         <CategoryBox />
 
-
-
     </div>
 </template>
 
