@@ -14,4 +14,7 @@ import ListItem from './ListItem.vue';
 </template>
 
 <style scoped>
+.bestSellerContainer{
+    gap: 18px
+}
 </style>

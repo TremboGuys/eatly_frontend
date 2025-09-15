@@ -14,6 +14,7 @@ const {width} = useWindowSize();
         <component :is="width >= 425 ? HeaderDesktop : LogoArea" />
             <HomeCarousel />
         <HomeCategories />
+        <BestSellersContainer />
     </div>
 </template>
 

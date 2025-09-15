@@ -1,55 +1,58 @@
+
 @media(max-width:425px){
     .listItem{
-        border-bottom: 0.5px solid #ADADAD;
-        // border-top: 1px solid #ADADAD;
         height: 9vh;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 5px 0;
+        padding: 10px;
+        border: 1px solid #E0E0E0;
+        box-shadow: 1px 6px 12px -2px rgba(0,0,0,0.32);
+        -webkit-box-shadow: 1px 6px 12px -2px rgba(0,0,0,0.32);
+        -moz-box-shadow: 1px 6px 12px -2px rgba(0,0,0,0.32);
+        border-radius: 10px 0 10px 0;
+        gap: 20px;
 
-        .left-side{
-            display: flex;
-            gap: 10px;
-                .image-restaurant{
-                    height: 8vh;
-                    width: 8vh;
-                    background-color: rgb(95, 156, 4);
-                }
-                .description{
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-between;
-                    .bottom-info{
-                        .prices{
-                            color: #37941F;
-                            font-size: 0.9em;
-                        }
-                        .time-delivery{
-                            color: #636363;
-                            font-size: 10px;
-                        }
-                    }
-                }
- 
+        .logo img{
+            width: 50px;
         }
-        .right-side{
+
+        .logo{
+            height: 100%;
+            width: 25%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .info{
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            align-items: end;
-            height: 100%;
+            font-weight: 800;
 
-            .sale{
-                background-color: #444801;
-                padding: 5px 12px;
-                border-radius: 4px;
-                color: white;
+            .restaurant-name{
+                font-size: 14px;
+                font-weight: 800;
+                color: #383B01;
+            }
+
+            .restaurant-description{
                 font-size: 10px;
+                color: #828282;
+                font-weight: 600;
+            }
 
+            .more-info{
+                display: flex;
+                p{
+                    font-size: 10px;
+                    color: #000;
+                    margin-right: 5px;
+                    font-weight: 600;
+                }
             }
 
         }
-    }
 
+}
 }
