@@ -39,7 +39,7 @@ const router = createRouter({
           component: () => import("@/views/CartView.vue")
         },
         {
-          path: '/restaurant/',
+          path: '/restaurant/:id',
           name: 'restaurant',
           component: () => import('@/views/restaurant/RestaurantView.vue')
         },
@@ -53,8 +53,13 @@ const router = createRouter({
           name: 'createReview',
           component: () => import('@/views/restaurant/CreateReviewView.vue')
         },
+        {
+          path: '/product/:id',
+          name: 'product',
+          component: () => import('@/views/restaurant/ProductView.vue')
+        }
       ],
-      // meta: { requiresAuth: true } 
+      meta: { requiresAuth: true } 
     },
     {
       path: '/signup',

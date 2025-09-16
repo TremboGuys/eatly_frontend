@@ -17,6 +17,11 @@ import ItemsMenu from "./restaurantPage/menu/ItemsMenu.vue";
 import ItemMenu from "./restaurantPage/menu/ItemMenu.vue";
 import CartItem from "./cart/CartItem.vue";
 import CartPage from "./cart/CartPage.vue";
+import ImageProduct from "./productPage/ImageProduct.vue";
+import TitleProduct from "./productPage/TitleProduct.vue";
+import RatingProduct from "./productPage/RatingProduct.vue";
+import DescriptionProduct from "./productPage/DescriptionProduct.vue";
+import ProductCart from "./productPage/ProductCart.vue";
 
 export {
     InputsProps,
@@ -38,4 +43,9 @@ export {
     ItemMenu,
     CartItem,
     CartPage,
+    ImageProduct,
+    TitleProduct,
+    RatingProduct,
+    DescriptionProduct,
+    ProductCart
 }
