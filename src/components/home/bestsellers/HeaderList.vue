@@ -3,8 +3,8 @@
 
 <template>
     <div class="HeaderList">
-        <div class="headerTitle"><p>Mais vendidos</p></div>
-        <div class="viewMore"><p>Ver mais</p></div>
+        <div class="headerTitle"><p>Restaurantes</p></div>
+        <div class="viewMore"><router-link to="/restaurant" class="viewMore">Ver mais</router-link></div>
     </div>
 </template>
 
