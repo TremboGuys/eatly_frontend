@@ -1,25 +1,29 @@
 <script setup>
+import { ref, onMounted } from 'vue';
+import { useRoute } from 'vue-router';
 import { ImageProduct, TitleProduct, RatingProduct, DescriptionProduct, ProductCart } from '@/components';
 import img1 from "@/assets/img/productPage/imageProduct.jpg";
-const product = {
-  title: "Product Title",
-  description: "Este é um produto incrível que você vai adorar!",
-  price: 25.0,
-  image: img1,
-};
+import { useProductComposable } from '@/composables';
+
+const useProduct = useProductComposable();
+const route = useRoute();
+
+onMounted(async () => {
+    await useProduct.getProduct(route.params.id);
+});
 </script>
+
 <template>
-    <div class="container">
+    <div class="container" v-if="Object.keys(useProduct.product).length > 0">
         <div class="banner">
-            <ImageProduct />
+            <ImageProduct v-if="Object.hasOwn(useProduct.product.value, 'url_file')" :url="useProduct.product.value.url_file" />
         </div>
         <div class="info">
-            <TitleProduct />
-            <RatingProduct />
-            <DescriptionProduct />
+            <TitleProduct :name="useProduct.product.value.name" />
+            <DescriptionProduct :description="useProduct.product.value.description" />
         </div>
         <div class="addToCart">
-            <ProductCart :product="product" />
+            <ProductCart :product="useProduct.product.value" />
         </div>
     </div>
 </template>

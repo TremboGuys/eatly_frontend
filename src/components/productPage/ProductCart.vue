@@ -11,7 +11,7 @@ const props = defineProps({
     }
 });
 
-const quantity = ref(1);
+const quantity = ref(0);
 
 const addToCart = () => quantity.value++;
 const removeFromCart = () => {
@@ -28,7 +28,7 @@ const addItem = () => {
 <template>
     <div class="container">
         <div class="top-section">
-            <span class="priceValue">R${{ props.product.price.toFixed(2).replace('.', ',') }}</span>
+            <span class="priceValue" v-if="Object.hasOwn(product, 'price')">R$ {{ (props.product.price * (quantity + 1)).toFixed(2).toString().replace(".", ",") }}</span>
             <span class="quantityLabel">Qtd: {{ quantity }}</span>
         </div>
         <div class="bottom-section">
@@ -36,9 +36,9 @@ const addItem = () => {
                 <button class="button remove"
                     @click="cartStore.removeFromCart({ ...props.product, quantity: 1 })">-</button>
                 <span class="number">{{ quantity }}</span>
-                <button class="button add" @click="cartStore.addToCart({ ...props.product, quantity: 1 })">+</button>
+                <button class="button add" @click="quantity++">+</button>
             </div>
-            <button class="addCart" @click="addItem">
+            <button class="addCart" @click="cartStore.addToCart({ ...props.product, quantity: quantity, total: props.product.price * quantity})">
                 Adicionar ao carrinho
             </button>
         </div>
