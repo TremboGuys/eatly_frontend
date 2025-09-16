@@ -17,9 +17,9 @@ const props = defineProps({
 </template>
 <style scoped>
 @import '@/assets/sass/buttons/_sendButton.scss';
-@media (max-width: 425px) {
+/* @media (max-width: 425px) {
   .container {
     margin-top: 35vh;
   }
-}
+} */
 </style>

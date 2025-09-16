@@ -1,6 +1,6 @@
 export const arrayFormData = [
     {
-        field: "number_document",
+        field: "document_number",
         type: "number",
         forId: "numberDocument",
         label: "Número do documento",
