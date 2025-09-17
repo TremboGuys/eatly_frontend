@@ -1,10 +1,20 @@
 <script setup>
+const props = defineProps({
+    title: {
+        type: String,
+        default: 'Restaurantes'
+    },
+    link: {
+        type: String,
+        default: '/restaurants'
+    }
+});
 </script>
 
 <template>
     <div class="HeaderList">
-        <div class="headerTitle"><p>Restaurantes</p></div>
-        <div class="viewMore"><router-link to="/restaurant" class="viewMore">Ver mais</router-link></div>
+        <div class="headerTitle"><p>{{ title }}</p></div>
+        <div class="viewMore"><router-link :to="link" class="viewMore">Ver mais</router-link></div>
     </div>
 </template>
 

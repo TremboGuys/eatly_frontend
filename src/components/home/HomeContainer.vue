@@ -6,6 +6,7 @@ import HomeCarousel from './carousel/HomeCaroulselContainer.vue';
 import HomeCategories from './categories/HomeCategories.vue';
 import HeaderDesktop from './desktop/HeaderDesktop.vue';
 import BottomSize from './BottomAds.vue';
+import SeenPreviously from './SeenPreviously.vue';
 const {width} = useWindowSize();
 </script>
 
@@ -16,7 +17,7 @@ const {width} = useWindowSize();
             <HomeCarousel />
         <HomeCategories />
         <BestSellersContainer />
-        <BottomSize />
+        <SeenPreviously />
 
     </div>
 </template>
