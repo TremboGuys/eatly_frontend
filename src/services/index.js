@@ -1,3 +1,13 @@
+<<<<<<< HEAD
+import CategoryService from "@/services/category"
+import ClientService from "@/services/auth/client"
+import AuthService from "@/services/auth/auth"
+
+export {
+    CategoryService,
+    ClientService,
+    AuthService
+=======
 import CategoryService from "@/services/category";
 import OwnerService from "@/services/owner";
 import UserService from "@/services/auth/user"
@@ -16,4 +26,5 @@ export {
     AddressService,
     ProductService,
     FavoriteService
+>>>>>>> dev
 };

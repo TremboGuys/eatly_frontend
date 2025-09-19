@@ -4,14 +4,17 @@
 }
 @media (max-width: 425px) {
     .navContainer {
+        width: 75vw;
+        border-radius: 30px;
         height: 6vh;
         position: fixed;
-        bottom: 0;
-        left: 0; 
-        right: 0;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
         display: flex;
         flex-direction: column;
         justify-content: center;
         box-shadow: -1px -1px 14px -4px rgba(0,0,0,0.75);
+
     }
 }

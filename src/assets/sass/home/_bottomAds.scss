@@ -1,0 +1,15 @@
+.bottom-container{
+    padding: 8px 36px;
+    gap: 5vh;
+    display: flex;
+    flex-direction: column;
+    .restaurant-ad, .delivery-ad{
+        display: flex;
+        align-items: center;
+        color: #676767;
+        img{
+            width: 50vw;
+        }
+    }
+
+}
