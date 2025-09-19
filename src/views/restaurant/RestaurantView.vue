@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import { BannerComp, BasicInfo, OptionsScroll, ItemMenu } from '@/components';
 import { useRestaurantComposable } from '@/composables';
 import { useRoute, onBeforeRouteLeave } from 'vue-router';
@@ -8,6 +8,9 @@ const activeIndex = ref(0);
 const itemsMenu = ref(null);
 const useRestaurant = useRestaurantComposable();
 const route = useRoute();
+const enableTemplate = computed(() => {
+  return Object.keys(useRestaurant.restaurant).length > 0
+});
 
 function scrollToCategory(index) {
   itemsMenu.value.scrollToCategory(index);
@@ -28,13 +31,13 @@ onBeforeRouteLeave((to, from, next) => {
 </script>
 
 <template>
-  <div v-if="Object.keys(useRestaurant.restaurant).length > 0" class="container">
+  <div v-if="enableTemplate" class="container">
     <div class="banner">
       <BannerComp />
       <BasicInfo />
     </div>
     <div class="optionsScroll">
-      <OptionsScroll :activeIndex="activeIndex" @selectCategory="scrollToCategory" />
+      <OptionsScroll :categoriesRestaurant="useRestaurant.categoriesRestaurant.value" :activeIndex="activeIndex" @selectCategory="scrollToCategory" />
     </div>
     <div class="menu">
       <ItemMenu ref="itemsMenu" v-model="activeIndex" />

@@ -28,13 +28,13 @@ const addItem = () => {
 <template>
     <div class="container">
         <div class="top-section">
-            <span class="priceValue" v-if="Object.hasOwn(product, 'price')">R$ {{ (props.product.price * (quantity + 1)).toFixed(2).toString().replace(".", ",") }}</span>
+            <span class="priceValue" v-if="Object.hasOwn(product, 'price')">R$ {{ quantity == 0 ? '40,00' : (props.product.price * (quantity)).toFixed(2).toString().replace(".", ",") }}</span>
             <span class="quantityLabel">Qtd: {{ quantity }}</span>
         </div>
         <div class="bottom-section">
             <div class="quantity">
                 <button class="button remove"
-                    @click="cartStore.removeFromCart({ ...props.product, quantity: 1 })">-</button>
+                    @click="cartStore.removeFromCart({ ...props.product }); quantity > 0 ? quantity-- : quantity">-</button>
                 <span class="number">{{ quantity }}</span>
                 <button class="button add" @click="quantity++">+</button>
             </div>

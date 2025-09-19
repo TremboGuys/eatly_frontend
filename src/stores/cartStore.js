@@ -5,9 +5,7 @@ export const useCartStore = defineStore("cart", () => {
     const cart = ref([]);
 
     function addToCart(item) {
-        console.log(item.quantity)
         const found = cart.value.findIndex(i => i.id === item.id);
-        console.log(cart.value, found);
         if (found != -1) {
             cart.value[found].quantity++;
         }
@@ -17,11 +15,11 @@ export const useCartStore = defineStore("cart", () => {
         }
     }
     function removeFromCart(item) {
-        const found = cart.value.find(i => i.id === item.id);
-        if (found) {
-            found.quantity--;
-            if (found.quantity <= 0) {
-                cart.value = cart.value.filter(i => i.id !== item.id);
+        const found = cart.value.findIndex(i => i.id === item.id);
+        if (found != - 1) {
+            cart.value[found].quantity--;
+            if (cart.value[found].quantity <= 0) {
+                cart.value.splice(found, 1);
             }
         }
     }

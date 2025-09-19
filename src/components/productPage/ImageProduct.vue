@@ -6,6 +6,9 @@ const { restaurant } = useRestaurantComposable();
 const props = defineProps({
     url: {
         type: String
+    },
+    restaurant: {
+        type: Object
     }
 });
 const currentIndex = ref(0);
@@ -54,11 +57,11 @@ const trackStyle = computed(() => {
 <template>
     <div class="container">
         <div class="back">
-            <router-link :to="`/restaurant/${restaurantId}`" class="back-link">
+            <router-link :to="`/restaurant/${props.restaurant.id}`" class="back-link">
                 <i class="fa-solid fa-arrow-left"></i>
             </router-link>
             <div class="nameRestaurant">
-                <span class="name">{{ restaurant.name }}</span>
+                <span class="name">{{ props.restaurant.name }}</span>
             </div>
         </div>
         <div class="carousel" @pointerdown="onPointerDown" @pointermove="onPointerMove" @pointerup="onPointerUp"
