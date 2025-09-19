@@ -1,9 +1,17 @@
 <script setup>
 import { ref, computed } from "vue";
-import img1 from "@/assets/img/productPage/imageProduct.jpg";
-import img2 from "@/assets/img/productPage/imageProduct2.jpg";
-import img3 from "@/assets/img/productPage/imageProduct3.jpg";
-const images = [img1, img2, img3];
+import { useRestaurantComposable } from "@/composables";
+
+const { restaurant } = useRestaurantComposable();
+const props = defineProps({
+    url: {
+        type: String
+    },
+    restaurant: {
+        type: Object
+    }
+});
+
 const currentIndex = ref(0);
 const isDragging = ref(false);
 const startX = ref(0);
@@ -50,24 +58,25 @@ const trackStyle = computed(() => {
 <template>
     <div class="container">
         <div class="back">
-            <router-link :to="`/restaurant/${restaurantId}`" class="back-link">
+            <router-link :to="`/restaurant/${props.restaurant.id}`" class="back-link">
                 <i class="fa-solid fa-arrow-left"></i>
             </router-link>
             <div class="nameRestaurant">
-                <span class="name">Hamburgueria Magia Urbana</span>
+                <span class="name">{{ props.restaurant.name }}</span>
             </div>
         </div>
         <div class="carousel" @pointerdown="onPointerDown" @pointermove="onPointerMove" @pointerup="onPointerUp"
             @pointercancel="onPointerCancel" @mouseleave="onPointerCancel">
             <div class="track" :style="trackStyle">
-                <div class="slide" v-for="(img, i) in images" :key="i">
+                <!-- <div class="slide" v-for="(img, i) in product.url_field" :key="i">
                     <img :src="img" class="image" alt="produto" draggable="false" />
-                </div>
+                </div> -->
+                <img :src="props.url" class="image" alt="produto" draggable="false">
             </div>
         </div>
-        <div class="indicators">
+        <!-- <div class="indicators">
             <span v-for="(img, i) in images" :key="i" class="dot" :class="{ active: i === currentIndex }"></span>
-        </div>
+        </div> -->
     </div>
 </template>
 <style scoped>

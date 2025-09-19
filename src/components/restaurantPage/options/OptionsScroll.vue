@@ -1,8 +1,16 @@
 <script setup>
 import { ref, watch, defineProps, defineEmits } from 'vue';
-const options = ref(["MAIS PEDIDOS", "GOURMET", "PASTÉIS", "BEBIDAS", "SOBREMESAS"]);
+import { useRestaurantComposable } from '@/composables';
+
 const activeTab = ref(0);
-const props = defineProps({ activeIndex: Number });
+const props = defineProps({ 
+  activeIndex: {
+    type: Number
+  },
+  categoriesRestaurant: {
+    type: Array
+  }
+});
 
 watch(() => props.activeIndex, (val) => {
   if (val !== undefined) activeTab.value = val;
@@ -16,8 +24,7 @@ function SetActive(index) {
 <template>
     <div class="container">
         <div class="options" ref="scrollContainer">
-            <div v-for="(option, index) in options" :key="index" :class="['option', { active: activeTab === index }]"
-                @click="SetActive(index)">{{ option }}</div>
+            <div v-for="(option, index) in props.categoriesRestaurant" :key="index" :class="['option', { active: activeTab === index }]" @click="SetActive(index)">{{ option }}</div>
         </div>
     </div>
 </template>

@@ -1,10 +1,15 @@
 <script setup>
 import { ref } from 'vue';
-const description = ref('Este é um produto incrível que você vai adorar! Este é um produto incrível que você vai adorar! Este é um produto incrível que você vai adorar! Este é um produto incrível que você vai adorar! Este é um produto incrível que você vai adorar! Este é um produto incrível que você vai adorar! Este é um produto incrível que você vai adorar! Este é um produto incrível que você vai adorar!');
+
+const props = defineProps({
+    description: {
+        type: String
+    }
+})
 </script>
 <template>
     <div class="container">
-        <p class="description">{{ description }}</p>
+        <p class="description">{{ props.description }}</p>
     </div>
 </template>
 <style scoped>

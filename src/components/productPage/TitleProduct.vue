@@ -1,16 +1,32 @@
 <script setup>
-import { ref } from 'vue';
+import { computed, ref, watch } from 'vue';
+import { useFavoriteStore } from '@/stores';
 
-const isActive = ref(false);
+const favoriteStore = useFavoriteStore();
+const props = defineProps({
+    name: {
+        type: String
+    },
+    idProduct: {
+        type: String
+    },
+});
+
 const title = ref('Product Title');
-const toggleActive = () => {
-    isActive.value = !isActive.value;
+const toggleActive = async () => {
+    favoriteStore.isFavorite = !favoriteStore.isFavorite;
+    
+    const response = await favoriteStore.createFavorite({product: props.idProduct});
+
+    if (!response) {
+        favoriteStore.isFavorite = !favoriteStore.isFavorite;
+    }
 };
 </script>
 <template>
     <div class="container">
-        <h1>{{ title }}</h1>
-        <i class="fa-heart" :class="isActive ? 'fa-solid active' : 'fa-regular'" @click="toggleActive"></i>
+        <h1>{{ props.name }}</h1>
+        <i class="fa-heart" :class="favoriteStore.isFavorite ? 'fa-solid active' : 'fa-regular'" @click="toggleActive"></i>
     </div>
 </template>
 <style scoped>

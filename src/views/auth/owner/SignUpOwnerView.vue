@@ -14,8 +14,8 @@ const user = reactive({
     },
     natural_person: {
         name: '',
-        type_document: '',
-        number_document: '',
+        document_type: '',
+        document_number: '',
         document_country: 'BR',
         date_birth: '',
     },
@@ -41,9 +41,9 @@ function changeDataUser(data) {
     if (['email', 'password'].includes(data.field)) {
         user.user[data.field] = data.value;
     }
-    else if (['name', 'number_document', 'date_birth'].includes(data.field)) {
-        if (data.field == 'number_document') {
-            user.natural_person.number_document = verifyDocument(data.value);
+    else if (['name', 'document_number', 'date_birth'].includes(data.field)) {
+        if (data.field == 'document_number') {
+            user.natural_person.document_number = verifyDocument(data.value);
         }
         else {
             user.natural_person[data.field] = data.value;
@@ -77,7 +77,7 @@ watch(() => user.natural_person.type_document, () => {
         <div class="hr"></div>
         <form @submit.prevent="userStore.register(user, useOwner.enable, useOwner.formState)">
             <InputsProps type="text" field="name" for-id="name" label="Nome" maxlength="100" @change-data-user="changeDataUser" />
-            <CustomSelect v-model="user.natural_person.type_document" :options="typeDocumentFormData.options" placeholder="Selecione o seu documento" />
+            <CustomSelect v-model="user.natural_person.document_type" :options="typeDocumentFormData.options" placeholder="Selecione o seu documento" />
             <InputsProps v-for="(data, index) in arrayFormData" :key="index" :type="data.type" :field="data.field" :for-id="data.forId" :label="data.label" :maxlength="data.maxlength"
                 @change-data-user="changeDataUser" />
             <div class="bar">
@@ -87,7 +87,7 @@ watch(() => user.natural_person.type_document, () => {
                     <div class="bar-right"></div>
                 </div>
             </div>
-            <ButtonSubmit style="margin-top: 0;" />
+            <ButtonSubmit name="Realizar cadastro" style="margin-top: 0;" />
         </form>
     </div>
 </template>

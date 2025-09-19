@@ -1,25 +1,34 @@
 <script setup>
+import { ref, onMounted, watch } from 'vue';
+import { useRoute } from 'vue-router';
 import { ImageProduct, TitleProduct, RatingProduct, DescriptionProduct, ProductCart } from '@/components';
 import img1 from "@/assets/img/productPage/imageProduct.jpg";
-const product = {
-  title: "Product Title",
-  description: "Este é um produto incrível que você vai adorar!",
-  price: 25.0,
-  image: img1,
-};
+import { useProductComposable } from '@/composables';
+import { useFavoriteStore } from '@/stores';
+
+const useProduct = useProductComposable();
+const favoriteStore = useFavoriteStore();
+const route = useRoute();
+const mounted = ref(false);
+
+onMounted(async () => {
+    await useProduct.getProduct(route.params.id);
+    await favoriteStore.verifyProductIsFavoriteById(route.params.id);
+    mounted.value = true;
+});
 </script>
+
 <template>
-    <div class="container">
+    <div class="container" v-if="mounted">
         <div class="banner">
-            <ImageProduct />
+            <ImageProduct v-if="Object.hasOwn(useProduct.product.value, 'url_file')" :url="useProduct.product.value.url_file" :restaurant="{id: useProduct.product.value.restaurant.id, name: useProduct.product.value.restaurant.name}" />
         </div>
         <div class="info">
-            <TitleProduct />
-            <RatingProduct />
-            <DescriptionProduct />
+            <TitleProduct :name="useProduct.product.value.name" :id-product="route.params.id" />
+            <DescriptionProduct :description="useProduct.product.value.description" />
         </div>
         <div class="addToCart">
-            <ProductCart :product="product" />
+            <ProductCart :product="useProduct.product.value" />
         </div>
     </div>
 </template>
