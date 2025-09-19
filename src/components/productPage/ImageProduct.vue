@@ -11,6 +11,7 @@ const props = defineProps({
         type: Object
     }
 });
+
 const currentIndex = ref(0);
 const isDragging = ref(false);
 const startX = ref(0);
