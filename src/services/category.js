@@ -3,7 +3,7 @@ import { api } from "@/plugins/axios"
 class CategoryService {
     async getCategories() {
       try {
-        const response = await api.get('/api/categories/');
+        const response = await api.get('categories/');
         return response.data;
       }
       catch (error) {
@@ -14,7 +14,7 @@ class CategoryService {
 
     async createCategory(category) {
       try {
-        const response = await api.post('api/categories/', category);
+        const response = await api.post('categories/', category);
         return response.data;
       }
       catch (error) {
@@ -25,7 +25,7 @@ class CategoryService {
 
     async updateCategory(category) {
       try {
-        const response = await api.patch('/api/categories/', category);
+        const response = await api.patch('categories/', category);
         return response.data;
       }
       catch (error) {
@@ -36,7 +36,7 @@ class CategoryService {
 
     async deleteCategory(id) {
       try {
-        const response = await api.delete(`/api/categories/${id}`);
+        const response = await api.delete(`categories/${id}`);
         return true;
       }
       catch (error) {

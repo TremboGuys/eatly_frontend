@@ -10,36 +10,56 @@ export const useAuthStore = defineStore('auth', () => {
 
     const toastStore = useToastStore();
 
-    function isExpiredToken(token) {
+    function isExpiredToken(token, offsetSec = 60) {
         const payload = JSON.parse(atob(token.split(".")[1]));
         const exp = payload.exp * 1000;
-        console.log(Date.now() > exp - 60 * 1000);
-        return Date.now() > exp - 60 * 1000;
+        return Date.now() > exp - offsetSec * 1000;
     }
 
     async function verifyAuth() {
-        if (!isExpiredToken(localStorage.getItem('access'))) {
+        const access = localStorage.getItem('access');
+        const refresh = localStorage.getItem('refresh');
+
+        if (!access && !refresh) {
+            return false;
+        }
+
+        const isExpiredAccess = (access != null) ? isExpiredToken(access) : true;
+        const isExpiredRefresh = isExpiredToken(refresh);
+
+        if (isExpiredRefresh) {
+            localStorage.removeItem('access');
+            localStorage.removeItem('refresh');
+            state.logged = false;
+            return false;
+        }
+
+        if (isExpiredAccess && !isExpiredRefresh) {
+            return await refreshToken(refresh);
+        }
+
+        if (!isExpiredAccess) {
             state.logged = true;
             return true;
         }
-        else {
-            if (!isExpiredToken(localStorage.getItem('refresh'))) {
-                const response = await AuthService.refresh({refresh: localStorage.getItem('refresh')});
-    
-                if (response == false) {
-                    toastStore.notify("error", "Erro ao realizar o login");
-                    return false;
-                }
-                localStorage.setItem('access', response.access);
-                state.logged = true;
-                return true;
-            }
-            return false;
+
+        return false;
+    }
+
+    async function refreshToken(token) {
+        try {
+            const response = await AuthService.refresh(token);
+            localStorage.setItem("access", response.access);
+            return true;
+        } catch(error) {
+            console.error('Erro no refresh token: ', error);
+            return false;   
         }
     }
 
     return {
         state,
-        verifyAuth
+        verifyAuth,
+        isExpiredToken
     }
 })

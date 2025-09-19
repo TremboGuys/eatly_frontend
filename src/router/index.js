@@ -7,7 +7,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: () => import('@/views/InitialScreenView.vue')
+      component: () => import('@/views/InitialScreenView.vue'),
     },
     {
       path: '/',
@@ -16,7 +16,7 @@ const router = createRouter({
         {
           path: 'dashboard',
           name: 'dashboard',
-          component: () => import('@/views/HomeView.vue')
+          component: () => import('@/views/DashboardView.vue')
         },
         {
           path: 'search',
@@ -59,40 +59,55 @@ const router = createRouter({
     {
       path: '/signup',
       name: 'signup',
-      component: () => import('@/views/auth/SignUpView.vue')
+      component: () => import('@/views/auth/client/SignUpClientView.vue')
     },
     {
       path: '/signin',
       name: 'signin',
-      component: () => import('@/views/auth/SignInView.vue')
+      component: () => import('@/views/auth/client/SignInClientView.vue')
     },
     {
       path: '/registercategory',
       name: 'registerCategory',
-      component: () => import('@/views/RegisterCategoryView.vue')
+      component: () => import('@/views/RegisterCategoryView.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/registerowner',
+      name: 'registerOwner',
+      component: () => import('@/views/RegisterOwnerView.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/registerrestaurant',
+      name: 'registerRestaurant',
+      component: () => import('@/views/RegisterRestaurantView.vue'),
+      meta: { requiresAuth: true }
     }
   ],
 });
 
 router.beforeEach(async (to, from, next) => {
   const authStore = useAuthStore();
+  
+  const isAuthenticated = await authStore.verifyAuth();
 
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (authStore.state.logged) {
+    if (isAuthenticated) {
       next();
+    } else {
+      next('/signin');
     }
-    else {
-      if (authStore.verifyAuth()) {
-        next();
-      }
-      else {
-        next('/signin');
-      }
-    }
+    return;
   }
-  else {
-    next();
+
+  if ((to.path === '/signin' || to.path === '/signup' || to.path === '/') && (isAuthenticated)) {
+    next('/dashboard');
+    return;
   }
-})
+
+  next();
+});
+
 
 export default router
