@@ -1,8 +1,8 @@
 <script setup>
 import { ref, computed } from "vue";
-import { useRestaurantComposable } from "@/composables";
+import { useRestaurantStore } from "@/stores";
 
-const { restaurant } = useRestaurantComposable();
+const { restaurant } = useRestaurantStore();
 const props = defineProps({
     url: {
         type: String

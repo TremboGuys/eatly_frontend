@@ -1,10 +1,12 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { menu } from '@/metaDatas/menuData';
-import { useCartStore } from '@/stores/cartStore';
+import { useCartStore, useRestaurantStore } from '@/stores/';
+import { useRouter } from 'vue-router';
 
 const menuItems = ref(menu);
 const cartStore = useCartStore();
+const restaurantStore = useRestaurantStore();
 
 const categoryRefs = ref([]);
 const activeIndex = ref(0);
@@ -41,32 +43,36 @@ onMounted(() => window.addEventListener('scroll', onScroll));
 onBeforeUnmount(() => window.removeEventListener('scroll', onScroll));
 
 defineExpose({ scrollToCategory });
+
+const router = useRouter();
 </script>
 <template>
     <div class="container">
-        <div v-for="(category, categoryIndex) in menuItems" :key="categoryIndex" class="categorySection" :ref="el => categoryRefs[categoryIndex] = el">
+        <div v-for="(product, productIndex) in restaurantStore.restaurant.products" :key="productIndex" class="categorySection" :ref="el => categoryRefs[productIndex] = el">
             <div class="titleSection">
-                <span class="text">{{ category.title }}</span>
+                <span class="text">{{ product.categories[0].name }}</span>
                 <div class="hr"></div>
             </div>
 
-            <div class="item" v-for="(item, index) in category.items" :key="index">
-                <div class="top">
-                    <div class="image">
-                        <img :src="item.image" :alt="item.title">
-                    </div>
-                    <div class="info">
-                        <div class="title">{{ item.title }}</div>
-                        <div class="description">{{ item.description }}</div>
-                    </div>
+            <router-link :to="`/product/${product.id}`">
+              <div class="item" :key="index">
+                  <div class="top">
+                      <div class="image">
+                          <img :src="product.url_file" :alt="product.name">
+                      </div>
+                      <div class="info">
+                          <div class="title">{{ product.name }}</div>
+                          <div class="description">{{ product.description }}</div>
+                      </div>
+                  </div>
+                  <div class="bottom">
+                      <div class="price">R${{ product.price.toString().replace(".", ",") }}</div>
+                  </div>
+                  <div class="addToCart">
+                      <button class="button" @click="addItem(product)">Adicionar</button>
+                  </div>
                 </div>
-                <div class="bottom">
-                    <div class="price">R${{ item.price.toFixed(2).replace('.', ',') }}</div>
-                </div>
-                <div class="addToCart">
-                    <button class="button" @click="addItem(item)">Adicionar</button>
-                </div>
-            </div>
+              </router-link>
         </div>
     </div>
 </template>

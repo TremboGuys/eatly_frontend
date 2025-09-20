@@ -20,7 +20,22 @@ export const useUserStore = defineStore('client', () => {
         }
 
         try {
-            await UserService.register(user);
+            console.log(user.user);
+            const formDataUser = new FormData();
+            formDataUser.append("email", user.user.email);
+            formDataUser.append("password", user.user.password);
+            formDataUser.append("role", user.user.role);
+            if (Object.hasOwn(user.user, "file")) {
+                formDataUser.append("file", user.user.file);
+            }
+            const idUser = await UserService.registerUser(formDataUser);
+            user.telephone['user'] = idUser;
+            user.natural_person['user'] = idUser;
+            await UserService.registerTelephone(user.telephone);
+            await UserService.registerNaturalPerson(user.natural_person);
+            if (user.user.role != "client") {
+                await UserService.regiterAddress(user.address);
+            }
             await login({email: user.user.email, password: user.user.password});
         } catch(error) {
             console.error('Erro ao criar o cadastro do cliente: ', error);
@@ -53,5 +68,5 @@ export const useUserStore = defineStore('client', () => {
     return {
         register,
         login
-    }
-})
+    };
+});

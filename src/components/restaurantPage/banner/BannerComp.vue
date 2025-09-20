@@ -16,16 +16,16 @@ const toggleFavorite = () => {
 <template>
     <div class="container">
         <div class="buttons">
-            <router-link class="router" to="/">
+            <router-link class="router" to="/dashboard">
                 <div class="back">
                     <i class="fa-solid fa-arrow-left"></i>
                 </div>
             </router-link>
-            <div class="favorite" @click="toggleFavorite">
+            <!-- <div class="favorite" @click="toggleFavorite">
                 <div class="heart">
                     <i class="fa-regular fa-heart"></i>
                 </div>
-            </div>
+            </div> -->
         </div>
         <div class="img">
             <img class="banner" src="@/assets/img/banner.png" alt="banner" />

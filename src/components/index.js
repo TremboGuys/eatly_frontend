@@ -22,6 +22,15 @@ import TitleProduct from "./productPage/TitleProduct.vue";
 import RatingProduct from "./productPage/RatingProduct.vue";
 import DescriptionProduct from "./productPage/DescriptionProduct.vue";
 import ProductCart from "./productPage/ProductCart.vue";
+import HomeContainer from "./home/HomeContainer.vue";
+import HomeCarousel from './home/carousel/HomeCaroulselContainer.vue';
+import HomeCategories from './home/categories/HomeCategories.vue';
+import BestSellersList from "./home/bestsellers/BestSellersList.vue";
+import HeaderDesktop from './home/desktop/HeaderDesktop.vue';
+import BottomSize from './home/BottomAds.vue';
+import SeenPreviously from './home/SeenPreviously.vue';
+import HeaderList from "./home/bestsellers/HeaderList.vue";
+import ListItem from "./home/bestsellers/ListItem.vue";
 
 export {
     InputsProps,
@@ -47,5 +56,14 @@ export {
     TitleProduct,
     RatingProduct,
     DescriptionProduct,
-    ProductCart
+    ProductCart,
+    HomeContainer,
+    HomeCarousel,
+    HomeCategories,
+    BestSellersList,
+    HeaderDesktop,
+    BottomSize,
+    SeenPreviously,
+    HeaderList,
+    ListItem
 }

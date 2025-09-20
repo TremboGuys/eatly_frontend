@@ -1,12 +1,14 @@
+import { defineStore } from "pinia";
 import { ref } from "vue";
 import { RestaurantService } from "@/services";
 import { useToastStore } from "@/stores/toastStore";
 import router from "@/router";
-import { categories } from "@/metaDatas/categories";
 
-export const useRestaurantComposable = () => {
+export const useRestaurantStore = defineStore('restaurant', () => {
   const toastStore = useToastStore();
   const restaurant = ref({});
+  const restaurants = ref([]);
+  const restaurantsRecentlyViewed = ref([]);
   const categoriesRestaurant = ref([]);
 
   async function getRestaurants() {
@@ -17,15 +19,14 @@ export const useRestaurantComposable = () => {
         toastStore.notify("Nenhum restaurante encontrado.", "error");
         return [];
       }
-
-      return data;
+      restaurants.value = data;
 
     } catch (error) {
+      console.error('Error in GET restaurants: ', error);
       toastStore.notify(
         "Erro ao buscar restaurantes. Por favor, tente novamente.",
         "error"
       );
-      return false;
     }
   }
 
@@ -37,6 +38,15 @@ export const useRestaurantComposable = () => {
     } catch(error) {
       console.error('Error in GET retrieve Restaurant: ', error);
       toastStore.notify("Erro ao abrir restaurante!", "error");
+    }
+  }
+
+  async function getRestaurantRecentlyViewed() {
+    try {
+      const response = await RestaurantService.getRestaurantRecentlyViewed();
+      restaurantsRecentlyViewed.value = response;
+    } catch(error) {
+      console.error('Error in GET restaurants recently viewed: ', error);
     }
   }
 
@@ -67,9 +77,12 @@ export const useRestaurantComposable = () => {
 
   return {
     restaurant,
+    restaurants,
+    restaurantsRecentlyViewed,
     categoriesRestaurant,
     getRestaurant,
     getRestaurants,
+    getRestaurantRecentlyViewed,
     createRestaurant
   };
-};
+});

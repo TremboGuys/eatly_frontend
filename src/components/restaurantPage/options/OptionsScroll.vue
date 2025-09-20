@@ -1,6 +1,6 @@
 <script setup>
 import { ref, watch, defineProps, defineEmits } from 'vue';
-import { useRestaurantComposable } from '@/composables';
+import { useRestaurantStore } from '@/stores';
 
 const activeTab = ref(0);
 const props = defineProps({ 

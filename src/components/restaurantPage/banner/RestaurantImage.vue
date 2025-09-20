@@ -1,7 +1,11 @@
+<script setup>
+const props = defineProps(['photo'])
+</script>
+
 <template>
     <div class="container">
         <div class="img">
-            <img src="@/assets/img/signIn/logo-google.png" alt="">
+            <img :src="props.photo" alt="">
         </div>
     </div>
 </template>
