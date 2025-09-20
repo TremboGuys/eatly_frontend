@@ -1,24 +1,18 @@
 <script setup>
 import { useWindowSize } from '@vueuse/core'
 import LogoArea from './LogoArea.vue';
-import BestSellersContainer from './bestsellers/BestSellersContainer.vue';
-import HomeCarousel from './carousel/HomeCaroulselContainer.vue';
-import HomeCategories from './categories/HomeCategories.vue';
-import HeaderDesktop from './desktop/HeaderDesktop.vue';
-import BottomSize from './BottomAds.vue';
-import SeenPreviously from './SeenPreviously.vue';
+import { HomeCarousel, HomeCategories, BestSellersList, HeaderDesktop, BottomSize, SeenPreviously } from "@/components";
 const {width} = useWindowSize();
 </script>
 
 <template>
     <div class="home-container">
-        <component :is="width >= 425 ? HeaderDesktop : LogoArea" />
-
-            <HomeCarousel />
+        <HeaderDesktop v-if="width > 425" />
+        <LogoArea v-else />
+        <HomeCarousel />
         <HomeCategories />
-        <BestSellersContainer />
+        <BestSellersList />
         <SeenPreviously />
-
     </div>
 </template>
 

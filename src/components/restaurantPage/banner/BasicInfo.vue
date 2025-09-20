@@ -1,26 +1,29 @@
 <script setup>
+import { useRestaurantStore } from '@/stores';
 import NameComp from './NameComp.vue';
 import PriceTime from './PriceTime.vue';
 import AssessmentStar from './AssessmentStar.vue';
 import DeliveryComp from './DeliveryComp.vue';
 import RestaurantImage from './RestaurantImage.vue';
+
+const restaurantStore = useRestaurantStore();
 </script>
 <template>
     <div class="container">
         <div class="content">
             <div class="logo">
-                <RestaurantImage />
+                <RestaurantImage :photo="restaurantStore.restaurant.photo" />
             </div>
             <div class="banner-info">
                 <div class="title">
-                    <NameComp />
-                    <PriceTime />
+                    <NameComp :name="restaurantStore.restaurant.name" />
+                    <!-- <PriceTime /> -->
                 </div>
                 <div class="description title">
-                    <AssessmentStar />
+                    <AssessmentStar :note="restaurantStore.restaurant.note" :reviews="restaurantStore.restaurant.total_reviews" />
                 </div>
                 <div class="delivery">
-                    <DeliveryComp />
+                    <DeliveryComp :average_delivery_time="restaurantStore.restaurant.average_delivery_time" />
                 </div>
             </div>
         </div>

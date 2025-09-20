@@ -1,12 +1,8 @@
 @media (max-width: 425px) {
-
-.bestSellerContainer, .seen-previously{
-    min-height: 48vh;
-    padding: 8px 16px;
-    display: flex;
-    flex-direction: column;
-}
-
-
+    .bestSellerContainer, .seen-previously{
+        padding: 16px 32px;
+        display: flex;
+        flex-direction: column;
+    }
 }
 

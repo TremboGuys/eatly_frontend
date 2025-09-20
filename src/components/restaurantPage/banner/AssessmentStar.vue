@@ -1,9 +1,13 @@
+<script setup>
+const props = defineProps(['note', 'reviews'])
+</script>
+
 <template>
     <div class="container">
         <div class="rating">
             <i class="fas fa-star star"></i>
-            <span class="score">4.7</span>
-            <span class="reviews">(693 avaliações)</span>
+            <span class="score">{{ props.note }}</span>
+            <span class="reviews">({{ props.reviews }} avaliações)</span>
             <i class="fas fa-circle dot"></i>
             <span class="level">Nível 4 de 5</span>
         </div>

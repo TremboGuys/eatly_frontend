@@ -6,7 +6,7 @@ const props = defineProps({
     },
     link: {
         type: String,
-        default: '/restaurants'
+        default: '/restaurant/1'
     }
 });
 </script>

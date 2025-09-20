@@ -16,7 +16,7 @@ const router = createRouter({
         {
           path: 'dashboard',
           name: 'dashboard',
-          component: () => import('@/views/DashboardView.vue')
+          component: () => import('@/views/HomeView.vue')
         },
         {
           path: 'search',
@@ -53,8 +53,13 @@ const router = createRouter({
           name: 'createReview',
           component: () => import('@/views/restaurant/CreateReviewView.vue')
         },
+        {
+          path: '/product/:id',
+          name: 'product',
+          component: () => import('@/views/restaurant/ProductView.vue')
+        }
       ],
-      meta: { requiresAuth: true }
+      meta: { requiresAuth: true } 
     },
     {
       path: '/signup',
@@ -75,8 +80,7 @@ const router = createRouter({
     {
       path: '/registerowner',
       name: 'registerOwner',
-      component: () => import('@/views/RegisterOwnerView.vue'),
-      meta: { requiresAuth: true }
+      component: () => import('@/views/auth/owner/SignUpOwnerView.vue'),
     },
     {
       path: '/registerrestaurant',

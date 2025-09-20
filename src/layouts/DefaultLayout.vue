@@ -12,7 +12,7 @@ import { NavigationBar } from "@/components"
 </template>
 
 <style scoped>
-.pageContent {
+/* .pageContent {
     padding-bottom: 7vh;
-}
+} */
 </style>

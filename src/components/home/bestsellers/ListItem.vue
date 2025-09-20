@@ -1,25 +1,33 @@
 <script setup>
 import '@fortawesome/fontawesome-free/css/all.css';
+import { useRestaurantStore } from '@/stores';
+
+const props = defineProps({
+    restaurant: {
+        type: Object
+    }
+});
+
+const restaurantStore = useRestaurantStore();
 </script>
 
 <template>
-    <router-link to="/restaurant/:id" class="listItemLink">
+    <router-link :to="`/restaurant/${props.restaurant.id}`" class="listItemLink" v-if="props.restaurant">
         <div class="listItem">
         <div class="logo">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW8ZaBueWk9wkYCzMni_p_1nO03KQRrew3aQ&s" alt="">
+            <img :src="props.restaurant.photo" alt="">
         </div>
         <div class="info">
-            <p class="restaurant-name">Burger King</p>
-            <p class="restaurant-description">oferece sabor incomparável com opções irresistíveis e inovadoras.</p>
+            <p class="restaurant-name">{{ props.restaurant.name }}</p>
+            <p class="restaurant-description">{{ props.restaurant.description }}</p>
                 <div class="more-info">
                     <div class="rating-container">
                         <i class="fa fa-star"></i>
-                        <p class="restaurant-rating">5.0</p>
+                        <p class="restaurant-rating">{{ props.restaurant.note }}</p>
                     </div>
                     <div class="delivery-container">
                         <i class="fa fa-clock"></i>
-                        <p class="delivery-time">00:00</p>
-
+                        <p class="delivery-time">{{ props.restaurant.average_delivery_time }} min</p>
                     </div>
                 </div>
         </div>
