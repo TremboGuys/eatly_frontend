@@ -27,3 +27,9 @@ defineExpose({ scrollToCategory })
         </div>
     </div>
 </template>
+
+<style scoped>
+.ItemsMenu {
+  margin-bottom: 40px;
+}
+</style>

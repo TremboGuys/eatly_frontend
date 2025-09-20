@@ -5,20 +5,21 @@ export const useCartStore = defineStore("cart", () => {
     const cart = ref([]);
 
     function addToCart(item) {
-        const found = cart.value.find(i => i.id === item.id);
-        if (found) {
-            found.quantity++;
+        const found = cart.value.findIndex(i => i.id === item.id);
+        if (found != -1) {
+            cart.value[found].quantity++;
         }
         else {
-            cart.value.push({ ...item, price: parseFloat(item.price), quantity: 1 })
+            item.price = parseFloat(item.price);
+            cart.value.push({ ...item })
         }
     }
     function removeFromCart(item) {
-        const found = cart.value.find(i => i.id === item.id);
-        if (found) {
-            found.quantity--;
-            if (found.quantity <= 0) {
-                cart.value = cart.value.filter(i => i.id !== item.id);
+        const found = cart.value.findIndex(i => i.id === item.id);
+        if (found != - 1) {
+            cart.value[found].quantity--;
+            if (cart.value[found].quantity <= 0) {
+                cart.value.splice(found, 1);
             }
         }
     }

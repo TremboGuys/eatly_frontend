@@ -39,7 +39,7 @@ const router = createRouter({
           component: () => import("@/views/CartView.vue")
         },
         {
-          path: '/restaurant/',
+          path: '/restaurant/:id',
           name: 'restaurant',
           component: () => import('@/views/restaurant/RestaurantView.vue')
         },
@@ -54,7 +54,7 @@ const router = createRouter({
           component: () => import('@/views/restaurant/CreateReviewView.vue')
         },
       ],
-      // meta: { requiresAuth: true } 
+      meta: { requiresAuth: true }
     },
     {
       path: '/signup',
@@ -75,7 +75,8 @@ const router = createRouter({
     {
       path: '/registerowner',
       name: 'registerOwner',
-      component: () => import('@/views/auth/owner/SignUpOwnerView.vue'),
+      component: () => import('@/views/RegisterOwnerView.vue'),
+      meta: { requiresAuth: true }
     },
     {
       path: '/registerrestaurant',

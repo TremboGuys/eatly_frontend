@@ -1,11 +1,15 @@
 import { ref } from "vue";
 import { RestaurantService } from "@/services";
 import { useToastStore } from "@/stores/toastStore";
+import router from "@/router";
+import { categories } from "@/metaDatas/categories";
 
 export const useRestaurantComposable = () => {
   const toastStore = useToastStore();
-  async function getRestaurants() {
+  const restaurant = ref({});
+  const categoriesRestaurant = ref([]);
 
+  async function getRestaurants() {
     try {
       const data = await RestaurantService.getRestaurants();
 
@@ -25,6 +29,17 @@ export const useRestaurantComposable = () => {
     }
   }
 
+  async function getRestaurant(id) {
+    try {
+      const response = await RestaurantService.getRestaurant(id);
+      restaurant.value = response;
+      getCategories();
+    } catch(error) {
+      console.error('Error in GET retrieve Restaurant: ', error);
+      toastStore.notify("Erro ao abrir restaurante!", "error");
+    }
+  }
+
   async function createRestaurant(restaurant) {
     try {
       const restaurantFormData = new FormData();
@@ -39,7 +54,21 @@ export const useRestaurantComposable = () => {
     }
   }
 
+  function getCategories() {
+    const categoriesSet = new Set();
+    for (const product of restaurant.value.products) {
+      for (const category of product.categories) {
+        categoriesSet.add(category.name);
+      }
+    }
+    categoriesRestaurant.value = Array.from(categoriesSet);
+    console.log(categoriesRestaurant.value);
+  }
+
   return {
+    restaurant,
+    categoriesRestaurant,
+    getRestaurant,
     getRestaurants,
     createRestaurant
   };

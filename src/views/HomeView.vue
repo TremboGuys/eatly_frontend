@@ -1,10 +1,9 @@
 <script setup>
-import { PreLoader } from "@/components";
-
+import HomeContainer from '@/components/home/HomeContainer.vue';
 </script>
 
 <template>
   <main>
-    <PreLoader />
+    <HomeContainer />
   </main>
 </template>

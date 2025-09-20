@@ -4,7 +4,7 @@ import { menu } from '@/metaDatas/menuData';
 import { useCartStore } from '@/stores/cartStore';
 
 const menuItems = ref(menu);
-const cartStore = useCartStore(); // <-- chamada correta
+const cartStore = useCartStore();
 
 const categoryRefs = ref([]);
 const activeIndex = ref(0);
