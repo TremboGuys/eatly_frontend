@@ -13,6 +13,10 @@ const props = defineProps({
   placeholder: {
     type: String,
     default: "Selecione"
+  },
+  select: {
+    type: String,
+    default: null
   }
 });
 

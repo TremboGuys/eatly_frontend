@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { ClientService, AuthService } from "@/services";
+import { ClientService } from "@/services";
 import { useToastStore, useAuthStore } from "@/stores";
 import { useRouter } from "vue-router";
 
@@ -21,7 +21,7 @@ export const useClientStore = defineStore('client', () => {
     }
 
     async function login(user) {
-        const response = await AuthService.login(user);
+        const response = await ClientService.login(user);
 
         if (response != false) {
             localStorage.setItem('access', response.access);

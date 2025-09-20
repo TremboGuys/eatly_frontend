@@ -1,48 +1,39 @@
 import { api } from "@/plugins/axios"
 
 class RestaurantService {
-    async getRestaurant() {
-      try {
-        const response = await api.get('/api/restaurants/');
-        return response.data;
-      }
-      catch (error) {
-        console.error("Error in GET restaurants: ", error);
-        throw error;
-      }
+    async getRestaurants(page=1) {
+      const response = await api.get(`restaurants?page=${page}`);
+      return response.data;
+    }
+
+    async getRestaurant(id) {
+      const response = await api.get(`restaurants/${id}/`);
+      return response.data;
+    }
+
+    async getRestaurantRecentlyViewed() {
+      const response = await api.get('recently-restaurant-views');
+      return response.data;
     }
 
     async createRestaurant(restaurant) {
-      try {
-        const response = await api.post('/api/restaurants/', restaurant);
+        const response = await api.post('restaurants/', restaurant);
         return response.data;
-      }
-      catch (error) {
-        console.error("Error in POST restaurant: ", error);
-        throw error;
-      }
     }
 
     async updateRestaurant(restaurant) {
-      try {
-        const response = await api.patch('/api/restaurants/', restaurant);
-        return response.data;
-      }
-      catch (error) {
-        console.error("Error in PATCH restaurant: ", error);
-        throw error;
-      }
+      const response = await api.patch('restaurants/', restaurant);
+      return response.data;
     }
 
     async deleteRestaurant(id) {
-      try {
-        const response = await api.delete(`/api/restaurants/${id}`);
-        return true;
-      }
-      catch (error) {
-        console.error("Error in DELETE restaurant: ", error);
-        throw error;
-      }
+      const response = await api.delete(`restaurants/${id}`);
+      return true;
+    }
+
+    async createViewedRestaurant(id) {
+      await api.post('recently-restaurant-views', id);
+      return true;
     }
 }
 

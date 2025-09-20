@@ -1,0 +1,26 @@
+@media (max-width: 425px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0;
+        
+        .banner {
+            width: 100%;
+            position: relative;
+        }
+    
+        .optionsScroll {
+            width: 100%;
+            position: sticky;
+            margin-top: 9.5rem;
+            top: 0;
+            background-color: #fff;
+            z-index: 10;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    }
+
+}

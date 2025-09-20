@@ -1,13 +1,19 @@
 import CategoryService from "@/services/category";
 import OwnerService from "@/services/owner";
-import ClientService from "@/services/auth/client"
+import UserService from "@/services/auth/user"
 import AuthService from "@/services/auth/auth"
 import RestaurantService from "@/services/restaurant";
+import AddressService from "@/services/address";
+import ProductService from "@/services/product";
+import FavoriteService from "@/services/favorite";
 
 export {
     CategoryService,
     OwnerService,
-    ClientService,
+    UserService,
     AuthService,
-    RestaurantService
+    RestaurantService,
+    AddressService,
+    ProductService,
+    FavoriteService
 };

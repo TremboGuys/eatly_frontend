@@ -1,0 +1,26 @@
+@media (max-width: 425px) {
+    .container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        .img {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 5rem;
+            bottom: -20px;
+            height: auto;
+            border-radius: 50%;
+            border: 1px solid #ddd;
+            background-color: #fff;
+            img {
+                width: 100%;
+                height: auto;
+                border-radius: 0 0 20px 20px;
+            }
+        }
+    }
+}

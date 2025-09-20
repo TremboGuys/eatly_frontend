@@ -1,0 +1,24 @@
+@media (max-width: 425px) {
+    .container {
+        padding: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: center;
+        flex-direction: row;
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.2rem;
+        }
+        .fa-heart {
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            color: #000;
+        }
+        .fa-heart.active {
+            color: #c93407;
+            font-size: 1.8rem;
+        }
+    }
+}

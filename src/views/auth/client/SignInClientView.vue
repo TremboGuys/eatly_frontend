@@ -1,15 +1,14 @@
 <script setup>
-import { InputsProps, SignInSubmit, FaceButton, GoogleButton, HaveAnAccount } from '@/components';
 import { reactive } from 'vue';
+import { InputsProps, ButtonSubmit, FaceButton, GoogleButton, HaveAnAccount } from '@/components';
+import { useUserStore } from '@/stores';
 
 const user = reactive({
-        name: '',
-        genre: '',
-        dateBirth: '',
-        email: '',
-        password: '',
-        cellphone: ''
-})
+    email: '',
+    password: '',
+});
+
+const userStore = useUserStore();
 
 function changeDataUser(data) {
   user[data.field] = data.value;
@@ -21,10 +20,10 @@ function changeDataUser(data) {
     <img src="@/assets/img/logo.png" class="logo" alt="">
     <h1 class="title">Bem vindo de volta!</h1>
     <div class="hr"></div>
-    <form @submit.prevent="">
+    <form @submit.prevent="userStore.login(user)">
       <InputsProps type="text" field="email" for-id="email" label="Email" maxlength="255" @change-data-user="changeDataUser" />
       <InputsProps type="password" field="password" for-id="password" label="Senha" maxlength="50" @change-data-user="changeDataUser" />
-      <SignInSubmit />
+      <ButtonSubmit name="Realizar Login" />
     </form>
     <div class="or">Ou</div>
     <div class="hr"></div>
