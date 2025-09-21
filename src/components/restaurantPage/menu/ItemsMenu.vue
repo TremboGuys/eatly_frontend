@@ -1,20 +1,15 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { menu } from '@/metaDatas/menuData';
-import { useCartStore, useRestaurantStore } from '@/stores/';
+import { useRestaurantStore } from '@/stores/';
 import { useRouter } from 'vue-router';
 
 const menuItems = ref(menu);
-const cartStore = useCartStore();
 const restaurantStore = useRestaurantStore();
 
 const categoryRefs = ref([]);
 const activeIndex = ref(0);
 const emit = defineEmits(['update:activeIndex']);
-
-function addItem(item) {
-  cartStore.addToCart(item);
-}
 
 function scrollToCategory(index) {
   const el = categoryRefs.value[index];
@@ -54,7 +49,7 @@ const router = useRouter();
                 <div class="hr"></div>
             </div>
 
-            <router-link :to="`/product/${product.id}`">
+            <router-link class="itemLink" :to="`/product/${product.id}`">
               <div class="item" :key="index">
                   <div class="top">
                       <div class="image">
@@ -67,9 +62,6 @@ const router = useRouter();
                   </div>
                   <div class="bottom">
                       <div class="price">R${{ product.price.toString().replace(".", ",") }}</div>
-                  </div>
-                  <div class="addToCart">
-                      <button class="button" @click="addItem(product)">Adicionar</button>
                   </div>
                 </div>
               </router-link>

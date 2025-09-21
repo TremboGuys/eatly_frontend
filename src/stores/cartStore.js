@@ -7,11 +7,9 @@ export const useCartStore = defineStore("cart", () => {
     function addToCart(item) {
         const found = cart.value.findIndex(i => i.id === item.id);
         if (found != -1) {
-            cart.value[found].quantity++;
-        }
-        else {
-            item.price = parseFloat(item.price);
-            cart.value.push({ ...item })
+            cart.value[found].quantity += item.quantity || 1;
+        } else {
+            cart.value.push({ ...item, price: parseFloat(item.price), quantity: item.quantity || 1 });
         }
     }
     function removeFromCart(item) {

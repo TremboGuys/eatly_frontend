@@ -11,18 +11,14 @@ const props = defineProps({
     }
 });
 
-const quantity = ref(0);
+const quantity = ref(1);
 
 const addToCart = () => quantity.value++;
 const removeFromCart = () => {
     if (quantity.value > 1) quantity.value--;
 };
 const addItem = () => {
-    cartStore.addToCart({
-        ...props.product,
-        quantity: quantity.value
-    });
-    quantity.value = 1;
+  cartStore.addToCart({ ...props.product, quantity: quantity.value });
 };
 </script>
 <template>
