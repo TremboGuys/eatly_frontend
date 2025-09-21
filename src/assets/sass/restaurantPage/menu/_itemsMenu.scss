@@ -25,6 +25,9 @@
                 text-align: left;
             }
         }
+        .itemLink {
+            text-decoration: none;
+        }
         .item {
             width: 96vw;
             display: flex;
@@ -35,6 +38,7 @@
             border-left: 8px solid #444801;
             padding: 1rem;
             margin-bottom: 1rem;
+            text-decoration: none;
 
             .top {
                 display: flex;

@@ -29,9 +29,12 @@ onMounted(async () => {
 });
 
 onBeforeRouteLeave((to, from, next) => {
-  if (to.name != 'product') {
-    restaurantStore.restaurant.value == {};
+  if (to.name !== 'product') {
+    if (restaurantStore.restaurant.value) {
+      restaurantStore.restaurant.value = {};
+    }
   }
+  next();
 });
 </script>
 
