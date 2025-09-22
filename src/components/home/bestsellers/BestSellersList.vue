@@ -10,7 +10,7 @@ const restaurantStore = useRestaurantStore();
 <template>
     <div class="bestSellerContainer">
         <HeaderList />
-        <ListItem v-for="(restaurant, index) in restaurantStore.restaurants" :key="index" :restaurant="restaurant" />
+        <ListItem v-for="(restaurant, index) in restaurantStore.restaurants" :key="index" :restaurant="restaurant" @click="restaurantStore.createRestaurantView({restaurant: restaurant.id})" />
     </div>
 </template>
 

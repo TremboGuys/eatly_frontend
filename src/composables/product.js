@@ -9,7 +9,6 @@ export const useProductComposable = () => {
     async function getProduct(id) {
         try {
             const response = await ProductService.getProduct(id);
-            console.log(response);
             product.value = response;
         } catch(error) {
             console.error('Error in GET product: ', error);

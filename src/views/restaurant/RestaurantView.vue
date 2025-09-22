@@ -25,7 +25,6 @@ onMounted(async () => {
   else {
       await restaurantStore.getRestaurant(route.params.id);
   }
-  console.log(restaurantStore.restaurant);
 });
 
 onBeforeRouteLeave((to, from, next) => {
