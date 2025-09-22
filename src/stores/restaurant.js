@@ -50,6 +50,16 @@ export const useRestaurantStore = defineStore('restaurant', () => {
     }
   }
 
+  function getCategories() {
+    const categoriesSet = new Set();
+    for (const product of restaurant.value.products) {
+      for (const category of product.categories) {
+        categoriesSet.add(category.name);
+      }
+    }
+    categoriesRestaurant.value = Array.from(categoriesSet);
+  }
+
   async function createRestaurant(restaurant) {
     try {
       const restaurantFormData = new FormData();
@@ -64,17 +74,32 @@ export const useRestaurantStore = defineStore('restaurant', () => {
     }
   }
 
-  function getCategories() {
-    const categoriesSet = new Set();
-    for (const product of restaurant.value.products) {
-      for (const category of product.categories) {
-        categoriesSet.add(category.name);
+  async function createRestaurantView(idRestaurant) {
+    const indexView = restaurantsRecentlyViewed.value.findIndex(i => i.restaurant_data.id == idRestaurant.restaurant);
+    if (indexView != -1) {
+      try {
+        const restaurantView = restaurantsRecentlyViewed.value[indexView];
+        await RestaurantService.updateViewedRestaurant(restaurantsRecentlyViewed.value[indexView].id);
+        restaurantsRecentlyViewed.value = [restaurantView, ...restaurantsRecentlyViewed.value.filter(i => i.restaurant_data.id != idRestaurant.restaurant)];
+      }
+      catch(error) {
+        console.error("Error in UPDATE restaurant viewed: ", error);
       }
     }
-    categoriesRestaurant.value = Array.from(categoriesSet);
-    console.log(categoriesRestaurant.value);
-  }
+    else {
+      try {
+        const restaurantView = await RestaurantService.createViewedRestaurant(idRestaurant);
 
+        if (restaurantsRecentlyViewed.value.length == 10) {
+          restaurantsRecentlyViewed.value.splice(9, 1);
+        }
+        restaurantsRecentlyViewed.value = [restaurantView, ...restaurantsRecentlyViewed.value];
+      }
+      catch(error) {
+        console.error("Error in POST restaurant view: ", error);
+      }
+    }
+  }
   return {
     restaurant,
     restaurants,
@@ -83,6 +108,7 @@ export const useRestaurantStore = defineStore('restaurant', () => {
     getRestaurant,
     getRestaurants,
     getRestaurantRecentlyViewed,
-    createRestaurant
+    createRestaurant,
+    createRestaurantView
   };
 });

@@ -10,8 +10,6 @@ export const useClientStore = defineStore('client', () => {
     async function register(user) {
         const response = await ClientService.register(user);
 
-        console.log(response);
-
         if (response) {
             login({email: user.email, password: user.password});
         }

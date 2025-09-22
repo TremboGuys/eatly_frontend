@@ -17,7 +17,7 @@ const cartStore = useCartStore();
       <div v-for="item in cartStore.cart" :key="item.id" class="item">
         <div class="top">
           <div class="image">
-            <img :src="item.image" :alt="item.title" />
+            <img :src="item.url_file" :alt="item.title" />
           </div>
           <div class="info">
             <div class="title">{{ item.title }}</div>

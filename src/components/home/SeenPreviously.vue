@@ -7,7 +7,7 @@ const restaurantStore = useRestaurantStore();
 <template>
     <div class="seen-previously">        
         <HeaderList title="Vistos recentemente" link="/product/1" />
-        <ListItem v-for="(restaurant, index) in restaurantStore.restaurantsRecentlyViewed" :key="index" :restaurant="restaurant.restaurant" />
+        <ListItem v-for="(restaurant, index) in restaurantStore.restaurantsRecentlyViewed" :key="index" :restaurant="restaurant.restaurant_data" @click="restaurantStore.createRestaurantView({restaurant: restaurant.restaurant_data.id})" />
     </div>
 </template>
 <style scoped>
