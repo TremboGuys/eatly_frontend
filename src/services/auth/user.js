@@ -3,7 +3,6 @@ import { useToastStore } from "@/stores/toastStore";
 
 class UserService {
     async registerUser(user) {
-        console.log(user.get("email"));
         const response = await api.post('user/register/', user, { headers: { skipAuth: true } });
         return response.data;
     }

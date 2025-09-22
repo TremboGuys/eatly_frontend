@@ -1,7 +1,7 @@
 import { api } from "@/plugins/axios"
 
 class RestaurantService {
-    async getRestaurants(page=1) {
+    async   getRestaurants(page=1) {
       const response = await api.get(`restaurants?page=${page}`);
       return response.data;
     }
@@ -32,7 +32,12 @@ class RestaurantService {
     }
 
     async createViewedRestaurant(id) {
-      await api.post('recently-restaurant-views', id);
+      const response = await api.post('recently-restaurant-views/', id);
+      return response.data;
+    }
+
+    async updateViewedRestaurant(id) {
+      await api.patch(`recently-restaurant-views/${id}/`);
       return true;
     }
 }

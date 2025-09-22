@@ -2,7 +2,6 @@ import { api } from "@/plugins/axios";
 
 class AuthService {
     async login(user) {
-        console.log(user);
         const request = await api.post('/token/', user, { headers: { skipAuth: true } });
         return request.data;
     }

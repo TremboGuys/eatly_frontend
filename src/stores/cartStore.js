@@ -1,8 +1,10 @@
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
+import { useToastStore } from './toastStore';
 
 export const useCartStore = defineStore("cart", () => {
     const cart = ref([]);
+    const toastStore = useToastStore();
 
     function addToCart(item) {
         const found = cart.value.findIndex(i => i.id === item.id);
@@ -11,6 +13,7 @@ export const useCartStore = defineStore("cart", () => {
         } else {
             cart.value.push({ ...item, price: parseFloat(item.price), quantity: item.quantity || 1 });
         }
+        toastStore.notify("Produto adicionado ao carrinho!", "success");
     }
     function removeFromCart(item) {
         const found = cart.value.findIndex(i => i.id === item.id);

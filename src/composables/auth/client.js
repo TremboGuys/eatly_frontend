@@ -11,10 +11,6 @@ export const useClientComposable = () => {
         date_birth: undefined
     });
 
-    watch(enable, () => {
-        console.log('Foi', enable);
-    })
-
     return {
         enable,
         formState,

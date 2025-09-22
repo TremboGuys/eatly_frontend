@@ -20,7 +20,6 @@ export const useUserStore = defineStore('client', () => {
         }
 
         try {
-            console.log(user.user);
             const formDataUser = new FormData();
             formDataUser.append("email", user.user.email);
             formDataUser.append("password", user.user.password);
