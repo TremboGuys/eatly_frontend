@@ -34,7 +34,7 @@ const addItem = () => {
                 <span class="number">{{ quantity }}</span>
                 <button class="button add" @click="quantity++">+</button>
             </div>
-            <button class="addCart" @click="cartStore.addToCart({ ...props.product, quantity: quantity, total: props.product.price * quantity})">
+            <button class="addCart" @click="cartStore.addToCart({ ...props.product, quantity: quantity, total: props.product.price * quantity}); console.log(props.product)">
                 Adicionar ao carrinho
             </button>
         </div>
