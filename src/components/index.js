@@ -35,6 +35,8 @@ import ConfirmationEmail from '@/components/confirmation/ConfirmationEmail.vue';
 import ReviewScreen from "./reviewRestaurant/ReviewScreen.vue";
 import SelectOption from "./payment/SelectOption.vue";
 import PaymentScreen from "./payment/PaymentScreen.vue";
+import OrderStatusComp from "./orderStatus/OrderStatusComp.vue";
+import OrderStatus from "./orderStatus/OrderStatus.vue";
 
 export {
     InputsProps,
@@ -73,5 +75,7 @@ export {
     ConfirmationEmail,
     ReviewScreen,
     SelectOption,
-    PaymentScreen
+    PaymentScreen,
+    OrderStatusComp,
+    OrderStatus
 }
