@@ -1,13 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue';
-import { useCartStore } from '@/stores';
-import axios from 'axios';
-
-const cartStore = useCartStore();
-const qrCodeBase64 = ref('')
-const pixCode = ref('')
-const loading = ref(false)
-const error = ref('')
+import { ref, computed } from 'vue'
 const props = defineProps({
   method: String
 })
@@ -81,7 +73,6 @@ function submitCard() {
     </div>
   </div>
 </template>
-
 <style scoped>
 @import "@/assets/sass/payment/_paymentScreen.scss";
 </style>

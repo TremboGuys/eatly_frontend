@@ -33,6 +33,8 @@ import HeaderList from "./home/bestsellers/HeaderList.vue";
 import ListItem from "./home/bestsellers/ListItem.vue";
 import ConfirmationEmail from '@/components/confirmation/ConfirmationEmail.vue';
 import ReviewScreen from "./reviewRestaurant/ReviewScreen.vue";
+import SelectOption from "./payment/SelectOption.vue";
+import PaymentScreen from "./payment/PaymentScreen.vue";
 
 export {
     InputsProps,
@@ -70,4 +72,6 @@ export {
     ListItem,
     ConfirmationEmail,
     ReviewScreen,
+    SelectOption,
+    PaymentScreen
 }
