@@ -59,7 +59,7 @@ const router = createRouter({
           component: () => import('@/views/restaurant/ProductView.vue')
         }
       ],
-      meta: { requiresAuth: true } 
+      // meta: { requiresAuth: true } 
     },
     {
       path: '/signup',
