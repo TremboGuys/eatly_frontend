@@ -1,14 +1,17 @@
 @media (max-width: 425px) {
-    .container {
+    .containerScreen {
         display: flex;
         flex-direction: column;
         align-items: center;
+        height: auto;
         width: 100%;
         font-family: 'Poppins', sans-serif;
 
         .cardForm,
         .pix-section {
-            width: 100%;
+            display: flex;
+            flex-direction: column;
+            width: 90%;
             max-width: 400px;
             background: #fff;
             padding: 2rem;
@@ -37,10 +40,15 @@
                     }
 
                     input {
+                        max-width: 100%;
                         padding: 0.7rem;
                         border: 1px solid #ccc;
                         border-radius: 6px;
                         font-size: 1rem;
+                        text-transform: uppercase;
+                    }
+                    #cvv {
+                        max-width: 40%;
                     }
                 }
 

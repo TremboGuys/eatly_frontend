@@ -25,7 +25,7 @@ async function generateQRCode() {
 }
 </script>
 <template>
-  <div class="container">
+  <div class="containerScreen">
     <div v-if="isCard" class="cardForm">
       <h2>
         Pagamento com Cartão de
@@ -34,21 +34,21 @@ async function generateQRCode() {
       <form @submit.prevent="submitCard">
         <div class="formGroup">
           <label for="cardNumber">Número do Cartão</label>
-          <input id="cardNumber" v-model="card.number" placeholder="0000 0000 0000 0000" required />
+          <input id="cardNumber" v-mask="'#### #### #### ####'" type="text" v-model="card.number" placeholder="0000 0000 0000 0000" required />
         </div>
 
         <div class="formGroup">
           <label for="cardName">Nome no Cartão</label>
-          <input id="cardName" v-model="card.name" placeholder="Seu nome completo" required />
+          <input id="cardName" type="text" v-model="card.name" placeholder="Seu nome completo" required />
         </div>
         <div class="formRow">
           <div class="formGroup">
             <label for="expiry">Validade</label>
-            <input id="expiry" v-model="card.expiry" placeholder="MM/AA" required />
+            <input id="expiry" v-mask="'##/##'" type="text" v-model="card.expiry" placeholder="MM/AA" required />
           </div>
           <div class="formGroup">
             <label for="cvv">CVV</label>
-            <input id="cvv" v-model="card.cvv" placeholder="123" required />
+            <input id="cvv" v-mask="'###'" type="text" v-model="card.cvv" placeholder="123" required />
           </div>
         </div>
         <button type="submit">

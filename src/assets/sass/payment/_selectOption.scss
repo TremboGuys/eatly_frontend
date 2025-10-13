@@ -1,10 +1,23 @@
 @media (max-width: 425px) {
     .container {
+        width: 100%;
+        overflow-x: hidden;
+        white-space: nowrap;
+        scrollbar-width: none;
         display: flex;
+        align-items: center;
+        justify-content: flex-start;
         gap: 1rem;
         margin-bottom: 2rem;
+        font-family: 'Poppins', sans-serif;
+        height: 8vh;
+        padding: 0.5rem 1rem;
+        &::-webkit-scrollbar {
+            display: none;
+        }
 
         button {
+            flex: 0 0 auto;
             padding: 0.75rem 1.5rem;
             border: 2px solid #ccc;
             border-radius: 8px;
@@ -12,13 +25,14 @@
             cursor: pointer;
             font-weight: 600;
             transition: all 0.3s ease;
+            font-size: 1rem;
 
             &:hover {
                 background-color: #e0e0e0;
             }
 
             &.active {
-                border-color: #4caf50;
+                border-color: #444801;
                 background-color: #e8f5e9;
             }
         }

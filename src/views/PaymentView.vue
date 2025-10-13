@@ -11,20 +11,26 @@ function handleSelect(method) {
 <template>
   <div class="container">
     <h1>Método de Pagamento</h1>
-    <SelectOption @selectMethod="handleSelect" />
+    <div class="options">
+      <SelectOption @selectMethod="handleSelect" />
+    </div>
     <PaymentScreen v-if="selectedMethod" :method="selectedMethod" />
   </div>
 </template>
 <style scoped lang="scss">
 .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem;
-
   h1 {
-    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
     color: #333;
+    font-family: 'Poppins', sans-serif;
+  }
+  .options {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
   }
 }
 </style>
