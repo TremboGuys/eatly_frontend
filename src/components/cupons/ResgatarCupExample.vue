@@ -24,33 +24,17 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { useCouponStore } from "@/stores/couponStore";
 import NotificationToast from "./components/Notification.vue";
 
-const showConfirm = ref(false);
-const showSuccess = ref(false);
-
-function openConfirm() {
-  showConfirm.value = true;
-}
-
-function handleCancel() {
-  showConfirm.value = false;
-}
-
-function handleConfirm() {
-  showConfirm.value = false;
-
-  setTimeout(() => {
-    showSuccess.value = true;
-
-    setTimeout(() => { showSuccess.value = false; }, 3000);
-  }, 250);
-}
-
-function closeSuccess() {
-  showSuccess.value = false;
-}
+const {
+  showConfirm,
+  showSuccess,
+  openConfirm,
+  handleCancel,
+  handleConfirm,
+  closeSuccess
+} = useCouponStore();
 </script>
 
 <style scoped>
