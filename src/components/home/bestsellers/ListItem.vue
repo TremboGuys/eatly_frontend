@@ -15,6 +15,12 @@ const props = defineProps({
   },
 });
 
+const showMenu = ref(false);
+
+const toggleMenu = () => {
+  showMenu.value = !showMenu.value;
+};
+
 const restaurantStore = useRestaurantStore();
 </script>
 
@@ -50,10 +56,18 @@ const restaurantStore = useRestaurantStore();
         </div>
       </div>
     </router-link>
-      <div class="heart-favorite" @click="toggleFavorite">
-        <div class="heart">
-            <i :class="['fa-solid', 'fa-heart', { active: isFavorite }]"></i>
-        </div>
+      <div class="select">
+        <button class="dots" @click="toggleMenu">
+          <i class="fa fa-circle" aria-hidden="true"></i>
+          <i class="fa fa-circle" aria-hidden="true"></i>
+          <i class="fa fa-circle" aria-hidden="true"></i>
+        </button>
+
+        <ul v-if="showMenu">
+          <li class="AddOrRemFav" @click="toggleFavorite">
+            {{ isFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos' }}
+          </li>
+        </ul>
       </div>
     </div>
 </template>
