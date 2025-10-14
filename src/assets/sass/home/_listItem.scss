@@ -94,19 +94,25 @@
 
         }
 
-        .heart-favorite {
+        .select {
+            justify-content: start;
+            display: flex;
+            align-items: start;
+            height: 100%;
 
+            .dots {
+                border: none;
+                background: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 2px;
 
-                .fa-heart {
-                color: #aaa;
-                transition: color 0.3s;
-                font-size: 1.3em;
+                i {
+                    font-size: 0.25em;
+                    color: #828282;
                 }
-
-                /* cor quando clicado */
-                .fa-heart.active {
-                color: red;
-                }
-                        }
-                    }
+            }
+        }
+    }
 }
