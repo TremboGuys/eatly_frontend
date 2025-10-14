@@ -5,7 +5,16 @@
     display: flex;
     flex-wrap: wrap;
     gap: 2vh 5vw;
-    justify-content: center;
-    align-content: flex-start; 
+    align-items: center;
+    flex-direction: column;
+    h1{
+        display: block;
+    }
+    .list{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
 
+    }
 }
