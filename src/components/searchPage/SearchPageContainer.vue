@@ -1,6 +1,6 @@
 <script setup>
-import SearchBarContainer from './SearchBarContainer.vue';
-import SearchList from './SearchList.vue';
+import SearchBarContainer from "./SearchBarContainer.vue";
+import SearchList from "./SearchList.vue";
 </script>
 
 <template>
@@ -12,6 +12,4 @@ import SearchList from './SearchList.vue';
   </main>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
