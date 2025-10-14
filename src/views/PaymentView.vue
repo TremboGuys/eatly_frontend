@@ -30,7 +30,7 @@ function handleSelect(method) {
   .options {
     display: flex;
     flex-direction: column;
-    width: 100vw;
+    width: 100%;
   }
 }
 </style>
