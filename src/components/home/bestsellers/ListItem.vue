@@ -1,12 +1,18 @@
 <script setup>
 import "@fortawesome/fontawesome-free/css/all.css";
 import { useRestaurantStore } from "@/stores";
-import { ref } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from "vue";
 
-const isFavorite = ref(false)
+const isFavorite = ref(false);
+const showMenu = ref(false);
+const dropdownRef = ref(null); // 👈 precisa declarar isso
 
 const toggleFavorite = () => {
   isFavorite.value = !isFavorite.value;
+};
+
+const toggleMenu = () => {
+  showMenu.value = !showMenu.value;
 };
 
 const props = defineProps({
@@ -15,23 +21,31 @@ const props = defineProps({
   },
 });
 
-const showMenu = ref(false);
+const restaurantStore = useRestaurantStore();
 
-const toggleMenu = () => {
-  showMenu.value = !showMenu.value;
+// 👇 Corrigido: função fechada corretamente
+const handleClickOutside = (event) => {
+  if (dropdownRef.value && !dropdownRef.value.contains(event.target)) {
+    showMenu.value = false;
+  }
 };
 
-const restaurantStore = useRestaurantStore();
+onMounted(() => {
+  document.addEventListener("click", handleClickOutside);
+});
+
+onBeforeUnmount(() => {
+  document.removeEventListener("click", handleClickOutside);
+});
 </script>
 
 <template>
-
-    <div class="listItem">
-          <router-link
-    :to="`/restaurant/${props.restaurant.id}`"
-    class="listItemLink"
-    v-if="props.restaurant"
-  >
+  <div class="listItem">
+    <router-link
+      :to="`/restaurant/${props.restaurant.id}`"
+      class="listItemLink"
+      v-if="props.restaurant"
+    >
       <div class="left-side">
         <div class="logo">
           <img :src="props.restaurant.photo" alt="" />
@@ -56,20 +70,22 @@ const restaurantStore = useRestaurantStore();
         </div>
       </div>
     </router-link>
-      <div class="select">
-        <button class="dots" @click="toggleMenu">
-          <i class="fa fa-circle" aria-hidden="true"></i>
-          <i class="fa fa-circle" aria-hidden="true"></i>
-          <i class="fa fa-circle" aria-hidden="true"></i>
-        </button>
 
-        <ul v-if="showMenu">
-          <li class="AddOrRemFav" @click="toggleFavorite">
-            {{ isFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos' }}
-          </li>
-        </ul>
-      </div>
+    <!-- 👇 Adicionamos ref para detectar cliques fora -->
+    <div ref="dropdownRef" class="select">
+      <button class="dots" @click="toggleMenu">
+        <i class="fa fa-circle" aria-hidden="true"></i>
+        <i class="fa fa-circle" aria-hidden="true"></i>
+        <i class="fa fa-circle" aria-hidden="true"></i>
+      </button>
+
+      <ul v-if="showMenu" class="dropdown-menu">
+        <li class="AddOrRemFav" @click="toggleFavorite">
+          {{ isFavorite ? "Remover dos favoritos" : "Adicionar aos favoritos" }}
+        </li>
+      </ul>
     </div>
+  </div>
 </template>
 
 <style scoped>
