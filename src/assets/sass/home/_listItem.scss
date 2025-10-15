@@ -1,6 +1,7 @@
 @media(max-width:425px) {
 
     .listItem {
+        
         height: 9vh;
         display: flex;
         // justify-content: space-between;
@@ -96,9 +97,11 @@
 
         .select {
             justify-content: start;
-            display: flex;
+            display: inline-block;
             align-items: start;
             height: 100%;
+            position: relative;
+
 
             .dots {
                 border: none;
@@ -107,12 +110,40 @@
                 align-items: center;
                 justify-content: center;
                 gap: 2px;
+                width: 20px;
+                height: 20px;
 
                 i {
                     font-size: 0.25em;
                     color: #828282;
                 }
             }
+            .dropdown-menu{
+                position: absolute;
+                right: 1px;
+                background-color: white;
+                border: 1px solid rgb(211, 211, 211);
+                border-radius: 5px;
+                height: 40px;
+                width: 200px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                top: 30%;
+                transition: 0.2s ease-in-out;
+                cursor: pointer;
+
+                &:hover{
+                    background-color: rgb(233, 233, 233);
+                    
+                }
+                
+                li{
+                    list-style: none;
+
+                }
+            }
+
         }
     }
 }
