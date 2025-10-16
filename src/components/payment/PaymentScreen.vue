@@ -73,6 +73,7 @@ function submitCard() {
     </div>
   </div>
 </template>
+
 <style scoped>
 @import "@/assets/sass/payment/_paymentScreen.scss";
 </style>
