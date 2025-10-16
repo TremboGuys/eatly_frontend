@@ -40,6 +40,7 @@ import OrderStatus from "./orderStatus/OrderStatus.vue";
 import OrderHeader from "./orders/OrderHeader.vue";
 import OrdersInProgress from "./orders/OrdersInProgress.vue";
 import HistoryOrders from "./orders/HistoryOrders.vue";
+import PopUpFinishLogin from "./home/pop-up/PopUpFinishLogin.vue";
 
 export {
     InputsProps,
@@ -84,4 +85,5 @@ export {
     OrderHeader,
     OrdersInProgress,
     HistoryOrders, 
+    PopUpFinishLogin
 }
