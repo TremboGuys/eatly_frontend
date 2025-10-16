@@ -68,7 +68,7 @@ function submitCard() {
     <div v-else-if="props.method === 'pix'" class="pix-section">
       <h2>Pagamento via Pix</h2>
       <div class="qrcode" v-if="pixPayload">
-        <qrcode-vue :value="pixPayload.value" :size="200" level="M" />
+        <qrcode-vue :value="pixPayload.value" :size="300" level="M" />
         <p>Payload: {{ pixPayload.value }}</p>
       </div>
     </div>
