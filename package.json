@@ -15,6 +15,7 @@
     "@vueuse/core": "^13.9.0",
     "axios": "^1.12.2",
     "buffer": "^6.0.3",
+    "getenv": "^2.0.0",
     "pinia": "^3.0.1",
     "qrcode-pix": "^5.0.0",
     "qrcode.vue": "^3.6.0",
