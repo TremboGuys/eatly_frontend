@@ -49,7 +49,7 @@ const router = createRouter({
           component: () => import('@/views/restaurant/ReviewsView.vue')
         },
         {
-          path: '/restaurant/:id/reviews/create',
+          path: '/restaurant/reviews/create',
           name: 'createReview',
           component: () => import('@/views/restaurant/CreateReviewView.vue')
         },
@@ -59,7 +59,7 @@ const router = createRouter({
           component: () => import('@/views/restaurant/ProductView.vue')
         }
       ],
-      meta: { requiresAuth: true } 
+      // meta: { requiresAuth: true } 
     },
     {
       path: '/signup',
