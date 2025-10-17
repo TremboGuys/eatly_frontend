@@ -1,7 +1,7 @@
 @media (max-width: 425px) {
     .container {
         width: 100vw;
-        padding: 10px;
+        padding: 10px 0 0 0;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -33,8 +33,7 @@
             }
         }
         .carousel {
-            width: 100%;
-            max-width: 400px;
+            width: 100vw;
             margin: 0 auto;
             overflow: hidden;
             touch-action: pan-y;
