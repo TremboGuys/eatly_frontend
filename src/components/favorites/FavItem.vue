@@ -70,16 +70,21 @@ onBeforeUnmount(() => {
         <div class="info">
           <p class="restaurant-name">{{ props.product.name }}</p>
           <p class="restaurant-description">{{ props.product.description }}</p>
+          <div class="restaurant-logo">
+          </div>
         </div>
+        
       </div>
     </router-link>
-
+    
     <div ref="dropdownRef" class="select">
       <button class="dots" @click.stop="toggleMenu">
         <i class="fa fa-circle"></i>
         <i class="fa fa-circle"></i>
         <i class="fa fa-circle"></i>
       </button>
+      
+      <i style="font-size: 1.3em; color: gray ;" class="fa fa-circle"></i>
 
       <div v-if="showMenu" class="overlay" @click="closeMenu"></div>
 
