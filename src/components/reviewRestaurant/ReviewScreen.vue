@@ -2,143 +2,126 @@
 import { ref } from "vue";
 
 const props = defineProps({
-  url: { type: String, default: "/restaurant" },
-  restaurant: { type: Object, default: () => ({ name: "Hamburgueria - Magia Urbana", rating: 4.7,}) }
+  restaurant: {
+    type: Object,
+    default: () => ({
+      name: "Magia Urbana - Hamburgueria",
+      rating: 4.5,
+      category: "Lanches e Hambúrgueres",
+      deliveryTime: "40-50 min",
+      deliveryPrice: "Grátis",
+    }),
+  },
 });
 
-const activeTab = ref("avaliacoes");
-const stars = ref(4);
-const recommend = ref(true);
-const impressed = ref(["Atendimento"]);
-const details = ref({ selfService: null, value: null, fast: true });
+const overallStars = ref(0);
+const tasteStars = ref(0);
+const deliveryStars = ref(0);
+const serviceStars = ref(0);
 const comment = ref("");
 
-function toggleImpressed(item) {
-  const i = impressed.value.indexOf(item);
-  i > -1 ? impressed.value.splice(i, 1) : impressed.value.push(item);
+function setStars(target, n) {
+  if (target === "overall") overallStars.value = n;
+  if (target === "taste") tasteStars.value = n;
+  if (target === "delivery") deliveryStars.value = n;
+  if (target === "service") serviceStars.value = n;
 }
 
 function submitReview() {
-  const payload = { stars: stars.value, recommend: recommend.value, impressed: impressed.value, details: details.value, comment: comment.value };
-  console.log("review:", payload);
+  const review = {
+    restaurant: props.restaurant.name,
+    overall: overallStars.value,
+    taste: tasteStars.value,
+    delivery: deliveryStars.value,
+    service: serviceStars.value,
+    comment: comment.value,
+  };
+  console.log("Avaliação enviada:", review);
 }
 </script>
 
 <template>
-  <div class="review-screen">
+  <div class="container" role="form" aria-label="Formulário de avaliação do restaurante">
     <header class="header">
-      <router-link :to="props.url" class="back-link" title="Voltar">
-        <i class="fa-solid fa-arrow-left"></i>
+      <router-link to="/restaurants" class="header__back" aria-label="Voltar para restaurantes">
+        <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
       </router-link>
-      <div class="head-meta">
-        <h1 class="rest-name">{{ props.restaurant.name }}</h1>
-        <div class="rating-row">
-          <span class="rating">{{ props.restaurant.rating }}</span>
-          <span class="stars">
-            <i v-for="i in 5" :key="i" class="star" :class="{ on: i <= Math.round(stars) }">★</i>
-          </span>
+
+      <div class="header__info">
+        <h1 class="header__title">{{ restaurant.name }}</h1>
+        <p class="header__category">{{ restaurant.category }}</p>
+        <div class="header__meta" aria-label="Informações de entrega">
+          <span>⏱ {{ restaurant.deliveryTime }}</span>
+          <span class="header__dot" aria-hidden="true">•</span>
+          <span class="header__price">{{ restaurant.deliveryPrice }}</span>
         </div>
       </div>
     </header>
-    <section class="section">
-      <h2 class="section-title">Qualidade do serviço</h2>
 
-      <article class="card summary-card">
-        <div class="levels">
-          <div class="level" :class="{ active: true }">
-            <div class="icon">⭐</div>
-            <span class="label">Nível 1</span>
-            <small>Avaliações excelentes</small>
-          </div>
-          <div class="level">
-            <div class="icon">💬</div>
-            <span class="label">Nível 2</span>
-            <small>Avaliações crescentes</small>
-          </div>
-          <div class="level">
-            <div class="icon">🙂</div>
-            <span class="label">Nível 3</span>
-            <small>Bom desempenho</small>
-          </div>
-          <div class="level current">
-            <div class="icon">📊</div>
-            <span class="label">Nível 4</span>
-            <small>Mantendo padrões</small>
-          </div>
-          <div class="level">
-            <div class="icon">📄</div>
-            <span class="label">Nível 5</span>
-            <small>Poucas avaliações</small>
-          </div>
-        </div>
-      </article>
+    <section class="rating" aria-labelledby="overall-label">
+      <h2 id="overall-label" class="rating__title">Avaliação geral</h2>
 
-      <form class="review-form" @submit.prevent="submitReview">
-        <div class="row stars-row">
-          <label class="field-label">Sua avaliação</label>
-          <div class="stars-input">
-            <span
-              v-for="i in 5"
-              :key="i"
-              class="big-star"
-              :class="{ active: i <= stars }"
-              @click="stars = i"
-              >★</span>
-          </div>
-        </div>
+      <div class="rating__stars" role="radiogroup" aria-label="Dar nota geral de 1 a 5">
+        <button v-for="i in 5" :key="'overall-' + i" type="button" class="star" :class="{ active: i <= overallStars }"
+          :aria-pressed="i <= overallStars" :aria-label="`Dar ${i} ${i === 1 ? 'estrela' : 'estrelas'}`"
+          @click="setStars('overall', i)" @keydown.enter.prevent="setStars('overall', i)"
+          @keydown.space.prevent="setStars('overall', i)">
+          ★
+        </button>
+      </div>
 
-        <label class="rec-label">
-          <input type="checkbox" v-model="recommend" />
-          Recomendar para amigos
-        </label>
-
-        <div class="impressed-section">
-          <label class="field-label">O que te impressionou?</label>
-          <div class="impressed-btns">
-            <button
-              v-for="item in ['Comida', 'Atendimento', 'Ambiente', 'Limpeza']"
-              :key="item"
-              :class="{ selected: impressed.includes(item) }"
-              type="button"
-              @click="toggleImpressed(item)"
-            >{{ item }}</button>
-          </div>
-        </div>
-
-        <div class="more-section">
-          <label class="field-label">Perguntas rápidas</label>
-
-          <div class="yn-row">
-            <small>Self service?</small>
-            <input type="radio" v-model="details.selfService" :value="true" id="ss-yes" />
-            <label for="ss-yes" class="seg">Sim</label>
-            <input type="radio" v-model="details.selfService" :value="false" id="ss-no" />
-            <label for="ss-no" class="seg">Não</label>
-          </div>
-
-          <div class="yn-row">
-            <small>Bom custo-benefício?</small>
-            <input type="radio" v-model="details.value" :value="true" id="v-yes" />
-            <label for="v-yes" class="seg">Sim</label>
-            <input type="radio" v-model="details.value" :value="false" id="v-no" />
-            <label for="v-no" class="seg">Não</label>
-          </div>
-
-          <div class="yn-row">
-            <small>Atendimento rápido?</small>
-            <input type="radio" v-model="details.fast" :value="true" id="f-yes" />
-            <label for="f-yes" class="seg">Sim</label>
-            <input type="radio" v-model="details.fast" :value="false" id="f-no" />
-            <label for="f-no" class="seg">Não</label>
-          </div>
-        </div>
-
-        <textarea v-model="comment" rows="2" maxlength="240" placeholder="Comentário breve (opcional)" />
-        <button type="submit" class="submit-btn">Salvar avaliação</button>
-      </form>
+      <p class="rating__hint">
+        Quanto mais estrelas, melhor foi sua experiência com o restaurante.
+      </p>
     </section>
+    <section class="details">
+      <div class="detail-card">
+        <h3 class="detail-card__title">Comida</h3>
+        <div class="detail-card__stars" role="radiogroup" aria-label="Nota da comida de 1 a 5">
+          <button v-for="i in 5" :key="'taste-' + i" type="button" class="star star--sm"
+            :class="{ active: i <= tasteStars }" :aria-pressed="i <= tasteStars"
+            :aria-label="`Dar ${i} ${i === 1 ? 'estrela' : 'estrelas'}`" @click="setStars('taste', i)"
+            @keydown.enter.prevent="setStars('taste', i)" @keydown.space.prevent="setStars('taste', i)">
+            ★
+          </button>
+        </div>
+      </div>
+      <div class="detail-card">
+        <h3 class="detail-card__title">Entrega</h3>
+        <div class="detail-card__stars" role="radiogroup" aria-label="Nota da entrega de 1 a 5">
+          <button v-for="i in 5" :key="'delivery-' + i" type="button" class="star star--sm"
+            :class="{ active: i <= deliveryStars }" :aria-pressed="i <= deliveryStars"
+            :aria-label="`Dar ${i} ${i === 1 ? 'estrela' : 'estrelas'}`" @click="setStars('delivery', i)"
+            @keydown.enter.prevent="setStars('delivery', i)" @keydown.space.prevent="setStars('delivery', i)">
+            ★
+          </button>
+        </div>
+      </div>
+      <div class="detail-card">
+        <h3 class="detail-card__title">Atendimento</h3>
+        <div class="detail-card__stars" role="radiogroup" aria-label="Nota do atendimento de 1 a 5">
+          <button v-for="i in 5" :key="'service-' + i" type="button" class="star star--sm"
+            :class="{ active: i <= serviceStars }" :aria-pressed="i <= serviceStars"
+            :aria-label="`Dar ${i} ${i === 1 ? 'estrela' : 'estrelas'}`" @click="setStars('service', i)"
+            @keydown.enter.prevent="setStars('service', i)" @keydown.space.prevent="setStars('service', i)">
+            ★
+          </button>
+        </div>
+      </div>
+    </section>
+    <section class="comment">
+      <h3 class="comment__title">Deixe seu comentário</h3>
+      <label class="sr-only" for="comment">Comentário</label>
+      <textarea id="comment" v-model="comment" placeholder="Conte um pouco sobre sua experiência..." rows="4"
+        aria-label="Campo para comentário"></textarea>
+    </section>
+    <footer class="footer">
+      <button class="footer__submit" type="button" @click="submitReview">
+        Enviar avaliação
+      </button>
+    </footer>
   </div>
 </template>
 <style scoped>
-@import '@/assets/sass/reviewRestaurant/_reviewScreen.scss';
+@import "@/assets/sass/reviewRestaurant/_reviewScreen.scss";
 </style>
