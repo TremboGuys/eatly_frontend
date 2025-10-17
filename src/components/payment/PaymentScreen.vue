@@ -1,7 +1,9 @@
 <script setup>
-import { ref, computed } from 'vue'
-import axios from 'axios'
+import { ref, computed } from 'vue';
+import { useCartStore } from '@/stores';
+import axios from 'axios';
 
+const cartStore = useCartStore();
 const qrCodeBase64 = ref('')
 const pixCode = ref('')
 const loading = ref(false)
@@ -18,12 +20,9 @@ const card = ref({
 const isCard = computed(() => props.method === 'credito' || props.method === 'debito')
 async function createPayment() {
   loading.value = true
-  error.value = ''
-  qrCodeBase64.value = ''
-  pixCode.value = ''
   try {
     const response = await axios.post('http://localhost:3000/', {
-      transaction_amount: 100,
+      transaction_amount: cartStore.totalPrice,
       description: 'Pagamento Pix de teste',
       payment_method_id: 'pix',
       payer: { email: 'comprador@email.com' }
