@@ -18,6 +18,6 @@ const restaurantStore = useRestaurantStore();
 @import "@/assets/sass/home/_bestSellersContainer.scss";
 
 .bestSellerContainer{
-    gap: 10px
+    row-gap: 10px
 }
 </style>
