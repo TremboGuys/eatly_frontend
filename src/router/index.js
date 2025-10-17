@@ -57,6 +57,11 @@ const router = createRouter({
           path: '/product/:id',
           name: 'product',
           component: () => import('@/views/restaurant/ProductView.vue')
+        },
+        {
+          path: '/cardphone',
+          name: 'cardPhone',
+          component: () => import('@/components/PhoneNumber/MorePhoneNumber.vue')
         }
       ],
       // meta: { requiresAuth: true } 
