@@ -5,7 +5,7 @@ import { ref, onMounted, onBeforeUnmount } from "vue";
 
 const isFavorite = ref(false);
 const showMenu = ref(false);
-const dropdownRef = ref(null); // 👈 precisa declarar isso
+const dropdownRef = ref(null); 
 
 const toggleFavorite = () => {
   isFavorite.value = !isFavorite.value;
@@ -71,20 +71,6 @@ onBeforeUnmount(() => {
       </div>
     </router-link>
 
-    <!-- 👇 Adicionamos ref para detectar cliques fora -->
-    <div ref="dropdownRef" class="select">
-      <button class="dots" @click="toggleMenu">
-        <i class="fa fa-circle" aria-hidden="true"></i>
-        <i class="fa fa-circle" aria-hidden="true"></i>
-        <i class="fa fa-circle" aria-hidden="true"></i>
-      </button>
-
-      <ul v-if="showMenu" class="dropdown-menu">
-        <li class="AddOrRemFav" @click="toggleFavorite">
-          {{ isFavorite ? "Remover dos favoritos" : "Adicionar aos favoritos" }}
-        </li>
-      </ul>
-    </div>
   </div>
 </template>
 
