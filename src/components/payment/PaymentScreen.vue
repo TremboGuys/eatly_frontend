@@ -21,7 +21,7 @@ const isCard = computed(() => props.method === 'credito' || props.method === 'de
 async function createPayment() {
   loading.value = true
   try {
-    const response = await axios.post('http://localhost:3000/', {
+    const response = await axios.post('https://ms-pix-liy6.onrender.com', {
       transaction_amount: cartStore.totalPrice,
       description: 'Pagamento Pix de teste',
       payment_method_id: 'pix',
