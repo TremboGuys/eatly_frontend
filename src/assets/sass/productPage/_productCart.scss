@@ -4,7 +4,6 @@
         flex-direction: column;
         background: #fff;
         border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         padding: 1rem;
         gap: 1.2rem;
         max-width: 400px;
@@ -12,24 +11,8 @@
         font-family: 'Poppins',sans-serif;
         .top-section {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            .priceValue {
-                font-size: 1.4rem;
-                font-weight: 700;
-                color: #8A8D36;
-            }
-            .quantityLabel {
-                font-size: 1rem;
-                font-weight: 600;
-                color: #555;
-            }
-        }
-        .bottom-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1rem;
             .quantity {
                 display: flex;
                 align-items: center;
@@ -38,14 +21,14 @@
                 padding: 0.3rem 0.6rem;
                 .add,
                 .remove {
-                    width: 32px;
-                    height: 32px;
+                    width: 40px;
+                    height: 40px;
                     border: none;
                     border-radius: 6px;
                     background: #444801;
                     color: #fff;
-                    font-size: 1.2rem;
-                    font-weight: bold;
+                    font-size: 1.7rem;
+                    font-weight: 400;
                     cursor: pointer;
                     transition: 0.2s ease;
 
@@ -60,7 +43,14 @@
                     color: #333;
                 }
             }
+        }
+        .bottom-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
             .addCart {
+                height: 3rem;
                 flex: 1;
                 padding: 0.7rem 1rem;
                 background: linear-gradient(135deg, #8A8D36, #8A8D36);
@@ -71,6 +61,7 @@
                 cursor: pointer;
                 text-align: center;
                 transition: 0.2s ease;
+                font-size: 1.05rem;
                 &:hover {
                     background: linear-gradient(135deg, #8A8D36, #8A8D36);
                 }

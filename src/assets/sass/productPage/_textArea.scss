@@ -1,0 +1,39 @@
+@media (max-width: 425px) {
+    .container {
+        width: min(100%, 520px);
+        margin: 16px auto;
+        background: #fff;
+        border-radius: 1rem;
+        color: #1f1f1f;
+        font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+        overflow: hidden;
+
+        .comment {
+            padding: 14px 16px 0;
+
+            &__title {
+                font-size: 1rem;
+                font-weight: 600;
+                margin: 0 0 8px;
+            }
+
+            textarea {
+                width: 100%;
+                border: 1px solid #e7e8ea;
+                border-radius: 1rem;
+                padding: 10px 12px;
+                font-size: 0.95rem;
+                resize: none;
+                outline: none;
+                color: #1f1f1f;
+                background: #fff;
+                transition: border-color 120ms ease, box-shadow 120ms ease;
+
+                &:focus {
+                    border-color: #2f8d46;
+                    box-shadow: 0 0 0 3px rgba(47, 141, 70, 0.2);
+                }
+            }
+        }
+    }
+}

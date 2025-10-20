@@ -86,8 +86,8 @@ const router = createRouter({
       path: '/registerrestaurant',
       name: 'registerRestaurant',
       component: () => import('@/views/RegisterRestaurantView.vue'),
-      meta: { requiresAuth: true }
-    }
+      // meta: { requiresAuth: true }
+    },
   ],
 });
 

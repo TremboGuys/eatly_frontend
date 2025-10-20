@@ -32,6 +32,7 @@ import SeenPreviously from './home/SeenPreviously.vue';
 import HeaderList from "./home/bestsellers/HeaderList.vue";
 import ListItem from "./home/bestsellers/ListItem.vue";
 import PopUpFinishLogin from "./home/pop-up/PopUpFinishLogin.vue";
+import TextArea from "./productPage/TextArea.vue";
 
 export {
     InputsProps,
@@ -67,5 +68,6 @@ export {
     SeenPreviously,
     HeaderList,
     ListItem,
-    PopUpFinishLogin
+    PopUpFinishLogin,
+    TextArea
 }
