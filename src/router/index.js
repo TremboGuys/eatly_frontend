@@ -58,11 +58,7 @@ const router = createRouter({
           name: 'product',
           component: () => import('@/views/restaurant/ProductView.vue')
         },
-         {
-          path: '/cardnumber',
-          name: 'numbercard',
-          component: () => import('@/components/PhoneNumber/MorePhoneNumber.vue')
-        },
+         
       ],
       // meta: { requiresAuth: true } 
     },
