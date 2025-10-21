@@ -90,6 +90,7 @@ $secondary-action-dark: #757575;
   min-height: 100vh;
   padding: 40px 20px;
   background-color: $bg-light;
+  font-family: 'poppins', sans-serif;
 }
 
 .card-modern {
