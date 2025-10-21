@@ -32,6 +32,10 @@ import SeenPreviously from './home/SeenPreviously.vue';
 import HeaderList from "./home/bestsellers/HeaderList.vue";
 import ListItem from "./home/bestsellers/ListItem.vue";
 import ReviewScreen from "./reviewRestaurant/ReviewScreen.vue";
+import SelectOption from "./payment/SelectOption.vue";
+import PaymentScreen from "./payment/PaymentScreen.vue";
+import OrderStatusComp from "./orderStatus/OrderStatusComp.vue";
+import OrderStatus from "./orderStatus/OrderStatus.vue";
 
 export {
     InputsProps,
@@ -68,4 +72,8 @@ export {
     HeaderList,
     ListItem,
     ReviewScreen,
+    SelectOption,
+    PaymentScreen,
+    OrderStatusComp,
+    OrderStatus,
 }
