@@ -1,0 +1,26 @@
+.prof-list{
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(255, 255, 255);
+    height: 7vh;
+    width: 80vw;
+    border-radius: 8px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 15px;
+
+    .left-side{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        
+        i{
+            color: #646901;
+        }
+    }
+    .right-side{
+        i{
+            color: gray;
+        }
+    }
+}
