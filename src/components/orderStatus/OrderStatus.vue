@@ -1,5 +1,5 @@
 <script setup>
-import OrderStatusComp from './OrderStatusComp.vue';
+import { OrderStatusComp } from '@/components';
 </script>
 <template>
   <div class="container">
