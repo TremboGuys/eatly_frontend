@@ -1,0 +1,43 @@
+@media (max-width: 425px) {
+    .container {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap;
+        scrollbar-width: none;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1.25rem;
+        font-family: 'Poppins', sans-serif;
+        height: 8vh;
+        padding: 0.5rem 0.75rem;
+        box-sizing: border-box;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        button {
+            flex: 0 0 auto;
+            padding: 0.75rem 1.5rem;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            background-color: #f5f5f5;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+
+            &:hover {
+                background-color: #e0e0e0;
+            }
+
+            &.active {
+                border-color: #444801;
+                background-color: #e8f5e9;
+            }
+        }
+    }
+}
