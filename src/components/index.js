@@ -31,6 +31,12 @@ import BottomSize from './home/BottomAds.vue';
 import SeenPreviously from './home/SeenPreviously.vue';
 import HeaderList from "./home/bestsellers/HeaderList.vue";
 import ListItem from "./home/bestsellers/ListItem.vue";
+import ConfirmationEmail from '@/components/confirmation/ConfirmationEmail.vue';
+import ReviewScreen from "./reviewRestaurant/ReviewScreen.vue";
+import SelectOption from "./payment/SelectOption.vue";
+import PaymentScreen from "./payment/PaymentScreen.vue";
+import OrderStatusComp from "./orderStatus/OrderStatusComp.vue";
+import OrderStatus from "./orderStatus/OrderStatus.vue";
 
 export {
     InputsProps,
@@ -65,5 +71,11 @@ export {
     BottomSize,
     SeenPreviously,
     HeaderList,
-    ListItem
+    ListItem,
+    ConfirmationEmail,
+    ReviewScreen,
+    SelectOption,
+    PaymentScreen,
+    OrderStatusComp,
+    OrderStatus,
 }

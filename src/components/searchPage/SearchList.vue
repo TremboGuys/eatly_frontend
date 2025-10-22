@@ -1,22 +1,48 @@
 <script setup>
-import { ref, onMounted } from 'vue';
-import FoodCategory from './FoodCategory.vue';
-import { useCategoryComposable } from '@/composables/category';
+import { ref, computed, onMounted } from "vue";
+import FoodCategory from "./FoodCategory.vue";
+import { useCategoryComposable } from "@/composables/category";
 
-const categories = ref([]);
+const props = defineProps({
+  query: { type: String, default: "" },
+});
+
+const allCategories = ref([]);
+const { getCategories } = useCategoryComposable();
+
 onMounted(async () => {
-  categories.value = await useCategoryComposable().getCategories();
-})
+  //MOCK temporário
+  // allCategories.value = [
+  //   { id: 1, name: 'Pizzas',   url_image: 'pizza-category.png' },
+  //   { id: 2, name: 'Burgers',  url_image: 'burger-category.png' },
+  //   { id: 3, name: 'Sushi',    url_image: 'sushi-category.png' },
+  //   { id: 4, name: 'Salads',   url_image: 'salad-category.png' },
+  //   { id: 5, name: 'Desserts', url_image: 'dessert-category.png' }
+  // ]
+
+  allCategories.value = await getCategories();
+});
+
+const currentCategories = computed(() => {
+  const q = props.query?.trim().toLowerCase();
+  if (!q) return allCategories.value;
+  return allCategories.value.filter((c) => c.name.toLowerCase().includes(q));
+});
 </script>
+
 <template>
   <div class="list-container">
-    <FoodCategory
-      v-for="category in categories"
-      :key="category.id"
-      :category="category"
-    />
+    <h1>Categorias</h1>
+    <div class="list">
+      <FoodCategory
+        v-for="category in currentCategories"
+        :key="category.id"
+        :category="category"
+      />
+    </div>
   </div>
 </template>
+
 <style scoped>
 @import "@/assets/sass/searchPage/_searchList.scss";
 </style>
