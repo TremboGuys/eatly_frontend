@@ -107,8 +107,13 @@ const router = createRouter({
       name: 'registerRestaurant',
       component: () => import('@/views/RegisterRestaurantView.vue'),
       meta: { requiresAuth: true }
-    }
-  ],
+    },
+    {
+      path: '/address',
+      name: 'address',
+      component: () => import('@/components/Address/Address.vue'),
+    },
+  ]
 });
 
 router.beforeEach(async (to, from, next) => {
