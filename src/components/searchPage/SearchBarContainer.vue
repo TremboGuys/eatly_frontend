@@ -1,14 +1,14 @@
 <script setup>
-import { useSearchCategory } from '@/composables/searchCategory'
+// import { useSearchCategory } from '@/composables/searchCategory'
 
-const { searchInput } = useSearchCategory()
+// const { searchInput } = useSearchCategory()
 
-const onInput = (e) => {
-  searchInput.value = e.target.value
-}
-const clear = () => {
-  searchInput.value = ''
-}
+// const onInput = (e) => {
+//   searchInput.value = e.target.value
+// }
+// const clear = () => {
+//   searchInput.value = ''
+// }
 </script>
 
 <template>
