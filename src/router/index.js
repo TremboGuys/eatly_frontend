@@ -91,7 +91,13 @@ const router = createRouter({
     {
       path: '/profile/edit',
       name: 'editProfile',
-      component: () => import('@/views/favorite/EditProfileView.vue'),
+      component: () => import('@/views/profile/EditProfileView.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/profile/changepassword',
+      name: 'changePassword',
+      component: () => import('@/views/profile/ChangePasswordView.vue'),
       meta: { requiresAuth: true }
     }
   ],

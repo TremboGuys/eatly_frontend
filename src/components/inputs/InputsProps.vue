@@ -4,7 +4,8 @@ const props = defineProps({
     field: String,
     forId: String,
     label: String,
-    maxlength: String
+    maxlength: String,
+    value: String
 });
 
 const emit = defineEmits(['changeDataUser']);
@@ -13,7 +14,7 @@ const emit = defineEmits(['changeDataUser']);
     <div class="container">
         <div class="input">
             <div class="form-group">
-                <input :type="props.type" class="form-control" :maxlength="props.maxlength" @input="emit('changeDataUser', {field: props.field, value: $event.target.value})" :placeholder="' '" />
+                <input :type="props.type" class="form-control" :maxlength="props.maxlength" :value="props.value" @input="emit('changeDataUser', {field: props.field, value: $event.target.value})" :placeholder="' '" />
                 <label class="labelInput" :for="props.forId">{{ props.label }}</label>
             </div>
         </div>
