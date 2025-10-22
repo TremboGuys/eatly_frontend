@@ -1,13 +1,26 @@
 <script setup>
-import SearchBar from './SearchBar.vue';
+import { useSearchCategory } from '@/composables/searchCategory'
+
+const { searchInput } = useSearchCategory()
+
+const onInput = (e) => {
+  searchInput.value = e.target.value
+}
+const clear = () => {
+  searchInput.value = ''
+}
 </script>
 
 <template>
-  <div class="search-bar-container">
-    <SearchBar />
+  <div :class="['input-container', { active: !!searchInput }]">
+    <input
+      :value="searchInput"
+      @input="onInput"
+      type="text"
+      placeholder="O que vai pedir hoje?"
+      class="search-input"
+    />
+    <img class="search-icon" src="../../assets/img/navigationBar/search.svg" alt="">
+    <button v-if="searchInput" class="cancel" @click="clear">x</button>
   </div>
 </template>
-
-<style scoped>
-@import "@/assets/sass/searchPage/_SearchBarContainer.scss";
-</style>

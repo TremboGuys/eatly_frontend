@@ -49,7 +49,7 @@ const router = createRouter({
           component: () => import('@/views/restaurant/ReviewsView.vue')
         },
         {
-          path: '/restaurant/:id/reviews/create',
+          path: '/restaurant/reviews/create',
           name: 'createReview',
           component: () => import('@/views/restaurant/CreateReviewView.vue')
         },
@@ -62,6 +62,16 @@ const router = createRouter({
           path: '/coupon',
           name:'coupon',
           component: () => import('@/views/CouponView.vue')
+        },
+        {
+          path: '/payment',
+          name: 'payment',
+          component: () => import('@/views/PaymentView.vue')
+        },
+        {
+          path: '/order/:id',
+          name: 'order',
+          component: () => import('@/views/order/OrderView.vue')
         }
       ],
       meta: { requiresAuth: true } 
