@@ -3,12 +3,23 @@ import { UserService, AuthService } from "@/services";
 import { useLoginComposable } from "@/composables";
 import { useToastStore, useAuthStore } from "@/stores";
 import { useRouter } from "vue-router";
+import { reactive } from "vue";
+import router from "@/router";
 
 export const useUserStore = defineStore('client', () => {
+    const state = reactive({
+        successLoginGoogle: false,
+        userGoogle: {
+            id: '',
+            name: '',
+            email: '',
+            photo: ''
+        }
+    })
     const useLogin = useLoginComposable();
     const toastStore = useToastStore();
     const authStore = useAuthStore();
-    const router = useRouter();
+    const routerComponent = useRouter();
     
     async function register(user, isAllowed, formState) {
         if (!isAllowed) {
@@ -27,15 +38,20 @@ export const useUserStore = defineStore('client', () => {
             if (Object.hasOwn(user.user, "file")) {
                 formDataUser.append("file", user.user.file);
             }
-            const idUser = await UserService.registerUser(formDataUser);
-            user.telephone['user'] = idUser;
-            user.natural_person['user'] = idUser;
-            await UserService.registerTelephone(user.telephone);
+            const tokenResponse = await UserService.registerUser(formDataUser);
+            localStorage.setItem("access", tokenResponse.access);
+            localStorage.setItem("refresh", tokenResponse.refresh);
             await UserService.registerNaturalPerson(user.natural_person);
+            await UserService.registerTelephone(user.telephone);
             if (user.user.role != "client") {
                 await UserService.regiterAddress(user.address);
             }
-            await login({email: user.user.email, password: user.user.password});
+            routerComponent.push("/dashboard");
+            router.afterEach((to) => {
+                if (to.path == "/dashboard") {
+                    toastStore.notify("Login realizado com sucesso!", "success");
+                }
+            })
         } catch(error) {
             console.error('Erro ao criar o cadastro do cliente: ', error);
 
@@ -43,6 +59,39 @@ export const useUserStore = defineStore('client', () => {
                 toastStore.notify("Já existe um usuário com este email!", "error");
             }
         }
+    }
+
+    async function sendTokenToRegisterByGoogle(data) {
+        try {
+            const userResponse = await UserService.registerByGoogle(data);
+            state.successLoginGoogle = true;
+            state.userGoogle.id = userResponse.id;
+            state.userGoogle.photo = userResponse.photo;
+            state.userGoogle.email = userResponse.email;
+            state.userGoogle.name = userResponse.name;
+            localStorage.setItem("access", userResponse.access);
+            localStorage.setItem("refresh", userResponse.refresh);
+        } catch(error) {
+            console.error("Error in POST Google Token: ", error);
+        }
+    }
+
+    async function registerByGoogle(user) {
+        try {
+            await UserService.updateNaturalPerson(user.natural_person);
+        } catch(error) {
+            console.error("Error in PATCH natural person: ", error);
+            toastStore.notify("Erro ao criar sua conta!", "error");
+            return;
+        }
+        try {
+            await UserService.registerTelephone(user.telephone);
+        } catch(error) {
+            console.error("Error in PATCH telephone: ", error);
+            toastStore.notify("Erro ao criar sua conta!", "error");
+            return;
+        }
+        routerComponent.push("/dashboard");
     }
 
     async function login(user) {
@@ -53,19 +102,35 @@ export const useUserStore = defineStore('client', () => {
 
         try {
             const response = await AuthService.login(user);
-            localStorage.setItem('access', response.access);
-            localStorage.setItem('refresh', response.refresh);
+            localStorage.setItem("access", response.access);
+            localStorage.setItem("refresh", response.refresh);
             authStore.state.logged = true;
             toastStore.notify("Login realizado com sucesso!", "success");
-            router.push('/dashboard');
+            routerComponent.push("/dashboard");
         } catch(error) {
-            console.error('Erro ao realizar o login: ', error);
+            console.error("Erro ao realizar o login: ", error);
             toastStore.notify("Erro ao realizar o login", "error");
         }
     }
 
+    async function loginByGoogle(access_token) {
+        try {
+            const response = await AuthService.loginByGoogle(access_token);
+            localStorage.setItem("access", response.access);
+            localStorage.setItem("refresh", response.refresh);
+            routerComponent.push("/dashboard");
+        } catch(error) {
+            console.error("Error in Login by Google: ", error);
+            toastStore.notify("Erro ao logar com o Google!", "error");
+        }
+    }
+
     return {
+        state,
         register,
-        login
+        login,
+        sendTokenToRegisterByGoogle,
+        registerByGoogle,
+        loginByGoogle
     };
 });
