@@ -4,6 +4,7 @@ import ProfileListContainer from './ProfileListContainer.vue';
 
 <template>
     <div class="profile-container">
+        <h1>Perfil</h1>
         <div class="info-container">
             <div class="profile-pic">
                 <img src="../../assets/img/burger.png" alt="">
