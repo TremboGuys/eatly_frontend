@@ -2,6 +2,7 @@
 import { reactive } from 'vue';
 import { InputsProps, ButtonSubmit, FaceButton, GoogleButton, HaveAnAccount } from '@/components';
 import { useUserStore } from '@/stores';
+import { googleSdkLoaded } from 'vue3-google-login';
 
 const user = reactive({
     email: '',
@@ -12,6 +13,18 @@ const userStore = useUserStore();
 
 function changeDataUser(data) {
   user[data.field] = data.value;
+}
+
+function login() {
+  googleSdkLoaded((google) => {
+    google.accounts.oauth2.initTokenClient({
+      client_id: import.meta.env.VITE_CLIENT_ID,
+      scope: "openid email profile",
+      callback: async (response) => {
+        await userStore.loginByGoogle({token: response.access_token});
+      }
+    }).requestAccessToken()
+  })
 }
 </script>
 
@@ -27,8 +40,7 @@ function changeDataUser(data) {
     </form>
     <div class="or">Ou</div>
     <div class="hr"></div>
-    <FaceButton />
-    <GoogleButton />
+    <GoogleButton @click="login" />
     <HaveAnAccount />
   </div>
 </template>

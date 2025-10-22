@@ -31,6 +31,7 @@ import BottomSize from './home/BottomAds.vue';
 import SeenPreviously from './home/SeenPreviously.vue';
 import HeaderList from "./home/bestsellers/HeaderList.vue";
 import ListItem from "./home/bestsellers/ListItem.vue";
+import PopUpFinishLogin from "./home/pop-up/PopUpFinishLogin.vue";
 import ConfirmationEmail from '@/components/confirmation/ConfirmationEmail.vue';
 import ReviewScreen from "./reviewRestaurant/ReviewScreen.vue";
 import SelectOption from "./payment/SelectOption.vue";
@@ -75,6 +76,7 @@ export {
     SeenPreviously,
     HeaderList,
     ListItem,
+    PopUpFinishLogin
     ConfirmationEmail,
     ReviewScreen,
     SelectOption,

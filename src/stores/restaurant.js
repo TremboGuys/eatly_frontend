@@ -9,7 +9,6 @@ export const useRestaurantStore = defineStore('restaurant', () => {
   const restaurant = ref({});
   const restaurants = ref([]);
   const restaurantsRecentlyViewed = ref([]);
-  const categoriesRestaurant = ref([]);
 
   async function getRestaurants() {
     try {
@@ -34,7 +33,7 @@ export const useRestaurantStore = defineStore('restaurant', () => {
     try {
       const response = await RestaurantService.getRestaurant(id);
       restaurant.value = response;
-      getCategories();
+      console.log(restaurant.value);
     } catch(error) {
       console.error('Error in GET retrieve Restaurant: ', error);
       toastStore.notify("Erro ao abrir restaurante!", "error");
@@ -48,16 +47,6 @@ export const useRestaurantStore = defineStore('restaurant', () => {
     } catch(error) {
       console.error('Error in GET restaurants recently viewed: ', error);
     }
-  }
-
-  function getCategories() {
-    const categoriesSet = new Set();
-    for (const product of restaurant.value.products) {
-      for (const category of product.categories) {
-        categoriesSet.add(category.name);
-      }
-    }
-    categoriesRestaurant.value = Array.from(categoriesSet);
   }
 
   async function createRestaurant(restaurant) {
@@ -104,7 +93,6 @@ export const useRestaurantStore = defineStore('restaurant', () => {
     restaurant,
     restaurants,
     restaurantsRecentlyViewed,
-    categoriesRestaurant,
     getRestaurant,
     getRestaurants,
     getRestaurantRecentlyViewed,
