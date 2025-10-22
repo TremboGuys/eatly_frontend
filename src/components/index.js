@@ -31,6 +31,10 @@ import BottomSize from './home/BottomAds.vue';
 import SeenPreviously from './home/SeenPreviously.vue';
 import HeaderList from "./home/bestsellers/HeaderList.vue";
 import ListItem from "./home/bestsellers/ListItem.vue";
+import CouponAvailable from "./coupon/CouponAvailable.vue";
+import CouponRedeemed from "./coupon/CouponRedeemed.vue";
+import CouponHeader from "./coupon/CouponHeader.vue";
+import PopupConfirm from "./coupon/PopupConfirm.vue";
 import PopUpFinishLogin from "./home/pop-up/PopUpFinishLogin.vue";
 import ConfirmationEmail from '@/components/confirmation/ConfirmationEmail.vue';
 import ReviewScreen from "./reviewRestaurant/ReviewScreen.vue";
@@ -76,7 +80,11 @@ export {
     SeenPreviously,
     HeaderList,
     ListItem,
-    PopUpFinishLogin
+    CouponAvailable,
+    CouponRedeemed,
+    CouponHeader,
+    PopupConfirm,
+    PopUpFinishLogin,
     ConfirmationEmail,
     ReviewScreen,
     SelectOption,
