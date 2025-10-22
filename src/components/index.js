@@ -31,6 +31,10 @@ import BottomSize from './home/BottomAds.vue';
 import SeenPreviously from './home/SeenPreviously.vue';
 import HeaderList from "./home/bestsellers/HeaderList.vue";
 import ListItem from "./home/bestsellers/ListItem.vue";
+import CouponAvailable from "./coupon/CouponAvailable.vue";
+import CouponRedeemed from "./coupon/CouponRedeemed.vue";
+import CouponHeader from "./coupon/CouponHeader.vue";
+import PopupConfirm from "./coupon/PopupConfirm.vue";
 
 export {
     InputsProps,
@@ -65,5 +69,9 @@ export {
     BottomSize,
     SeenPreviously,
     HeaderList,
-    ListItem
+    ListItem,
+    CouponAvailable,
+    CouponRedeemed,
+    CouponHeader,
+    PopupConfirm
 }

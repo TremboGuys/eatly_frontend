@@ -40,9 +40,10 @@
       }
 
       .status {
-        font-size: 12px;
-        font-weight: 600;
-        color: #4c4b00;
+        width: 30vw;
+        display: flex;
+        justify-content: center;
+        color: black !important;
       }
 
       .avaiable {
@@ -52,12 +53,15 @@
       }
 
       .line {
-        margin-top: 4px;
-        height: 2px;
-        width: 100px;
-        background-color: #4c4b00;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: 'poppins', sans-serif;
+        font-weight: 500;
+        font-size: 12px;
       }
     }
+
     padding: 12px;
 
     h2 {
@@ -65,7 +69,10 @@
     }
 
     h3 {
-      font-size: 16px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      font-family: "Poppins", sans-serif;
+      text-align: center;
     }
 
     .couponLogo {
@@ -75,6 +82,11 @@
 
     .AvaiableStatus .line {
       width: 80px;
+    }
+
+    span.is-active {
+      border-bottom: 2px solid #4c4b00;
+      color: #4c4b00 !important;
     }
   }
 }
