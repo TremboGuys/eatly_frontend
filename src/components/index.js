@@ -32,6 +32,15 @@ import SeenPreviously from './home/SeenPreviously.vue';
 import HeaderList from "./home/bestsellers/HeaderList.vue";
 import ListItem from "./home/bestsellers/ListItem.vue";
 import PopUpFinishLogin from "./home/pop-up/PopUpFinishLogin.vue";
+import ConfirmationEmail from '@/components/confirmation/ConfirmationEmail.vue';
+import ReviewScreen from "./reviewRestaurant/ReviewScreen.vue";
+import SelectOption from "./payment/SelectOption.vue";
+import PaymentScreen from "./payment/PaymentScreen.vue";
+import OrderStatusComp from "./orderStatus/OrderStatusComp.vue";
+import OrderStatus from "./orderStatus/OrderStatus.vue";
+import OrderHeader from "./orders/OrderHeader.vue";
+import OrdersInProgress from "./orders/OrdersInProgress.vue";
+import HistoryOrders from "./orders/HistoryOrders.vue";
 
 export {
     InputsProps,
@@ -68,4 +77,13 @@ export {
     HeaderList,
     ListItem,
     PopUpFinishLogin
+    ConfirmationEmail,
+    ReviewScreen,
+    SelectOption,
+    PaymentScreen,
+    OrderStatusComp,
+    OrderStatus,
+    OrderHeader,
+    OrdersInProgress,
+    HistoryOrders, 
 }
