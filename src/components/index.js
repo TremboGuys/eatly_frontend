@@ -37,6 +37,9 @@ import SelectOption from "./payment/SelectOption.vue";
 import PaymentScreen from "./payment/PaymentScreen.vue";
 import OrderStatusComp from "./orderStatus/OrderStatusComp.vue";
 import OrderStatus from "./orderStatus/OrderStatus.vue";
+import OrderHeader from "./orders/OrderHeader.vue";
+import OrdersInProgress from "./orders/OrdersInProgress.vue";
+import HistoryOrders from "./orders/HistoryOrders.vue";
 
 export {
     InputsProps,
@@ -78,4 +81,7 @@ export {
     PaymentScreen,
     OrderStatusComp,
     OrderStatus,
+    OrderHeader,
+    OrdersInProgress,
+    HistoryOrders, 
 }
