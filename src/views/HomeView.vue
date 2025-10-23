@@ -4,19 +4,23 @@ import { useRestaurantStore } from '@/stores';
 import { HomeContainer } from '@/components';
 
 const restaurantStore = useRestaurantStore();
-const mounted = ref(false);
+const loading = ref(true);
 
 onMounted(async () => {
-  if (restaurantStore.restaurants.length == 0) {
+  if (restaurantStore.restaurants.length === 0) {
     await restaurantStore.getRestaurants();
     await restaurantStore.getRestaurantRecentlyViewed();
   }
-  mounted.value = true;
-})
+  loading.value = false;
+});
 </script>
 
 <template>
-  <main v-if="mounted">
-    <HomeContainer />
+  <main>
+    <div v-if="loading" class="loading" style=" position: absolute; top: 40%; left: 38%;" >
+      <img src="../assets/img/eatly.gif" alt="">
+    </div>
+
+    <HomeContainer v-else />
   </main>
 </template>
