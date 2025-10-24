@@ -79,7 +79,7 @@ const router = createRouter({
           component: () => import('@/views/OrdersView.vue')
         }
       ],
-      meta: { requiresAuth: true } 
+      // meta: { requiresAuth: true }   
     },
     {
       path: '/signup',
