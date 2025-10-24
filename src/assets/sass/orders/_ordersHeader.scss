@@ -1,0 +1,70 @@
+@media (max-width: 425px) {
+  .orderHeaderContainer {
+    padding: 16px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-family: "Poppins", sans-serif;
+
+    .ArrowAvailable {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      .backArrow {
+        font-size: 20px;
+        cursor: pointer;
+        color: #333;
+      }
+
+      h2 {
+        font-size: 18px;
+        font-weight: 600;
+        color: #333;
+      }
+    }
+
+    .AvailableStatus {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 4px;
+
+      .statusGroup {
+        display: flex;
+        justify-content: space-between;
+        width: 90%;
+        align-items: center;
+      }
+
+      .status {
+        width: 30vw;
+        display: flex;
+        justify-content: center;
+        font-size: 13px;
+        font-weight: 600;
+        color: #000 !important;
+        cursor: pointer;
+        transition: color 0.2s ease;
+
+        &:hover {
+          color: #4c4b00;
+        }
+
+        &.is-active {
+          border-bottom: 2px solid #4c4b00;
+          color: #4c4b00 !important;
+        }
+      }
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      font-family: "Poppins", sans-serif;
+      text-align: center;
+      color: #444;
+    }
+  }
+}
