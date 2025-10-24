@@ -1,0 +1,76 @@
+@media (max-width: 425px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+        padding: 10px 0;
+        .steps {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            gap: 2rem;
+            .step {
+                display: flex;
+                align-items: center;
+                position: relative;
+                .icon {
+                    width: 5.5rem;
+                    height: 5.5rem;
+                    background-color: #ccc;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: 2;
+                    transition: background-color 0.5s ease;
+
+                    svg {
+                        transition: stroke 0.5s ease;
+                        stroke: #fff;
+                    }
+                }
+                &.completed .icon {
+                    background-color: #19962a;
+
+                    svg {
+                        stroke: #fff;
+                    }
+                }
+                .title {
+                    font-family: 'Poppins', sans-serif;
+                    color: #333;
+                    font-size: 1rem;
+                    margin-left: 1rem;
+                    transition: color 0.5s ease;
+                }
+                &.completed .title {
+                    color: #19962a;
+                }
+                &::after {
+                    content: '';
+                    position: absolute;
+                    top: 5.5rem;
+                    left: 2.75rem;
+                    width: 2px;
+                    height: calc(100% + 2rem);
+                    background-image: repeating-linear-gradient(to bottom,
+                            #ccc,
+                            #ccc 4px,
+                            transparent 4px,
+                            transparent 8px);
+                    z-index: 1;
+                    transition: background-image 0.5s ease;
+                }
+                &.completed::after {
+                    background-image: repeating-linear-gradient(to bottom,
+                            #19962a,
+                            #19962a 4px,
+                            transparent 4px,
+                            transparent 8px);
+                }
+                &.last::after {
+                    display: none;
+                }
+            }
+        }
+    }
+}

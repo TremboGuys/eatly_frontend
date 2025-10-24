@@ -1,4 +1,7 @@
-.ctg-container{
+.food-card{
+    text-decoration: none;
+
+    .ctg-container {
     background-color: #D9D9D9;
     border-radius: 15px;
     width: 43vw;
@@ -9,8 +12,9 @@
     justify-content: center;
     font-family: 'Poppins', sans-serif;
     cursor: pointer;
-
-    .title{
+    
+    .title {
         color: white;
     }
+}
 }

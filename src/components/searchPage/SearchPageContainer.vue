@@ -1,17 +1,20 @@
 <script setup>
-import SearchBarContainer from './SearchBarContainer.vue';
-import SearchList from './SearchList.vue';
+import SearchBarContainer from "./SearchBarContainer.vue";
+import { ref } from 'vue'
+import SearchBar from './SearchBar.vue'
+import SearchList from './SearchList.vue'
+
+const searchInput = ref('')
 </script>
 
 <template>
-  <header>
-    <SearchBarContainer />
-  </header>
-  <main>
-    <SearchList />
-  </main>
+  <div class="page-container">
+    <div class="search-bar-container">
+      <SearchBar v-model="searchInput" />
+    </div>
+    <SearchList :query="searchInput" />
+  </div>
 </template>
-
 <style scoped>
-
+@import "@/assets/sass/searchPage/_SearchBarContainer.scss";
 </style>
