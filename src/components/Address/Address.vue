@@ -10,30 +10,6 @@ const enderecos = ref([])
 
 let timeout = null
 
-async function buscarCidades() {
-  clearTimeout(timeout)
-  if (cidade.value.length < 3) {
-    sugestoes.value = []
-    return
-  }
-
-  timeout = setTimeout(async () => {
-    try {
-      const response = await fetch(
-        `https://servicodados.ibge.gov.br/api/v1/localidades/municipios`
-      )
-      const data = await response.json()
-      const filtro = cidade.value.toLowerCase()
-      sugestoes.value = data
-        .map((c) => c.nome)
-        .filter((nome) => nome.toLowerCase().startsWith(filtro))
-        .slice(0, 8)
-    } catch (error) {
-      console.error('Erro ao buscar cidades:', error)
-    }
-  }, 400)
-}
-
 function selecionarCidade(nome) {
   cidade.value = nome
   sugestoes.value = []
@@ -129,8 +105,7 @@ function removerEndereco(index) {
                   {{ endereco.cidade }}
                 </span>
                 <button class="btn-remove" @click="removerEndereco(index)">
-                  <span class="icon-trash"></span>
-                  Remover
+                   Remover
                 </button>
               </li>
             </ul>
@@ -144,45 +119,32 @@ function removerEndereco(index) {
 <style scoped lang="scss">
 @use "sass:math";
 
-$primary: #8a8d36;
-$primary-dark: #444801;
-$text-dark: #333;
-$text-secondary: #666;
-$text-light: #fff;
-$bg-light: #f9f9f9;
-$border: #ddd;
-$radius: 8px;
-
-$card-bg: #ffffff;
-$secondary-action: #9e9e9e;
-$secondary-action-dark: #757575;
-
 .registration-container {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   min-height: 100vh;
-  padding: 40px 20px;
-  background-color: $bg-light;
   font-family: 'Poppins', sans-serif;
+  background-color: #f9f9f9;
+  padding: 40px 10px;
 }
 
 .card-modern {
   width: 100%;
   max-width: 900px;
-  background-color: $card-bg;
-  border-radius: $radius;
+  background-color: #ffffff;
+  border-radius: 8px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   padding: 30px;
 }
 
 .title-modern {
-  color: $primary-dark;
+  color: #444801;
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.4rem;
   margin-bottom: 30px;
-  border-bottom: 2px solid $border;
-  padding-bottom: 15px;
+  padding-bottom: 10px;
+  font-family: 'Poppins', sans-serif;
 }
 
 .content-wrapper {
@@ -193,18 +155,16 @@ $secondary-action-dark: #757575;
 .form-section,
 .list-section {
   flex: 1;
-  padding: 20px;
-  border-radius: $radius;
-  border: 1px solid $border;
-  background-color: $bg-light;
+  padding: 10px;
 }
 
 .section-title {
-  color: $primary-dark;
-  font-size: 1.25rem;
+  color: #444801;
+  font-size: 1rem;
   margin-bottom: 20px;
   padding-bottom: 10px;
-  border-bottom: 1px dashed $border;
+  border-bottom: 1px solid #ccc;
+  font-family: 'Poppins', sans-serif;
 }
 
 .form-modern {
@@ -217,55 +177,54 @@ $secondary-action-dark: #757575;
     flex-direction: column;
 
     label {
-      color: $text-secondary;
+      color: #666;
       margin-bottom: 5px;
       font-weight: 500;
       font-size: 0.9rem;
     }
 
     input {
-      padding: 12px 15px;
+      padding: 10px 14px;
       font-size: 1rem;
-      border: 1px solid $border;
-      border-radius: math.div($radius, 2);
+      border: 1px solid #ddd;
+      border-radius: 6px;
       outline: none;
       transition: all 0.3s;
 
       &:focus {
-        border-color: $primary;
-        box-shadow: 0 0 0 3px rgba($primary, 0.2);
+        border-color: #8a8d36;
+        box-shadow: 0 0 0 3px rgba(138, 141, 54, 0.2);
       }
     }
   }
 
   .btn-primary {
-    background-color: $primary;
-    color: $text-light;
+    background-color: #8a8d36;
+    color: #fff;
     border: none;
     padding: 12px 20px;
     font-size: 1rem;
     font-weight: 500;
-    border-radius: math.div($radius, 2);
+    border-radius: 30px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.1s;
     margin-top: 10px;
+    transition: background-color 0.3s ease;
 
     &:hover {
-      background-color: $primary-dark;
-      box-shadow: 0 4px 10px rgba($primary, 0.3);
-    }
-
-    &:active {
-      transform: scale(0.98);
+      background-color: #72762d;
     }
   }
 }
 
+.autocomplete-wrapper {
+  position: relative;
+}
+
 .autocomplete-list {
   margin-top: 5px;
-  background-color: $card-bg;
-  border: 1px solid $border;
-  border-radius: math.div($radius, 2);
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
   max-height: 200px;
   overflow-y: auto;
   list-style: none;
@@ -277,16 +236,12 @@ $secondary-action-dark: #757575;
   li {
     padding: 10px 15px;
     cursor: pointer;
-    color: $text-dark;
+    color: #333;
 
     &:hover {
-      background-color: $bg-light;
+      background-color: #f2f2f2;
     }
   }
-}
-
-.autocomplete-wrapper {
-  position: relative;
 }
 
 .list-wrapper {
@@ -296,13 +251,13 @@ $secondary-action-dark: #757575;
 }
 
 .empty-message {
-  color: $text-secondary;
+  color: #666;
   text-align: center;
   padding: 20px 0;
   font-style: italic;
-  border: 1px dashed $border;
-  border-radius: math.div($radius, 2);
-  background-color: $card-bg;
+  border: 1px dashed #ddd;
+  border-radius: 6px;
+  background-color: #ffffff;
 }
 
 .address-list {
@@ -313,10 +268,10 @@ $secondary-action-dark: #757575;
   gap: 10px;
 
   .address-item {
-    background-color: $card-bg;
-    border: 1px solid $border;
-    border-left: 5px solid $primary;
-    border-radius: math.div($radius, 2);
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-left: 5px solid #8a8d36;
+    border-radius: 6px;
     padding: 10px 15px;
     display: flex;
     justify-content: space-between;
@@ -328,16 +283,16 @@ $secondary-action-dark: #757575;
     }
 
     .address-text {
-      color: $text-dark;
+      color: #333;
       font-weight: 500;
     }
 
     .btn-remove {
-      background-color: $secondary-action;
-      color: $text-light;
+      background-color: #999;
+      color: #fff;
       border: none;
       padding: 6px 10px;
-      border-radius: math.div($radius, 2);
+      border-radius: 6px;
       font-size: 0.85rem;
       cursor: pointer;
       display: flex;
@@ -345,7 +300,7 @@ $secondary-action-dark: #757575;
       transition: background-color 0.2s ease;
 
       &:hover {
-        background-color: $secondary-action-dark;
+        background-color: #777;
       }
     }
   }
@@ -362,4 +317,3 @@ $secondary-action-dark: #757575;
   }
 }
 </style>
-
