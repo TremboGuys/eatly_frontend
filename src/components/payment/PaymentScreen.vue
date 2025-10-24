@@ -1,5 +1,13 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed } from 'vue';
+import { useCartStore } from '@/stores';
+import axios from 'axios';
+
+const cartStore = useCartStore();
+const qrCodeBase64 = ref('')
+const pixCode = ref('')
+const loading = ref(false)
+const error = ref('')
 const props = defineProps({
   method: String
 })
