@@ -107,6 +107,18 @@ const router = createRouter({
       name: 'registerRestaurant',
       component: () => import('@/views/RegisterRestaurantView.vue'),
       meta: { requiresAuth: true }
+    },
+    {
+      path: '/profile/edit',
+      name: 'editProfile',
+      component: () => import('@/views/profile/EditProfileView.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/profile/changepassword',
+      name: 'changePassword',
+      component: () => import('@/views/profile/ChangePasswordView.vue'),
+      meta: { requiresAuth: true }
     }
   ],
 });
