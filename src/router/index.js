@@ -111,7 +111,7 @@ const router = createRouter({
     {
       path: '/address',
       name: 'address',
-      component: () => import('@/components/Address/Address.vue'),
+      component: () => import('@/views/AddressRegister.vue'),
     },
   ]
 });
