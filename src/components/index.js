@@ -22,6 +22,7 @@ import TitleProduct from "./productPage/TitleProduct.vue";
 import RatingProduct from "./productPage/RatingProduct.vue";
 import DescriptionProduct from "./productPage/DescriptionProduct.vue";
 import ProductCart from "./productPage/ProductCart.vue";
+import ObservationProduct from "./productPage/ObservationProduct.vue";
 import HomeContainer from "./home/HomeContainer.vue";
 import HomeCarousel from './home/carousel/HomeCaroulselContainer.vue';
 import HomeCategories from './home/categories/HomeCategories.vue';
@@ -72,6 +73,7 @@ export {
     RatingProduct,
     DescriptionProduct,
     ProductCart,
+    ObservationProduct,
     HomeContainer,
     HomeCarousel,
     HomeCategories,

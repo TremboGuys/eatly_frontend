@@ -44,6 +44,11 @@ const router = createRouter({
           component: () => import('@/views/restaurant/RestaurantView.vue')
         },
         {
+          path: 'restaurant/:idRestaurant/product/:idProduct',
+          name: 'product',
+          component: () => import('@/views/restaurant/ProductView.vue')
+        },
+        {
           path: '/restaurant/:id/reviews',
           name: 'reviews',
           component: () => import('@/views/restaurant/ReviewsView.vue')
@@ -52,11 +57,6 @@ const router = createRouter({
           path: '/restaurant/reviews/create',
           name: 'createReview',
           component: () => import('@/views/restaurant/CreateReviewView.vue')
-        },
-        {
-          path: '/product/:id',
-          name: 'product',
-          component: () => import('@/views/restaurant/ProductView.vue')
         },
         {
           path: '/coupon',
@@ -124,7 +124,6 @@ const router = createRouter({
       meta: { requiresAuth: true }
     },
   ]
-  ],
 });
 
 router.beforeEach(async (to, from, next) => {
