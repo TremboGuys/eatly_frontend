@@ -16,7 +16,6 @@ const changeTab = (newTab) => {
             <i class="fa-solid fa-arrow-left"></i>
             <h2>Meus Pedidos</h2>
         </div>
-        <h3>Hamburgueria - Magia Urbana</h3>
         <div class="AvailableStatus">
             <div class="statusGroup">
                 <span class="status" :class="{ 'is-active': props.tab === 'in-progress' }"

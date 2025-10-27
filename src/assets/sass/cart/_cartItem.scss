@@ -41,7 +41,7 @@
             flex-direction: column;
             background: #fff;
             border-radius: 10px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 10px 4px rgba(0, 0, 0, 0.2);
             border-left: 8px solid #444801;
             padding: 1rem;
             margin-bottom: 1rem;
@@ -70,8 +70,9 @@
                     margin-left: 0.5rem;
                     display: flex;
                     flex-direction: column;
+                    row-gap: 10px;
 
-                    .title {
+                    .name {
                         font-weight: 700;
                         color: #333;
                         font-size: 1rem;
@@ -79,12 +80,16 @@
                         margin-bottom: 0.3rem;
                     }
 
-                    .description {
+                    .observation {
                         font-weight: 400;
                         color: #666;
                         font-size: 0.85rem;
                         font-family: "Poppins", sans-serif;
                     }
+                }
+                .logo > img {
+                    width: 50px;
+                    border-radius: 50%;
                 }
             }
 

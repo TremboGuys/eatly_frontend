@@ -2,7 +2,7 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { menu } from '@/metaDatas/menuData';
 import { useRestaurantStore } from '@/stores/';
-import { useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 
 const menuItems = ref(menu);
 const restaurantStore = useRestaurantStore();
@@ -40,6 +40,7 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll));
 defineExpose({ scrollToCategory });
 
 const router = useRouter();
+const route = useRoute();
 </script>
 <template>
     <div class="container">
@@ -50,7 +51,7 @@ const router = useRouter();
             </div>
 
             <div class="container-product" v-for="(product, productIndex) in category.products" :key="productIndex">
-              <router-link class="itemLink" :to="`/product/${product.id}`">
+              <router-link class="itemLink" :to="`/restaurant/${route.params.id}/product/${product.id}`">
                 <div class="item">
                     <div class="top">
                         <div class="image">
