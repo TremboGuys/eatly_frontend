@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+import vue3GoogleLogin from "vue3-google-login"
 import VueTheMask from 'vue-the-mask'
 import vue3GoogleLogin from "vue3-google-login"
 

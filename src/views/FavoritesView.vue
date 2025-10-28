@@ -1,8 +1,11 @@
 <script setup>
+import FavoritesContainer from '@/components/favorites/FavoritesContainer.vue'
 </script>
 
 <template>
-  <div></div>
+  <div>
+    <FavoritesContainer />
+  </div>
 </template>
 
 <style scoped>

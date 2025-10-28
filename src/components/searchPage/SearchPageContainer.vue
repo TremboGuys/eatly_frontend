@@ -1,4 +1,5 @@
 <script setup>
+import SearchBarContainer from "./SearchBarContainer.vue";
 import { ref } from 'vue'
 import SearchBar from './SearchBar.vue'
 import SearchList from './SearchList.vue'

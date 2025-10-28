@@ -59,6 +59,12 @@ const router = createRouter({
           component: () => import('@/views/restaurant/CreateReviewView.vue')
         },
         {
+        {
+          path: '/coupon',
+          name:'coupon',
+          component: () => import('@/views/CouponView.vue')
+        },
+        {
           path: '/payment',
           name: 'payment',
           component: () => import('@/views/PaymentView.vue')
@@ -72,7 +78,22 @@ const router = createRouter({
           path: '/orders',
           name: 'orders',
           component: () => import('@/views/OrdersView.vue')
-        }
+        },
+        {
+          path: '/profile/edit',
+          name: 'editProfile',
+          component: () => import('@/views/profile/EditProfileView.vue'),
+        },
+        {
+          path: '/profile/changepassword',
+          name: 'changePassword',
+          component: () => import('@/views/profile/ChangePasswordView.vue'),
+        },
+        {
+          path: '/address',
+          name: 'address',
+          component: () => import('@/views/AddressRegister.vue'),
+        },
       ],
       meta: { requiresAuth: true } 
     },
@@ -102,7 +123,8 @@ const router = createRouter({
       name: 'registerRestaurant',
       component: () => import('@/views/RegisterRestaurantView.vue'),
       meta: { requiresAuth: true }
-    }
+    },
+  ]
   ],
 });
 
