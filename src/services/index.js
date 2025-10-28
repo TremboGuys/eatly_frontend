@@ -6,6 +6,7 @@ import RestaurantService from "@/services/restaurant";
 import AddressService from "@/services/address";
 import ProductService from "@/services/product";
 import FavoriteService from "@/services/favorite";
+import OrderService from "@/services/order";
 
 export {
     CategoryService,
@@ -15,5 +16,6 @@ export {
     RestaurantService,
     AddressService,
     ProductService,
-    FavoriteService
+    FavoriteService,
+    OrderService
 };

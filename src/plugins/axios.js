@@ -31,9 +31,9 @@ api.interceptors.response.use(
       router.push({ path: "/signin" });
 
       router.afterEach((to) => {
-        if (to.path == "/signin") {
-          toastStore.notify("Seu login expirou, por favor, logue novamente!", "error");
-        }
+        // if (to.path == "/signin") {
+        //   toastStore.notify("Seu login expirou, por favor, logue novamente!", "error");
+        // }
       })
     }
     return Promise.reject(err);
