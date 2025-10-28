@@ -18,6 +18,7 @@
     "pinia": "^3.0.1",
     "qrcode-pix": "^5.0.0",
     "qrcode.vue": "^3.6.0",
+    "v-mask": "^2.3.0",
     "vite-plugin-pwa": "^1.1.0",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0",
