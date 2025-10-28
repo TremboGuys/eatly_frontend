@@ -1,13 +1,14 @@
 import { defineStore } from 'pinia';
 import { ref, reactive, computed } from 'vue';
-import { useToastStore } from '@/stores';
-import { useProductComposable } from '@/composables';
+import { useToastStore, usePaymentStore } from '@/stores';
 import { OrderService } from '@/services';
+import { useRouter } from 'vue-router';
 
 export const useCartStore = defineStore("cart", () => {
     const cart = ref([]);
-    const useProduct = useProductComposable();
+    const paymentStore = usePaymentStore();
     const toastStore = useToastStore();
+    const router = useRouter();
     const state = reactive({
         updateProduct: {
             isUpdate: false,
@@ -141,5 +142,11 @@ export const useCartStore = defineStore("cart", () => {
             return accumulator + parseFloat(currentValue.totalValue);
         }, 0.00);
     });
-    return { cart, state, product, fillProduct, getCartOrders, addToCart, updateProductInOrder, removeFromCart, deleteOrder, totalPrice };
+
+    function finishOrder() {
+        paymentStore.state.order = cart.value[0].id;
+        paymentStore.state.indexOrder = 0;
+        router.push('/payment');
+    }
+    return { cart, state, product, totalPrice, fillProduct, getCartOrders, addToCart, updateProductInOrder, removeFromCart, deleteOrder, finishOrder };
 });
