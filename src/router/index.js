@@ -77,9 +77,24 @@ const router = createRouter({
           path: '/orders',
           name: 'orders',
           component: () => import('@/views/OrdersView.vue')
-        }
+        },
+        {
+          path: '/profile/edit',
+          name: 'editProfile',
+          component: () => import('@/views/profile/EditProfileView.vue'),
+        },
+        {
+          path: '/profile/changepassword',
+          name: 'changePassword',
+          component: () => import('@/views/profile/ChangePasswordView.vue'),
+        },
+        {
+          path: '/address',
+          name: 'address',
+          component: () => import('@/views/AddressRegister.vue'),
+        },
       ],
-      // meta: { requiresAuth: true }   
+      meta: { requiresAuth: true } 
     },
     {
       path: '/signup',
@@ -108,18 +123,7 @@ const router = createRouter({
       component: () => import('@/views/RegisterRestaurantView.vue'),
       meta: { requiresAuth: true }
     },
-    {
-      path: '/profile/edit',
-      name: 'editProfile',
-      component: () => import('@/views/profile/EditProfileView.vue'),
-      meta: { requiresAuth: true }
-    },
-    {
-      path: '/profile/changepassword',
-      name: 'changePassword',
-      component: () => import('@/views/profile/ChangePasswordView.vue'),
-      meta: { requiresAuth: true }
-    }
+  ]
   ],
 });
 

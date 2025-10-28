@@ -45,6 +45,7 @@ import OrderStatus from "./orderStatus/OrderStatus.vue";
 import OrderHeader from "./orders/OrderHeader.vue";
 import OrdersInProgress from "./orders/OrdersInProgress.vue";
 import HistoryOrders from "./orders/HistoryOrders.vue";
+import Address from '@/components/address/Address.vue';
 
 export {
     InputsProps,
@@ -93,5 +94,6 @@ export {
     OrderStatus,
     OrderHeader,
     OrdersInProgress,
-    HistoryOrders, 
+    HistoryOrders,
+    Address
 }
