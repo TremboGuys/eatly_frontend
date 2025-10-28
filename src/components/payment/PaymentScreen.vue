@@ -1,13 +1,9 @@
 <script setup>
 import { ref, computed } from 'vue';
-import { useCartStore } from '@/stores';
-import axios from 'axios';
+import { useCartStore, usePaymentStore } from '@/stores';
 
 const cartStore = useCartStore();
-const qrCodeBase64 = ref('')
-const pixCode = ref('')
-const loading = ref(false)
-const error = ref('')
+const paymentStore = usePaymentStore();
 const props = defineProps({
   method: String
 })
@@ -18,24 +14,6 @@ const card = ref({
   cvv: ''
 })
 const isCard = computed(() => props.method === 'credito' || props.method === 'debito')
-async function createPayment() {
-  loading.value = true
-  try {
-    const response = await axios.post('https://ms-pix-liy6.onrender.com', {
-      transaction_amount: cartStore.totalPrice,
-      description: 'Pagamento Pix de teste',
-      payment_method_id: 'pix',
-      payer: { email: 'comprador@email.com' }
-    })
-    const transData = response.data.point_of_interaction?.transaction_data
-    qrCodeBase64.value = transData?.qr_code_base64 || ''
-    pixCode.value = transData?.qr_code || ''
-    if (!transData) error.value = 'Erro: resposta inválida do servidor.'
-  } catch (e) {
-    error.value = 'Erro ao criar pagamento: ' + (e.response?.data?.error || e.message || e)
-  }
-  loading.value = false
-}
 
 function submitCard() {
   alert(`Pagamento com cartão de ${props.method === 'credito' ? 'crédito' : 'débito'} enviado!`)
@@ -71,12 +49,11 @@ function submitCard() {
     </div>
     <div v-else-if="props.method === 'pix'" class="pix-section">
       <h2>Pagamento via Pix</h2>
-      <button @click="createPayment" class="btn" :disabled="loading">Pagar com Pix</button>
-      <div v-if="error" style="color: red; margin-top: 8px;">{{ error }}</div>
-      <div v-if="qrCodeBase64" class="qr-code">
+      <button @click="paymentStore.createPayment" class="btn" :disabled="paymentStore.state.loading">Pagar com Pix</button>
+      <div v-if="paymentStore.payment?.qr_code_base64" class="qr-code">
         <h3>Escaneie com seu app Pix:</h3>
-        <img :src="'data:image/png;base64,' + qrCodeBase64" alt="QR Code Pix"/>
-        <p><strong>Copia e cola:</strong> <span class="pix-code">{{ pixCode }}</span></p>
+        <img :src="'data:image/png;base64,' + paymentStore.payment.qr_code_base64" alt="QR Code Pix"/>
+        <p><strong>Copia e cola:</strong> <span class="pix-code">{{ paymentStore.payment.qr_code }}</span></p>
       </div>
     </div>
   </div>

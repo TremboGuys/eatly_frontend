@@ -1,9 +1,8 @@
 <script setup>
-import { useCartStore } from '@/stores/cartStore';
-import { useRouter } from 'vue-router';
+import { useCartStore, usePaymentStore } from '@/stores';
 
 const cartStore = useCartStore();
-const router = useRouter();
+const paymentStore = usePaymentStore();
 </script>
 
 <template>
@@ -48,7 +47,7 @@ const router = useRouter();
         <p><strong>Valor Total:</strong> <span class="price">R$ {{ cartStore.totalPrice.toFixed(2).replace('.', ',') }}</span></p>
       </div>
       <div class="submit">
-        <button class="finish" @click="router.push('/payment')">FINALIZAR PEDIDO</button>
+        <button class="finish" @click="cartStore.finishOrder()">FINALIZAR PEDIDO</button>
       </div>
     </div>
 </template>
