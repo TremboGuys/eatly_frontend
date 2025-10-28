@@ -1,0 +1,51 @@
+@media(max-width:425px){
+    .profile-container{
+        background-color: #F5F5F5;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: poppins;
+        padding: 1rem 0;
+
+        h1{
+            font-size: 1.7em;
+            font-weight: 600;
+            margin-bottom: 1em;
+        }
+
+        .info-container{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .profile-pic{
+                display: flex;
+                align-items: end;
+                
+                img{
+                    width: 100px;
+                    border: 1px solid black;
+                    border-radius: 50px;
+                }
+
+            }
+            .user-name{
+                font-weight: 600;
+            }
+            .user-email{
+                background-color: rgb(213, 224, 200);
+                padding: 3px 8px;
+                border-radius: 15px;
+                font-size: 0.9em;
+                color: #444801;
+            }
+
+        }
+        .profile-list{
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 3vh;
+        }
+    }
+}
