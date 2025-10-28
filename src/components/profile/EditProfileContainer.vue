@@ -24,22 +24,26 @@ import backButton from "./backButton.vue";
           type="email"
           field="email"
           for-id="email"
-          label="lucasdiniz1708@gmail.com"
+          label="Email"
           maxlength="100"
+          value="lucasdiniz1708@gmail.com"
+
         />
         <InputsProps
           type="text"
           field="phone"
           for-id="phone"
-          label="47992451352"
+          label="Telefone"
           maxlength="15"
+          value="47992451352"
         />
         <InputsProps
           type="text"
           field="address"
           for-id="address"
-          label="Rua Exemplo, 123"
+          label="Endereço"
           maxlength="100"
+          value="Rua Exemplo, 123"
         />
       </div>
     </div>
