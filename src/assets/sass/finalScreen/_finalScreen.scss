@@ -1,0 +1,182 @@
+@media (max-width: 425px) {
+    .orderMainContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 20px;
+        padding-inline: 12px;
+        font-family: 'Poppins', sans-serif;
+
+        .card {
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+            background: #ffffff;
+            padding: 0.9rem;
+            width: 90vw;
+
+            &.empty {
+                justify-content: space-between;
+            }
+
+            &.summary {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 8px;
+            }
+
+            &.payment {
+                justify-content: space-between;
+            }
+
+            &.footer {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .icon {
+                background-color: #444400;
+                color: #ffffff;
+                font-size: 24px;
+                padding: 20px;
+                border-radius: 50%;
+                margin-left: 10px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 80px;
+                height: 80px;
+                flex: 0 0 auto;
+            }
+
+            .info {
+                display: flex;
+                flex-direction: column;
+                gap: 6px;
+                min-width: 0;
+
+                h3 {
+                    margin: 0;
+                    font-size: 18px;
+                    font-weight: 500;
+                    line-height: 1.2;
+                    color: #000000;
+                }
+
+                p {
+                    margin: 0;
+                    font-size: 14px;
+                    font-weight: 500;
+                    color: #838383;
+                    line-height: 1.3;
+                }
+
+                .price {
+                    font-size: 16px;
+                    font-weight: 600;
+                    color: #444400;
+                }
+
+                .row {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+
+                    .qty {
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 10px;
+
+                        button {
+                            width: 32px;
+                            height: 32px;
+                            border-radius: 10px;
+                            border: 1px solid #e5e5e5;
+                            background: #ffffff;
+                            color: #444400;
+                            font-size: 20px;
+                            line-height: 1;
+                        }
+
+                        span {
+                            min-width: 18px;
+                            text-align: center;
+                        }
+                    }
+                }
+
+                .docInput {
+                    width: 100%;
+                    border: 1px solid #eeeeee;
+                    border-radius: 12px;
+                    padding: 10px 12px;
+                    font-family: "Poppins", sans-serif;
+                    font-size: 14px;
+                    outline: none;
+                }
+            }
+
+            .swap {
+                margin-left: auto;
+                border: none;
+                background: transparent;
+                color: #444400;
+                font-weight: 600;
+                padding: 6px 8px;
+            }
+
+            .switch {
+                position: relative;
+                width: 42px;
+                height: 24px;
+
+                input {
+                    display: none;
+                }
+
+                span {
+                    position: absolute;
+                    inset: 0;
+                    background: #dddddd;
+                    border-radius: 20px;
+                    transition: 0.2s;
+                }
+
+                span::after {
+                    content: "";
+                    position: absolute;
+                    top: 3px;
+                    left: 3px;
+                    width: 18px;
+                    height: 18px;
+                    background: #ffffff;
+                    border-radius: 50%;
+                    transition: 0.2s;
+                }
+
+                input:checked+span {
+                    background: #444400;
+                }
+
+                input:checked+span::after {
+                    transform: translateX(18px);
+                }
+            }
+
+            .cta {
+                width: 100%;
+                border: none;
+                border-radius: 14px;
+                padding: 16px;
+                background: #444400;
+                color: #ffffff;
+                font-weight: 600;
+                font-size: 16px;
+            }
+        }
+    }
+}
