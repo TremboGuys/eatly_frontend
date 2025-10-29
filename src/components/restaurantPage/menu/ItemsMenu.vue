@@ -2,7 +2,7 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { menu } from '@/metaDatas/menuData';
 import { useRestaurantStore } from '@/stores/';
-import { useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 
 const menuItems = ref(menu);
 const restaurantStore = useRestaurantStore();
@@ -40,31 +40,34 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll));
 defineExpose({ scrollToCategory });
 
 const router = useRouter();
+const route = useRoute();
 </script>
 <template>
     <div class="container">
-        <div v-for="(product, productIndex) in restaurantStore.restaurant.products" :key="productIndex" class="categorySection" :ref="el => categoryRefs[productIndex] = el">
+        <div v-for="(category, categoryIndex) in restaurantStore.restaurant.products" :key="categoryIndex" class="categorySection" :ref="el => categoryRefs[categoryIndex] = el">
             <div class="titleSection">
-                <span class="text">{{ product.categories[0].name }}</span>
+                <span class="text">{{ category.category }}</span>
                 <div class="hr"></div>
             </div>
 
-            <router-link class="itemLink" :to="`/product/${product.id}`">
-              <div class="item" :key="index">
-                  <div class="top">
-                      <div class="image">
-                          <img :src="product.url_file" :alt="product.name">
-                      </div>
-                      <div class="info">
-                          <div class="title">{{ product.name }}</div>
-                          <div class="description">{{ product.description }}</div>
-                      </div>
+            <div class="container-product" v-for="(product, productIndex) in category.products" :key="productIndex">
+              <router-link class="itemLink" :to="`/restaurant/${route.params.id}/product/${product.id}`">
+                <div class="item">
+                    <div class="top">
+                        <div class="image">
+                            <img :src="product.url_file" :alt="product.name">
+                        </div>
+                        <div class="info">
+                            <div class="title">{{ product.name }}</div>
+                            <div class="description">{{ product.description }}</div>
+                        </div>
+                    </div>
+                    <div class="bottom">
+                        <div class="price">R${{ product.price.toFixed(2).toString().replace(".", ",") }}</div>
+                    </div>
                   </div>
-                  <div class="bottom">
-                      <div class="price">R${{ product.price.toString().replace(".", ",") }}</div>
-                  </div>
-                </div>
-              </router-link>
+                </router-link>
+            </div>
         </div>
     </div>
 </template>

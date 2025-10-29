@@ -22,6 +22,7 @@ import TitleProduct from "./productPage/TitleProduct.vue";
 import RatingProduct from "./productPage/RatingProduct.vue";
 import DescriptionProduct from "./productPage/DescriptionProduct.vue";
 import ProductCart from "./productPage/ProductCart.vue";
+import ObservationProduct from "./productPage/ObservationProduct.vue";
 import HomeContainer from "./home/HomeContainer.vue";
 import HomeCarousel from './home/carousel/HomeCaroulselContainer.vue';
 import HomeCategories from './home/categories/HomeCategories.vue';
@@ -31,6 +32,21 @@ import BottomSize from './home/BottomAds.vue';
 import SeenPreviously from './home/SeenPreviously.vue';
 import HeaderList from "./home/bestsellers/HeaderList.vue";
 import ListItem from "./home/bestsellers/ListItem.vue";
+import CouponAvailable from "./coupon/CouponAvailable.vue";
+import CouponRedeemed from "./coupon/CouponRedeemed.vue";
+import CouponHeader from "./coupon/CouponHeader.vue";
+import PopupConfirm from "./coupon/PopupConfirm.vue";
+import PopUpFinishLogin from "./home/pop-up/PopUpFinishLogin.vue";
+import ConfirmationEmail from '@/components/confirmation/ConfirmationEmail.vue';
+import ReviewScreen from "./reviewRestaurant/ReviewScreen.vue";
+import SelectOption from "./payment/SelectOption.vue";
+import PaymentScreen from "./payment/PaymentScreen.vue";
+import OrderStatusComp from "./orderStatus/OrderStatusComp.vue";
+import OrderStatus from "./orderStatus/OrderStatus.vue";
+import OrderHeader from "./orders/OrderHeader.vue";
+import OrdersInProgress from "./orders/OrdersInProgress.vue";
+import HistoryOrders from "./orders/HistoryOrders.vue";
+import Address from '@/components/address/Address.vue';
 
 export {
     InputsProps,
@@ -57,6 +73,7 @@ export {
     RatingProduct,
     DescriptionProduct,
     ProductCart,
+    ObservationProduct,
     HomeContainer,
     HomeCarousel,
     HomeCategories,
@@ -65,5 +82,20 @@ export {
     BottomSize,
     SeenPreviously,
     HeaderList,
-    ListItem
+    ListItem,
+    CouponAvailable,
+    CouponRedeemed,
+    CouponHeader,
+    PopupConfirm,
+    PopUpFinishLogin,
+    ConfirmationEmail,
+    ReviewScreen,
+    SelectOption,
+    PaymentScreen,
+    OrderStatusComp,
+    OrderStatus,
+    OrderHeader,
+    OrdersInProgress,
+    HistoryOrders,
+    Address
 }

@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { useAuthStore } from '@/stores';
+import { useAuthStore, usePaymentStore } from '@/stores';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -44,20 +44,56 @@ const router = createRouter({
           component: () => import('@/views/restaurant/RestaurantView.vue')
         },
         {
+          path: 'restaurant/:idRestaurant/product/:idProduct',
+          name: 'product',
+          component: () => import('@/views/restaurant/ProductView.vue')
+        },
+        {
           path: '/restaurant/:id/reviews',
           name: 'reviews',
           component: () => import('@/views/restaurant/ReviewsView.vue')
         },
         {
-          path: '/restaurant/:id/reviews/create',
+          path: '/restaurant/reviews/create',
           name: 'createReview',
           component: () => import('@/views/restaurant/CreateReviewView.vue')
         },
         {
-          path: '/product/:id',
-          name: 'product',
-          component: () => import('@/views/restaurant/ProductView.vue')
-        }
+        {
+          path: '/coupon',
+          name:'coupon',
+          component: () => import('@/views/CouponView.vue')
+        },
+        {
+          path: '/payment',
+          name: 'payment',
+          component: () => import('@/views/PaymentView.vue')
+        },
+        {
+          path: '/order/:id',
+          name: 'order',
+          component: () => import('@/views/order/OrderView.vue')
+        },
+        {
+          path: '/orders',
+          name: 'orders',
+          component: () => import('@/views/OrdersView.vue')
+        },
+        {
+          path: '/profile/edit',
+          name: 'editProfile',
+          component: () => import('@/views/profile/EditProfileView.vue'),
+        },
+        {
+          path: '/profile/changepassword',
+          name: 'changePassword',
+          component: () => import('@/views/profile/ChangePasswordView.vue'),
+        },
+        {
+          path: '/address',
+          name: 'address',
+          component: () => import('@/views/AddressRegister.vue'),
+        },
       ],
       meta: { requiresAuth: true } 
     },
@@ -99,22 +135,27 @@ const router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
   const authStore = useAuthStore();
+  const paymentStore = usePaymentStore();
   
   const isAuthenticated = await authStore.verifyAuth();
 
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (isAuthenticated) {
+      if ((to.path == '/payment') && paymentStore.state.order == null) {
+        next('/cart');
+        return;
+      }
       next();
     } else {
       next('/signin');
     }
     return;
-  }
+  };
 
   if ((to.path === '/signin' || to.path === '/signup' || to.path === '/') && (isAuthenticated)) {
     next('/dashboard');
     return;
-  }
+  };
 
   next();
 });
