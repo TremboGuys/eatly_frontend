@@ -59,7 +59,6 @@ const router = createRouter({
           component: () => import('@/views/restaurant/CreateReviewView.vue')
         },
         {
-        {
           path: '/coupon',
           name:'coupon',
           component: () => import('@/views/CouponView.vue')
