@@ -38,23 +38,29 @@ onBeforeUnmount(() => {
   document.removeEventListener("click", handleClickOutside);
 });
 
-// const toggleFavorite = async () => {
-//   try {
-//     if (isFavorite.value) {
-//       await FavoriteService.deleteFavorite(props.product.id);
-//       isFavorite.value = false;
-//       toastStore.notify("Removido dos favoritos", "info");
-//     } else {
-//       await FavoriteService.createFavorite(props.product.id);
-//       isFavorite.value = true;
-//       toastStore.notify("Adicionado aos favoritos", "success");
-//     }
-//   } catch (error) {
-//     toastStore.notify("Erro ao alterar favoritos", "error");
-//   } finally {
-//     closeMenu();
-//   }
-// };
+const toggleFavorite = async () => {
+  try {
+    if (isFavorite.value) {
+      // achar o favorito que corresponde a este produto
+      const favorite = favoriteStore.favorites.find(
+        f => f.product.id === props.product.id
+      );
+      if (favorite) {
+        await FavoriteService.deleteFavorite(favorite.id);
+        isFavorite.value = false;
+        toastStore.notify("Removido dos favoritos", "info");
+      }
+    } else {
+      await FavoriteService.createFavorite({ product_id: props.product.id });
+      isFavorite.value = true;
+      toastStore.notify("Adicionado aos favoritos", "success");
+    }
+  } catch (error) {
+    toastStore.notify("Erro ao alterar favoritos", "error");
+  } finally {
+    closeMenu();
+  }
+};
 </script>
 
 <template>
