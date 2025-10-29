@@ -87,6 +87,12 @@ const router = createRouter({
       name: 'registerRestaurant',
       component: () => import('@/views/RegisterRestaurantView.vue'),
       meta: { requiresAuth: true }
+    },
+    {
+      path: '/order/:id',
+      name: 'order',
+      component: () => import('@/views/order/OrderRetriever.vue'),
+      meta: { requiresAuth: true }
     }
   ],
 });
