@@ -1,10 +1,19 @@
+<script setup>
+
+const props = defineProps({
+  name: String,
+  route: String
+});
+
+</script>
+
 <template>
     <div class="back">
-        <router-link :to="`/profile`" class="back-link">
+        <router-link :to="`/${props.route}`" class="back-link">
             <i class="fa-solid fa-arrow-left"></i>
         </router-link>
         <div class="nameRestaurant">
-            <span class="name">Perfil</span>
+            <span class="name">{{ props.name }}</span>
         </div>
     </div>
 </template>
