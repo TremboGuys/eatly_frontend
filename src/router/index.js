@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { useAuthStore, usePaymentStore } from '@/stores';
+import { useAuthStore, usePaymentStore, useProfileStore } from '@/stores';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -69,19 +69,9 @@ const router = createRouter({
           component: () => import('@/views/PaymentView.vue')
         },
         {
-          path: '/order/:id',
-          name: 'order',
-          component: () => import('@/views/order/OrderView.vue')
-        },
-        {
           path: '/orders',
           name: 'orders',
           component: () => import('@/views/OrdersView.vue')
-        },
-        {
-          path: '/profile/edit',
-          name: 'editProfile',
-          component: () => import('@/views/profile/EditProfileView.vue'),
         },
         {
           path: '/profile/changepassword',
@@ -93,8 +83,18 @@ const router = createRouter({
           name: 'address',
           component: () => import('@/views/AddressRegister.vue'),
         },
+        {
+          path: '/logout',
+          name: 'logout',
+          component: () => import('@/views/auth/LogoutView.vue')
+        }
       ],
       meta: { requiresAuth: true } 
+    },
+    {
+      path: '/profile/edit',
+      name: 'editProfile',
+      component: () => import('@/views/profile/EditProfileView.vue'),
     },
     {
       path: '/signup',
@@ -105,6 +105,11 @@ const router = createRouter({
       path: '/signin',
       name: 'signin',
       component: () => import('@/views/auth/client/SignInClientView.vue')
+    },
+    {
+      path: '/verify-email',
+      name: 'verifyEmail',
+      component: () => import('@/views/auth/VerifyEmailView.vue')
     },
     {
       path: '/registercategory',
@@ -129,6 +134,7 @@ const router = createRouter({
 router.beforeEach(async (to, from, next) => {
   const authStore = useAuthStore();
   const paymentStore = usePaymentStore();
+  const profileStore = useProfileStore();
   
   const isAuthenticated = await authStore.verifyAuth();
 
@@ -149,6 +155,11 @@ router.beforeEach(async (to, from, next) => {
     next('/dashboard');
     return;
   };
+
+  if ((to.path == '/profile/edit') && profileStore.profile == null) {
+    next('/profile');
+    return;
+  }
 
   next();
 });

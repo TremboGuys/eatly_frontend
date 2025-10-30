@@ -1,6 +1,4 @@
 <script setup>
-import { RouterLink } from 'vue-router';
-
 const props = defineProps({
   icon: String,
   text: String,
@@ -8,6 +6,10 @@ const props = defineProps({
     type: String,
     default: '#',
   },
+  action: {
+    type: Function,
+    default: null
+  }
 });
 </script>
 
