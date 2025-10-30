@@ -2,14 +2,11 @@
 import { ref, computed, onMounted } from "vue";
 import FoodCategory from "./FoodCategory.vue";
 import { useCategoryComposable } from "@/composables/category";
-
 const props = defineProps({
   query: { type: String, default: "" },
 });
-
 const allCategories = ref([]);
 const { getCategories } = useCategoryComposable();
-
 onMounted(async () => {
   //MOCK temporário
   // allCategories.value = [
@@ -22,27 +19,28 @@ onMounted(async () => {
 
   allCategories.value = await getCategories();
 });
-
 const currentCategories = computed(() => {
   const q = props.query?.trim().toLowerCase();
   if (!q) return allCategories.value;
   return allCategories.value.filter((c) => c.name.toLowerCase().includes(q));
 });
 </script>
-
 <template>
   <div class="list-container">
-    <h1>Categorias</h1>
-    <div class="list">
-      <FoodCategory
-        v-for="category in currentCategories"
-        :key="category.id"
-        :category="category"
-      />
+    <h1>{{ query?.trim() ? 'Resultados' : 'Categorias' }}</h1>
+    <div v-if="!query?.trim()" class="list">
+      <FoodCategory v-for="category in currentCategories" :key="category.id" :category="category" />
     </div>
+    <ul v-else class="results">
+      <li v-for="item in currentCategories" :key="item.id" class="row">
+        <RouterLink class="row-link" :to="`/categoria/${item.id}`">
+          <img class="thumb" :src="item.url_image" :alt="item.name" />
+          <span class="title">{{ item.name }}</span>
+        </RouterLink>
+      </li>
+    </ul>
   </div>
 </template>
-
 <style scoped>
 @import "@/assets/sass/searchPage/_searchList.scss";
 </style>
