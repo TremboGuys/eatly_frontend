@@ -1,5 +1,5 @@
 <script setup>
-import OrderRetrieverContainer from '@/components/orders/OrderRetrieverContainer.vue';
+import OrderRetrieverContainer from '@/components/orders/OrderRetrieveContainer.vue';
 </script>
 
 <template>
