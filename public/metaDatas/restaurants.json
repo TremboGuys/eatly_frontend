@@ -1,0 +1,54 @@
+[
+  {
+    "id": 1,
+    "name": "Mcdonald's - Drive João Colin ",
+    "type": "Lanches",
+    "rating": 4.8,
+    "distance": "6,4 km",
+    "time": "34–44 min",
+    "price": "R$ 22,99",
+    "promo": "R$ 9,99 pra voltar a pedir",
+    "delivery": "Entrega grátis",
+    "status": "Aberto agora",
+    "image": "/src/assets/img/mcdonalds.png"
+  },
+  {
+    "id": 2,
+    "name": "Sobremesas do Méqui",
+    "type": "Sobremesas",
+    "rating": 4.8,
+    "distance": "6,4 km",
+    "time": "39–49 min",
+    "price": "R$ 19,98",
+    "promo": "R$ 9,99 pra voltar a pedir",
+    "delivery": "Entrega grátis",
+    "status": "Aberto agora",
+    "image": "/src/assets/img/mcdonalds.png"
+  },
+  {
+    "id": 3,
+    "name": "Mccafé o Dia Todo - João Colin",
+    "type": "Cafeteria",
+    "rating": 4.7,
+    "distance": "6,4 km",
+    "time": "31–41 min",
+    "price": "R$ 20,99",
+    "promo": "R$ 9,99 pra voltar a pedir",
+    "delivery": "Entrega grátis",
+    "status": "Aberto agora",
+    "image": "/src/assets/img/mcdonalds.png"
+  },
+  {
+    "id": 4,
+    "name": "Chickens do Méqui",
+    "type": "Frangos",
+    "rating": 4.7,
+    "distance": "6,5 km",
+    "time": "Fechado",
+    "price": "R$ 9,99 pra voltar a pedir",
+    "promo": "",
+    "delivery": "—",
+    "status": "Fechado",
+    "image": "/src/assets/img/mcdonalds.png"
+  }
+]
