@@ -1,9 +1,8 @@
 <script setup>
 import FavItem from "@/components/favorites/FavItem.vue";
-import LoadingScreen from "@/components/global/LoadingScreen.vue";
-import { useFavorites } from "@/composables/favorite";
+import { useFavoriteStore } from "@/stores";
 
-const { favoriteProducts, loading } = useFavorites();
+const favoriteStore = useFavoriteStore();
 </script>
 
 <template>
@@ -13,14 +12,13 @@ const { favoriteProducts, loading } = useFavorites();
     </div>
 
     <div class="lista">
-      <LoadingScreen v-if="loading" />
       <FavItem
-        v-for="product in favoriteProducts" 
-        :key="product.id" 
-        :product="product" 
+        v-for="(favorite, favoriteIndex) in favoriteStore.favorites" 
+        :key="favoriteIndex" 
+        :favorite="favorite" 
       />
       
-      <div v-if="!loading && favoriteProducts.length === 0" class="empty">
+      <div v-if="!favoriteStore.state.loading && (favoriteStore.favorites == null || favoriteStore.favorites.length == 0)" class="empty">
         Nenhum favorito encontrado.
       </div>
     </div>

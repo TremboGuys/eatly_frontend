@@ -13,7 +13,7 @@ const mounted = ref(false);
 
 onMounted(async () => {
     await useProduct.getProduct(route.params.idProduct);
-    await favoriteStore.verifyProductIsFavoriteById(route.params.id);
+    await favoriteStore.verifyProductIsFavoriteById(route.params.idProduct);
     mounted.value = true;
 });
 </script>
@@ -24,7 +24,7 @@ onMounted(async () => {
             <ImageProduct v-if="Object.hasOwn(useProduct.product.value, 'url_file')" :url="useProduct.product.value.url_file" :restaurant="{id: useProduct.product.value.restaurant.id, name: useProduct.product.value.restaurant.name}" />
         </div>
         <div class="info">
-            <TitleProduct :name="useProduct.product.value.name" :id-product="route.params.id" />
+            <TitleProduct :name="useProduct.product.value.name" :id-product="route.params.idProduct" />
             <DescriptionProduct :description="useProduct.product.value.description" />
             <ObservationProduct />
         </div>

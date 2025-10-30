@@ -1,8 +1,13 @@
 import { api } from "@/plugins/axios"
 
 class RestaurantService {
-    async   getRestaurants(page=1) {
+    async getRestaurants(page=1) {
       const response = await api.get(`restaurants?page=${page}`);
+      return response.data;
+    }
+
+    async getRestaurantsFiltered(filter) {
+      const response = await api.get(`restaurants?${filter}`);
       return response.data;
     }
 

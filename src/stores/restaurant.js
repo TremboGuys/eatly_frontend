@@ -3,12 +3,18 @@ import { ref } from "vue";
 import { RestaurantService } from "@/services";
 import { useToastStore } from "@/stores/toastStore";
 import router from "@/router";
+import { reactive } from "vue";
 
 export const useRestaurantStore = defineStore('restaurant', () => {
+  const state = reactive({
+    searching: false,
+  })
   const toastStore = useToastStore();
   const restaurant = ref({});
   const restaurants = ref([]);
+  const restaurantsFiltered = ref([]);
   const restaurantsRecentlyViewed = ref([]);
+  const filters = ref({});
 
   async function getRestaurants() {
     try {
@@ -26,6 +32,27 @@ export const useRestaurantStore = defineStore('restaurant', () => {
         "Erro ao buscar restaurantes. Por favor, tente novamente.",
         "error"
       );
+    }
+  }
+
+  async function getRestaurantsFiltered() {
+    try {
+      let query_params = ``;
+
+      for (const [key, value] of Object.entries(filters.value)) {
+        if (query_params == ``) {
+          query_params += `${key}=${value}`;
+        }
+        else {
+          query_params += `&${key}=${value}`;
+        }
+      }
+      console.log(query_params);
+      const filtered = await RestaurantService.getRestaurantsFiltered(query_params);
+      restaurantsFiltered.value = filtered;
+    }
+    catch(error) {
+      console.error('Erro in GET restaurants filtered: ', error);
     }
   }
 
@@ -89,11 +116,15 @@ export const useRestaurantStore = defineStore('restaurant', () => {
     }
   }
   return {
+    state,
     restaurant,
     restaurants,
+    restaurantsFiltered,
     restaurantsRecentlyViewed,
+    filters,
     getRestaurant,
     getRestaurants,
+    getRestaurantsFiltered,
     getRestaurantRecentlyViewed,
     createRestaurant,
     createRestaurantView
