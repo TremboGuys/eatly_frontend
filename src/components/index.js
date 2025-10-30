@@ -52,6 +52,7 @@ import ProfileContainer from "./profile/ProfileContainer.vue";
 import ProfileListContainer from "./profile/ProfileListContainer.vue";
 import ProfileList from "./profile/ProfileList.vue";
 import LoadingScreen from "./global/LoadingScreen.vue";
+import FullPayment from "./payment/FullPayment.vue";
 
 export {
     InputsProps,
@@ -107,5 +108,6 @@ export {
     ProfileContainer,
     ProfileListContainer,
     ProfileList,
-    LoadingScreen
+    LoadingScreen,
+    FullPayment
 }
