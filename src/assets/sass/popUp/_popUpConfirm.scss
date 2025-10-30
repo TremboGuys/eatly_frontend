@@ -20,18 +20,26 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                background: rgba(0, 200, 0, 0.1);
                 border-radius: 50%;
                 width: 90px;
                 height: 90px;
                 margin: 0 auto 1rem auto;
+
+                .warning-img {
+                    width: 60px;
+                    height: 60px;
+                }
             }
             h2 {
                 font-size: 1.4rem;
                 color: #222;
                 margin-bottom: 0.5rem;
+                font-family: 'Poppins', sans-serif;
+                font-weight: 500;
             }
             p {
+                position: relative;
+                left: 5px;
                 color: #666;
                 font-size: 0.95rem;
                 margin-bottom: 1.5rem;
@@ -40,7 +48,7 @@
                 display: flex;
                 justify-content: center;
                 .close {
-                    background: #1e90ff;
+                    background: #444801;
                     color: #fff;
                     border: none;
                     border-radius: 10px;
@@ -49,9 +57,9 @@
                     font-weight: 600;
                     transition: background 0.2s ease;
 
-                    &:hover {
-                        background: #0b70d0;
-                    }
+                    // &:hover {
+                    //     background: #0b70d0;
+                    // }
                 }
             }
         }

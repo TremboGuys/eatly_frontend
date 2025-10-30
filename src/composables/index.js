@@ -4,6 +4,7 @@ import { useRegisterClientComposable } from "./auth/registerClient";
 import { useLoginComposable } from "./auth/login";
 import { useAddressComposable } from "./address";
 import { useProductComposable } from "./product";
+import { useFavorites } from "./favorite";
 
 export {
     useCategoryComposable,
@@ -11,5 +12,6 @@ export {
     useRegisterClientComposable,
     useLoginComposable,
     useAddressComposable,
-    useProductComposable
+    useProductComposable,
+    useFavorites
 };

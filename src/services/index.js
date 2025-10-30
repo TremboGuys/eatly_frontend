@@ -7,6 +7,7 @@ import AddressService from "@/services/address";
 import ProductService from "@/services/product";
 import FavoriteService from "@/services/favorite";
 import OrderService from "@/services/order";
+import ProfileService from "@/services/auth/profile";
 
 export {
     CategoryService,
@@ -17,5 +18,6 @@ export {
     AddressService,
     ProductService,
     FavoriteService,
-    OrderService
+    OrderService,
+    ProfileService
 };

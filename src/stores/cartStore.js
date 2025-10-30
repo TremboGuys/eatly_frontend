@@ -5,7 +5,7 @@ import { OrderService } from '@/services';
 import { useRouter } from 'vue-router';
 
 export const useCartStore = defineStore("cart", () => {
-    const cart = ref([]);
+    const cart = ref(null);
     const paymentStore = usePaymentStore();
     const toastStore = useToastStore();
     const router = useRouter();
@@ -42,12 +42,11 @@ export const useCartStore = defineStore("cart", () => {
     }
 
     async function addToCart(restaurant) {
+        if (cart.value == null) cart.value = [];
         const orderObject = cart.value.findIndex(o => o.restaurant.id == restaurant);
 
         if (orderObject != -1) {
             const existingProductInCart = cart.value[orderObject].products.find(p => p.observation == product.observation);
-
-            console.log('ExistingProduct: ', existingProductInCart);
 
             if (existingProductInCart) {
                 existingProductInCart.quantity += product.quantity;
@@ -57,7 +56,6 @@ export const useCartStore = defineStore("cart", () => {
             else {
                 try {
                     product.order = cart.value[orderObject].id;
-                    console.log(product);
                     const order = await OrderService.addProductInOrder(product);
                     cart.value[orderObject] = order;
                     toastStore.notify("Produto adicionado ao carrinho!", "success");
@@ -79,7 +77,6 @@ export const useCartStore = defineStore("cart", () => {
                         {...productObject}
                     ]
                 };
-                console.log(orderObject);
                 const order = await OrderService.createOrder(orderObject);
                 cart.value.push(order);
                 toastStore.notify("Produto adicionado ao carrinho!", "success");
