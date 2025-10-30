@@ -33,7 +33,6 @@ export const useRestaurantStore = defineStore('restaurant', () => {
     try {
       const response = await RestaurantService.getRestaurant(id);
       restaurant.value = response;
-      console.log(restaurant.value);
     } catch(error) {
       console.error('Error in GET retrieve Restaurant: ', error);
       toastStore.notify("Erro ao abrir restaurante!", "error");

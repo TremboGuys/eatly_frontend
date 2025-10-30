@@ -3,6 +3,8 @@ import { InputsProps, ButtonSubmit } from '@/components';
 import { useUserStore } from '@/stores';
 import { reactive } from 'vue';
 
+const userStore = useUserStore();
+
 const user = reactive({
     natural_person: {
         date_birth: ''
@@ -13,8 +15,6 @@ const user = reactive({
         is_principal: true
     }
 });
-
-const userStore = useUserStore();
 
 function changeDataUser(data) {
     if (data.field == "date_birth") {

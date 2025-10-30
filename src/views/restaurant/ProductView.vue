@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted, watch } from 'vue';
 import { useRoute } from 'vue-router';
-import { ImageProduct, TitleProduct, RatingProduct, DescriptionProduct, ProductCart } from '@/components';
+import { ImageProduct, TitleProduct, RatingProduct, DescriptionProduct, ProductCart, ObservationProduct } from '@/components';
 import img1 from "@/assets/img/productPage/imageProduct.jpg";
 import { useProductComposable } from '@/composables';
 import { useFavoriteStore } from '@/stores';
@@ -12,7 +12,7 @@ const route = useRoute();
 const mounted = ref(false);
 
 onMounted(async () => {
-    await useProduct.getProduct(route.params.id);
+    await useProduct.getProduct(route.params.idProduct);
     await favoriteStore.verifyProductIsFavoriteById(route.params.id);
     mounted.value = true;
 });
@@ -26,6 +26,7 @@ onMounted(async () => {
         <div class="info">
             <TitleProduct :name="useProduct.product.value.name" :id-product="route.params.id" />
             <DescriptionProduct :description="useProduct.product.value.description" />
+            <ObservationProduct />
         </div>
         <div class="addToCart">
             <ProductCart :product="useProduct.product.value" />

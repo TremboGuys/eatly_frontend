@@ -36,6 +36,8 @@
             }
 
             p {
+                position: relative;
+                left: 5px;
                 color: #666;
                 font-size: 0.95rem;
                 margin-bottom: 1.5rem;
@@ -46,7 +48,7 @@
                 justify-content: center;
 
                 .close {
-                    background: #1e90ff;
+                    background: #444801;
                     color: #fff;
                     border: none;
                     border-radius: 10px;

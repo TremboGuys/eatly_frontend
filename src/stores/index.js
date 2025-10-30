@@ -4,6 +4,9 @@ import { useUserStore } from "./auth/user"
 import { useFavoriteStore } from "./favoriteStore"
 import { useRestaurantStore } from "./restaurant"
 import { useCartStore } from "./cartStore"
+import { usePaymentStore } from "./paymentStore"
+import { useProfileStore } from "./auth/profile"
+import { useOrderStore } from "./order"
 
 export {
     useToastStore,
@@ -11,5 +14,8 @@ export {
     useUserStore,
     useFavoriteStore,
     useRestaurantStore,
-    useCartStore
+    useCartStore,
+    usePaymentStore,
+    useProfileStore,
+    useOrderStore
 }
