@@ -1,3 +1,4 @@
+import { useCategoryStore } from "./category"
 import { useAuthStore } from "./auth/auth"
 import { useToastStore } from "./toastStore"
 import { useUserStore } from "./auth/user"
@@ -9,6 +10,7 @@ import { useProfileStore } from "./auth/profile"
 import { useOrderStore } from "./order"
 
 export {
+    useCategoryStore,
     useToastStore,
     useAuthStore,
     useUserStore,

@@ -1,24 +1,28 @@
 <script setup>
+import { useRestaurantStore } from '@/stores'
+
+const restaurantStore = useRestaurantStore();
+
 const props = defineProps({
   modelValue: { type: [String, Number], default: '' }
 })
-const emit = defineEmits(['update:modelValue'])
 
-const onInput = (e) => emit('update:modelValue', e.target.value)
 const clear = () => emit('update:modelValue', '')
 </script>
 
 <template>
   <div :class="['input-container', { active: !!props.modelValue }]">
     <input
-      :value="props.modelValue"
-      @input="onInput"
+      @focus="restaurantStore.state.searching = true"
+      @blur="restaurantStore.state.searching = false"
+      v-model="restaurantStore.filters['search']"
       type="text"
       placeholder="O que vai pedir hoje?"
       class="search-input"
+      @keyup.enter="restaurantStore.getRestaurantsFiltered()"
     />
     <img class="search-icon" src="../../assets/img/navigationBar/search.svg" alt="">
-    <button v-if="props.modelValue" class="cancel" @click="clear">x</button>
+    <button class="cancel" @click="delete restaurantStore.filters['search']; restaurantStore.restaurantsFiltered = []">x</button>
   </div>
 </template>
 

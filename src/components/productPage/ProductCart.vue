@@ -16,7 +16,7 @@ const route = useRoute();
             <span class="product.quantityLabel">Qtd: {{ useCart.product.quantity }}</span>
         </div>
         <div class="bottom-section">
-            <div class="product.quantity">
+            <div class="quantity">
                 <button class="button remove"
                     @click="useCart.product.quantity > 1 ? useCart.product.quantity-- : useCart.product.quantity">-</button>
                 <span class="number">{{ useCart.product.quantity }}</span>

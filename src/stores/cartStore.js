@@ -42,11 +42,14 @@ export const useCartStore = defineStore("cart", () => {
     }
 
     async function addToCart(restaurant) {
-        if (cart.value == null) cart.value = [];
+        if (cart.value == null) await getCartOrders();
         const orderObject = cart.value.findIndex(o => o.restaurant.id == restaurant);
+        console.log(orderObject, restaurant);
 
         if (orderObject != -1) {
             const existingProductInCart = cart.value[orderObject].products.find(p => p.observation == product.observation);
+
+            console.log(existingProductInCart);
 
             if (existingProductInCart) {
                 existingProductInCart.quantity += product.quantity;
@@ -56,6 +59,7 @@ export const useCartStore = defineStore("cart", () => {
             else {
                 try {
                     product.order = cart.value[orderObject].id;
+                    console.log('Product: ', product);
                     const order = await OrderService.addProductInOrder(product);
                     cart.value[orderObject] = order;
                     toastStore.notify("Produto adicionado ao carrinho!", "success");
@@ -99,20 +103,21 @@ export const useCartStore = defineStore("cart", () => {
             toastStore.notify('Erro ao atualizar seu pedido', 'error');
         }
     }
-    async function removeFromCart(idProductOrder, indexRestaurant) {
-        const productIndex = cart.value[indexRestaurant].products.findIndex(p => p.id == idProductOrder);
+    async function removeFromCart(idProductOrder, indexOrder) {
+        console.log(indexOrder);
+        const productOrderIndex = cart.value[indexOrder].products.findIndex(p => p.id == idProductOrder);
 
-        if (cart.value[indexRestaurant].products[productIndex].quantity == 1) {
-            await updateProductInOrder(cart.value[indexRestaurant].products[productIndex], indexRestaurant);
+        if (cart.value[indexOrder].products[productOrderIndex].quantity >= 1) {
+            await updateProductInOrder(cart.value[indexOrder].products[productOrderIndex], indexOrder);
         }
         else {
-            if (cart.value[indexRestaurant].products.length == 1) {
-                await deleteOrder(cart.value[indexRestaurant].id);
+            if (cart.value[indexOrder].products.length == 1) {
+                await deleteOrder(cart.value[indexOrder].id);
             }
             else {
                 try {
                     const order = await OrderService.deleteProductInOrder(idProductOrder);
-                    cart.value[indexRestaurant] = order;
+                    cart.value[indexOrder] = order;
                 }
                 catch(error) {
                     console.error('Error in DELETE product order: ', error);
@@ -135,6 +140,9 @@ export const useCartStore = defineStore("cart", () => {
     }
 
     const totalPrice = computed(() => {
+        if (cart.value == null) {
+            return 0.00;
+        }
         return cart.value.reduce((accumulator, currentValue) => {
             return accumulator + parseFloat(currentValue.totalValue);
         }, 0.00);

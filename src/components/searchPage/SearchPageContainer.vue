@@ -3,8 +3,6 @@ import SearchBarContainer from "./SearchBarContainer.vue";
 import { ref } from 'vue'
 import SearchBar from './SearchBar.vue'
 import SearchList from './SearchList.vue'
-
-const searchInput = ref('')
 </script>
 
 <template>
@@ -12,7 +10,7 @@ const searchInput = ref('')
     <div class="search-bar-container">
       <SearchBar v-model="searchInput" />
     </div>
-    <SearchList :query="searchInput" />
+    <SearchList />
   </div>
 </template>
 <style scoped>
