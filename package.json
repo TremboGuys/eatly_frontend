@@ -15,9 +15,11 @@
     "@vueuse/core": "^13.9.0",
     "axios": "^1.12.2",
     "buffer": "^6.0.3",
+    "getenv": "^2.0.0",
     "pinia": "^3.0.1",
     "qrcode-pix": "^5.0.0",
     "qrcode.vue": "^3.6.0",
+    "v-mask": "^2.3.0",
     "vite-plugin-pwa": "^1.1.0",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0",
@@ -29,7 +31,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.3",
-    "sass": "^1.87.0",
+    "sass": "^1.93.2",
     "vite": "^6.2.4",
     "vite-plugin-vue-devtools": "^7.7.2",
     "vite-svg-loader": "^5.1.0"

@@ -22,6 +22,7 @@ import TitleProduct from "./productPage/TitleProduct.vue";
 import RatingProduct from "./productPage/RatingProduct.vue";
 import DescriptionProduct from "./productPage/DescriptionProduct.vue";
 import ProductCart from "./productPage/ProductCart.vue";
+import ObservationProduct from "./productPage/ObservationProduct.vue";
 import HomeContainer from "./home/HomeContainer.vue";
 import HomeCarousel from './home/carousel/HomeCaroulselContainer.vue';
 import HomeCategories from './home/categories/HomeCategories.vue';
@@ -45,6 +46,7 @@ import OrderStatus from "./orderStatus/OrderStatus.vue";
 import OrderHeader from "./orders/OrderHeader.vue";
 import OrdersInProgress from "./orders/OrdersInProgress.vue";
 import HistoryOrders from "./orders/HistoryOrders.vue";
+import Address from '@/components/address/Address.vue';
 
 export {
     InputsProps,
@@ -71,6 +73,7 @@ export {
     RatingProduct,
     DescriptionProduct,
     ProductCart,
+    ObservationProduct,
     HomeContainer,
     HomeCarousel,
     HomeCategories,
@@ -93,5 +96,6 @@ export {
     OrderStatus,
     OrderHeader,
     OrdersInProgress,
-    HistoryOrders, 
+    HistoryOrders,
+    Address
 }
