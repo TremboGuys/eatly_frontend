@@ -1,5 +1,6 @@
 <script setup>
 import FavItem from "@/components/favorites/FavItem.vue";
+import LoadingScreen from "@/components/global/LoadingScreen.vue";
 import { useFavorites } from "@/composables/favorite";
 
 const { favoriteProducts, loading } = useFavorites();
@@ -11,10 +12,9 @@ const { favoriteProducts, loading } = useFavorites();
       <span class="text">Favoritos</span>
     </div>
 
-    <div v-if="loading" class="loading"><img src="../../assets/img/eatly.gif" alt=""></div>
     <div class="lista">
-
-      <FavItem 
+      <LoadingScreen v-if="loading" />
+      <FavItem
         v-for="product in favoriteProducts" 
         :key="product.id" 
         :product="product" 

@@ -1,6 +1,6 @@
 <script setup>
 import { reactive } from 'vue';
-import { InputsProps, ButtonSubmit, FaceButton, GoogleButton, HaveAnAccount } from '@/components';
+import { InputsProps, ButtonSubmit, FaceButton, GoogleButton, HaveAnAccount, LoadingScreen } from '@/components';
 import { useUserStore } from '@/stores';
 import { googleSdkLoaded } from 'vue3-google-login';
 
@@ -29,7 +29,7 @@ function login() {
 </script>
 
 <template>
-  <div class="container">
+  <div class="container" v-if="!userStore.state.loading">
     <img src="@/assets/img/logo.png" class="logo" alt="">
     <h1 class="title">Bem vindo de volta!</h1>
     <div class="hr"></div>
@@ -43,6 +43,7 @@ function login() {
     <GoogleButton @click="login" />
     <HaveAnAccount />
   </div>
+  <LoadingScreen v-else />
 </template>
 
 <style scoped>

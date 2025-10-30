@@ -29,19 +29,20 @@
                 display: flex;
                 align-items: end;
                 position: relative;
+                margin-bottom: 20px;
                 img{
-                    width: 100px;
-                    border: 1px solid black;
-                    border-radius: 50px;
+                    width: 80px;
+                    height: 80px;
+                    border-radius: 50%;
                 }
                 i{  
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     padding: 15px;
-                    left: 4.5em;
+                    left: 3.2em;
                     bottom: 0;
-                    top: 4.5em;
+                    top: 3.3em;
                     font-size: 1em;
                     width: 30px;
                     height: 30px;

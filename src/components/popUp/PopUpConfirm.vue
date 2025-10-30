@@ -33,5 +33,5 @@ const emit = defineEmits(['close'])
   </div>
 </template>
 <style scoped>
-@import '@/assets/sass/coupon/_popupConfirm.scss';
+@import '@/assets/sass/popUp/_popUpConfirm.scss';
 </style>

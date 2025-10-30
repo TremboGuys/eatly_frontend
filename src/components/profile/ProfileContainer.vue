@@ -1,5 +1,9 @@
 <script setup>
-import ProfileListContainer from './ProfileListContainer.vue';
+import { ProfileListContainer } from '@/components';
+import { useProfileStore } from '@/stores';
+import Burguer from '../../assets/img/burger.png';
+
+const { profile } = useProfileStore();
 </script>
 
 <template>
@@ -7,11 +11,11 @@ import ProfileListContainer from './ProfileListContainer.vue';
         <h1>Perfil</h1>
         <div class="info-container">
             <div class="profile-pic">
-                <img src="../../assets/img/burger.png" alt="">
+                <img :src="profile.photo != '' ? profile.photo : Burguer" alt="">
                 <!-- <i class="fa-solid fa-pencil"></i> -->
             </div>
-            <h2 class="user-name">Lucas Diniz</h2>
-            <p class="user-email">lucasdiniz1708@gmail.com</p>
+            <h2 class="user-name">{{ profile.name }}</h2>
+            <p class="user-email">{{ profile.email }}</p>
         </div>
         <div class="profile-list">
             <ProfileListContainer />
