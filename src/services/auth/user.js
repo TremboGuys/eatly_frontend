@@ -7,8 +7,13 @@ class UserService {
         return response.data;
     }
 
+    async updateUser(user) {
+        const response = await api.patch('user/update/', user);
+        return true;
+    }
+
     async registerTelephone(telephone) {
-        await api.post('telephones/', telephone);
+        await api.post('telephones/', telephone, { headers: { skipAuth: true } });
         return true;
     }
 
@@ -18,23 +23,32 @@ class UserService {
     }
 
     async regiterAddress(address) {
-        await api.post('addresses/', address);
+        await api.post('addresses/', address, { headers: { skipAuth: true } });
         return true;
     }
 
     async registerNaturalPerson(naturalPersonData) {
-        await api.post('naturalPersons/', naturalPersonData);
+        await api.post('naturalPersons/', naturalPersonData, { headers: { skipAuth: true } });
         return true;
     }
 
-    async updateNaturalPerson(naturalPersonData) {
+    async updateNaturalPersonGoogle(naturalPersonData) {
+        await api.patch(`naturalPersons/me/google/`, naturalPersonData, { headers: { skipAuth: true } });
+        return true;
+    }
+
+    async updateProfileNaturalPerson(naturalPersonData) {
         await api.patch(`naturalPersons/me/`, naturalPersonData);
         return true;
     }
 
     async registerByGoogle(data) {
         const response = await api.post('user/register/google/', data, { headers: { skipAuth: true } });
-        console.log(response);
+        return response.data;
+    }
+
+    async verifyEmail(token) {
+        const response = await api.post('user/register/code/', token, { headers: { skipAuth: true } });
         return response.data;
     }
 }

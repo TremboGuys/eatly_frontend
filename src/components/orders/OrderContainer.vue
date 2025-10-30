@@ -1,6 +1,9 @@
 <script setup>
+import { useOrderStore } from '@/stores'
 import { ref } from 'vue'
 import { OrdersInProgress, HistoryOrders, OrderHeader } from '../index.js'
+
+const orderStore = useOrderStore();
 const tab = ref('in-progress')
 const updateTab = (newTab) => {
   tab.value = newTab

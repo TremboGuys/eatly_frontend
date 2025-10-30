@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import PopupConfirm from './PopupConfirm.vue'
+import PopupConfirm from './PopUpConfirm.vue'
 const showPopup = ref(false)
 const handleRedeem = () => {
     showPopup.value = true

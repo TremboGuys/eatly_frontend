@@ -1,10 +1,11 @@
 <script setup>
-import { InputsProps, SignUpSubmit, FaceButton, GoogleButton, HaveAnAccount, PopUpFinishLogin } from '@/components';
+import { InputsProps, SignUpSubmit, FaceButton, GoogleButton, HaveAnAccount, LoadingScreen, PopUpConfirm, PopUpFinishLogin } from '@/components';
 import { useRegisterClientComposable } from '@/composables';
 import { useUserStore } from '@/stores';
 import { reactive } from 'vue';
 import { verifyEmail, verifyPassword, verifyCellphoneNumber } from '@/utils/validators';
 import { googleSdkLoaded } from 'vue3-google-login';
+import { useRouter } from 'vue-router';
 
 const user = reactive({
   user: {
@@ -23,11 +24,10 @@ const user = reactive({
   }
 });
 
-console.log(import.meta.env.VITE_CLIENT_ID);
-
 const useRegisterClient = useRegisterClientComposable();
 
 const userStore = useUserStore();
+const router = useRouter();
 
 function changeDataUser(data) {
   if (['email', 'password'].includes(data.field)) {
@@ -78,7 +78,6 @@ function login() {
 
 const handleLoginSuccess = (response) => {
   const { credential } = response;
-  console.log("Access Token", credential);
 };
 
 const handleLoginError = () => {
@@ -87,7 +86,7 @@ const handleLoginError = () => {
 </script>
 
 <template>
-  <div class="container" :style="userStore.state.successLoginGoogle ? 'filter: blur(5px);pointer-events: none;' : ''">
+  <div class="container" :style="userStore.state.successLoginGoogle ? 'filter: blur(5px);pointer-events: none;' : ''" v-if="!userStore.state.loading && !userStore.state.popUp">
     <img src="@/assets/img/logo.png" class="logo" alt="">
     <h1 class="title">Cadastre-se</h1>
     <div class="hr"></div>
@@ -103,6 +102,8 @@ const handleLoginError = () => {
     <div class="hr"></div>
     <GoogleButton @click="login" />
   </div>
+  <LoadingScreen v-if="userStore.state.loading" />
+  <PopUpConfirm :show="true" title="Verificação de email!" message="Acesse o link que enviamos no seu email para ativar sua conta!" type="warning" v-if="userStore.state.popUp" @close="router.push('/signin'); userStore.state.popUp = false;" />
   <PopUpFinishLogin v-if="userStore.state.successLoginGoogle" />
 </template>
 
