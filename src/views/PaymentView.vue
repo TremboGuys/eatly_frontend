@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { PaymentScreen, SelectOption } from '@/components/index.js'
+import { PaymentScreen, SelectOption, FullPayment } from '@/components/index.js'
 
 const selectedMethod = ref(null)
 
@@ -11,14 +11,22 @@ function handleSelect(method) {
 <template>
   <div class="container">
     <h1>Método de Pagamento</h1>
+
     <div class="options">
-      <SelectOption @selectMethod="handleSelect" />
+      <SelectOption :selected="selectedMethod" @selectMethod="handleSelect" />
     </div>
+
     <PaymentScreen v-if="selectedMethod" :method="selectedMethod" />
+
+    <FullPayment v-if="selectedMethod" :orderTotal="150.00" :deliveryFee="15.00" :couponDiscount="20.00" />
   </div>
 </template>
 <style scoped lang="scss">
 .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   h1 {
     display: flex;
     align-items: center;
@@ -27,6 +35,7 @@ function handleSelect(method) {
     color: #333;
     font-family: 'Poppins', sans-serif;
   }
+
   .options {
     display: flex;
     flex-direction: column;
