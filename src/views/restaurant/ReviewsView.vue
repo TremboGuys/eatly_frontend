@@ -1,8 +1,11 @@
 <script setup>
+import ReviewScreen from '@/components/reviewRestaurant/ReviewScreen.vue';
 </script>
 
 <template>
-  <div></div>
+  <div>
+    <ReviewScreen/>
+  </div>
 </template>
 
 <style scoped>
