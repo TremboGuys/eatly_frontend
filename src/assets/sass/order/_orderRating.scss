@@ -1,0 +1,96 @@
+.ratingContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+    .textareaContainer{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        textarea {
+            min-height: 5rem;
+            padding: 8px 10px;
+            border: 2px solid rgb(173, 173, 173);
+            outline: none;
+            font-family: 'Poppins', sans-serif;
+            width: 100%;
+        }
+
+                .send-button {
+            width: 80%;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+            border-radius: 40px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.3s;
+            border: none;
+            margin-bottom: 3rem;
+            background-color: #444801;
+            color: #fff;
+            &:hover {
+                background-color: #303002;
+            }
+        }
+
+    }
+}
+
+.star-rating {
+    display: inline-flex;
+    gap: 0.25rem;
+    align-items: center;
+
+    .star-btn {
+        appearance: none;
+        border: none;
+        background: transparent;
+        padding: 0.25rem;
+        cursor: pointer;
+        border-radius: 0.35rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 0;
+        transition: transform .08s ease, background .08s ease;
+        font-size: 1.4rem;
+
+        i {
+            pointer-events: none;
+            transition: transform .12s ease;
+        }
+
+        &:hover,
+        &:focus {
+            transform: translateY(-2px);
+            outline: none;
+            background: rgba(0, 0, 0, 0.03);
+        }
+
+        &.readonly {
+            cursor: default;
+
+            &:hover {
+                transform: none;
+                background: transparent;
+            }
+        }
+
+        &.filled i {
+            color: #f2b01e;
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.12);
+        }
+
+        &:not(.filled) i {
+            color: #bfc6cc;
+        }
+    }
+}
+
