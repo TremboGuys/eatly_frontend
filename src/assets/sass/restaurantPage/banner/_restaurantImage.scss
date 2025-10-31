@@ -10,16 +10,19 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 5rem;
+            min-width: 5rem;
+            max-width: 5rem;
             bottom: -20px;
             height: auto;
             border-radius: 50%;
             border: 1px solid #ddd;
             background-color: #fff;
+            padding: 0.1rem;
+
             img {
                 width: 100%;
-                height: auto;
-                border-radius: 0 0 20px 20px;
+                height: 100%;
+                border-radius: 50%;
             }
         }
     }
