@@ -2,6 +2,8 @@
 import { ref, computed } from 'vue';
 import { useCartStore, usePaymentStore } from '@/stores';
 import FullPayment from './FullPayment.vue';
+import { VueSpinnerPuff } from 'vue3-spinners';
+import { useClipboard } from '@vueuse/core';
 
 const selectedMethod = ref(null)
 const cartStore = useCartStore();
@@ -51,16 +53,16 @@ function submitCard() {
     </div>
     <div v-else-if="props.method === 'pix'" class="pix-section">
       <h2>Pagamento via Pix</h2>
-      <button @click="paymentStore.createPayment" class="btn" :disabled="paymentStore.state.loading">Pagar com
-        Pix</button>
-      <div v-if="paymentStore.payment?.qr_code_base64" class="qr-code">
+      <button @click="paymentStore.createPayment" class="btn" :disabled="paymentStore.state.loading">Pagar com Pix</button>
+      <div v-if="!paymentStore.state.createPayment && paymentStore.payment?.qr_code_base64" class="qr-code">
         <h3>Escaneie com seu app Pix:</h3>
         <img :src="'data:image/png;base64,' + paymentStore.payment.qr_code_base64" alt="QR Code Pix" />
-        <p><strong>Copia e cola:</strong> <span class="pix-code">{{ paymentStore.payment.qr_code }}</span></p>
+        <p><strong>Copia e cola:</strong> <span class="pix-code" @click="paymentStore.copyQrCodeClipboard">{{ paymentStore.payment.qr_code }}</span></p>
       </div>
     </div>
+    <VueSpinnerPuff v-if="paymentStore.state.createPayment"  color="#444801" size="120" />
   </div>
-    <FullPayment v-if="selectedMethod" :orderTotal="150.00" :deliveryFee="15.00" :couponDiscount="20.00" />
+  <FullPayment v-if="selectedMethod" :orderTotal="150.00" :deliveryFee="15.00" :couponDiscount="20.00" />
 </template>
 
 <style scoped>
