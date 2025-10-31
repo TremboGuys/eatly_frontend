@@ -4,13 +4,6 @@ import { useRestaurantStore } from '@/stores';
 import { reactive, ref, onMounted } from 'vue';
 import { categories } from '@/metaDatas/categories.js';
 
-// onMounted(async () => {
-//     const data = await useCategoryStore.getCategories();
-//     categories.value = data;
-// })
-
-// const categories = ref([]);
-
 const restaurant = reactive({
     name: '',
     cnpj: '',

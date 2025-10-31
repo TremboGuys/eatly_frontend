@@ -1,6 +1,6 @@
 <script setup>
 import { InputsProps, ButtonSubmit, InputFile } from '@/components';
-import { useCategoryStore } from '@/composables';
+import { useCategoryStore } from '@/stores';
 import { reactive } from 'vue';
 
 const category = reactive({
