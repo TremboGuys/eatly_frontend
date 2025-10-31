@@ -35,7 +35,7 @@ import ListItem from "./home/bestsellers/ListItem.vue";
 import CouponAvailable from "./coupon/CouponAvailable.vue";
 import CouponRedeemed from "./coupon/CouponRedeemed.vue";
 import CouponHeader from "./coupon/CouponHeader.vue";
-import PopupConfirm from "./coupon/PopupConfirm.vue";
+import PopUpConfirm from "./coupon/PopUpConfirm.vue";
 import PopUpFinishLogin from "./home/pop-up/PopUpFinishLogin.vue";
 import ConfirmationEmail from '@/components/confirmation/ConfirmationEmail.vue';
 import ReviewScreen from "./reviewRestaurant/ReviewScreen.vue";
@@ -45,8 +45,14 @@ import OrderStatusComp from "./orderStatus/OrderStatusComp.vue";
 import OrderStatus from "./orderStatus/OrderStatus.vue";
 import OrderHeader from "./orders/OrderHeader.vue";
 import OrdersInProgress from "./orders/OrdersInProgress.vue";
+import OrderCard from "./orders/OrderCard.vue";
 import HistoryOrders from "./orders/HistoryOrders.vue";
 import Address from '@/components/address/Address.vue';
+import ProfileContainer from "./profile/ProfileContainer.vue";
+import ProfileListContainer from "./profile/ProfileListContainer.vue";
+import ProfileList from "./profile/ProfileList.vue";
+import LoadingScreen from "./global/LoadingScreen.vue";
+import FullPayment from "./payment/FullPayment.vue";
 
 export {
     InputsProps,
@@ -86,7 +92,7 @@ export {
     CouponAvailable,
     CouponRedeemed,
     CouponHeader,
-    PopupConfirm,
+    PopUpConfirm,
     PopUpFinishLogin,
     ConfirmationEmail,
     ReviewScreen,
@@ -96,6 +102,12 @@ export {
     OrderStatus,
     OrderHeader,
     OrdersInProgress,
+    OrderCard,
     HistoryOrders,
-    Address
+    Address,
+    ProfileContainer,
+    ProfileListContainer,
+    ProfileList,
+    LoadingScreen,
+    FullPayment
 }

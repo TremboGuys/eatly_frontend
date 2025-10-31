@@ -1,8 +1,8 @@
 <script setup>
 import FavItem from "@/components/favorites/FavItem.vue";
-import { useFavorites } from "@/composables/favorite";
+import { useFavoriteStore } from "@/stores";
 
-const { favoriteProducts, loading } = useFavorites();
+const favoriteStore = useFavoriteStore();
 </script>
 
 <template>
@@ -11,16 +11,14 @@ const { favoriteProducts, loading } = useFavorites();
       <span class="text">Favoritos</span>
     </div>
 
-    <div v-if="loading" class="loading"><img src="../../assets/img/eatly.gif" alt=""></div>
     <div class="lista">
-
-      <FavItem 
-        v-for="product in favoriteProducts" 
-        :key="product.id" 
-        :product="product" 
+      <FavItem
+        v-for="(favorite, favoriteIndex) in favoriteStore.favorites" 
+        :key="favoriteIndex" 
+        :favorite="favorite" 
       />
       
-      <div v-if="!loading && favoriteProducts.length === 0" class="empty">
+      <div v-if="!favoriteStore.state.loading && (favoriteStore.favorites == null || favoriteStore.favorites.length == 0)" class="empty">
         Nenhum favorito encontrado.
       </div>
     </div>

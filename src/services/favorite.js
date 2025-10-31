@@ -11,8 +11,8 @@ class FavoriteService {
         return response.data;
     }
 
-    async deleteFavorite(idProduct) {
-        await api.delete(`favorites/${idProduct}`);
+    async deleteFavorite(idFavorite) {
+        await api.delete(`favorites/${idFavorite}/`);
         return true;
     }
 }

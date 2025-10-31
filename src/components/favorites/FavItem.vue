@@ -1,15 +1,15 @@
 <script setup>
 import "@fortawesome/fontawesome-free/css/all.css";
 import { ref, onMounted, onBeforeUnmount } from "vue";
-import { useToastStore } from "@/stores";
+import { useFavoriteStore, useToastStore } from "@/stores";
 import FavoriteService from "@/services/favorite";
 
-const isFavorite = ref(true);
+const favoriteStore = useFavoriteStore();
 const showMenu = ref(false);
 const dropdownRef = ref(null);
 
 const props = defineProps({
-  product: {
+  favorite: {
     type: Object,
   },
 });
@@ -40,21 +40,8 @@ onBeforeUnmount(() => {
 
 const toggleFavorite = async () => {
   try {
-    if (isFavorite.value) {
-      // achar o favorito que corresponde a este produto
-      const favorite = favoriteStore.favorites.find(
-        f => f.product.id === props.product.id
-      );
-      if (favorite) {
-        await FavoriteService.deleteFavorite(favorite.id);
-        isFavorite.value = false;
-        toastStore.notify("Removido dos favoritos", "info");
-      }
-    } else {
-      await FavoriteService.createFavorite({ product_id: props.product.id });
-      isFavorite.value = true;
-      toastStore.notify("Adicionado aos favoritos", "success");
-    }
+    await FavoriteService.deleteFavorite(props.favorite.id);
+    toastStore.notify("Removido dos favoritos", "success");
   } catch (error) {
     toastStore.notify("Erro ao alterar favoritos", "error");
   } finally {
@@ -66,16 +53,16 @@ const toggleFavorite = async () => {
 <template>
   <div class="listItem">
     <router-link
-      :to="`/product/${props.product.id}`"
+      :to="`restaurant/${props.favorite.product.restaurant}/product/${props.favorite.product.id}`"
       class="listItemLink"
     >
       <div class="left-side">
         <div class="logo">
-          <img :src="props.product.url_file" alt="" />
+          <img :src="props.favorite.product.url_file" alt="" />
         </div>
         <div class="info">
-          <p class="restaurant-name">{{ props.product.name }}</p>
-          <p class="restaurant-description">{{ props.product.description }}</p>
+          <p class="restaurant-name">{{ props.favorite.product.name }}</p>
+          <p class="restaurant-description">{{ props.favorite.product.description }}</p>
           <div class="restaurant-logo">
           </div>
         </div>
@@ -95,10 +82,9 @@ const toggleFavorite = async () => {
       <div v-if="showMenu" class="overlay" @click="closeMenu"></div>
 
       <ul v-if="showMenu" class="dropdown-menu">
-        <li>Adicionar aos favoritos <i class="fa-regular fa-heart"></i></li>
         <li>Compartilhar <i class="fa-solid fa-share"></i></li>
-        <li class="AddOrRemFav" @click="toggleFavorite">
-          {{ isFavorite ? "Remover dos favoritos" : "Adicionar aos favoritos" }}
+        <li class="AddOrRemFav" @click="favoriteStore.deleteFavorite(props.favorite.id)">
+          Remover dos favoritos
           <span><i class="fa-sharp fa-solid fa-trash"></i></span>
         </li>
       </ul>

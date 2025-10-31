@@ -1,6 +1,8 @@
 <script setup>
 import { useCartStore, usePaymentStore } from '@/stores';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const cartStore = useCartStore();
 const paymentStore = usePaymentStore();
 </script>

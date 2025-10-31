@@ -1,12 +1,15 @@
-import { reactive } from "vue"
-import { defineStore } from "pinia"
-import { AuthService } from "@/services"
-import { useToastStore } from "@/stores"
+import { reactive } from "vue";
+import { useRouter } from "vue-router";
+import { defineStore } from "pinia";
+import { AuthService } from "@/services";
+import { useToastStore } from "@/stores";
 
 export const useAuthStore = defineStore('auth', () => {
     const state = reactive({
         logged: false
     });
+
+    const router = useRouter();
 
     const toastStore = useToastStore();
 
@@ -57,9 +60,16 @@ export const useAuthStore = defineStore('auth', () => {
         }
     }
 
+    function logout() {
+        localStorage.removeItem('access');
+        localStorage.removeItem('refresh');
+        router.push('/');
+    }
+
     return {
         state,
         verifyAuth,
-        isExpiredToken
+        isExpiredToken,
+        logout
     }
 })

@@ -4,12 +4,20 @@ import { useCartStore } from '@/stores';
 import { ref } from 'vue';
 import { onBeforeMount, onMounted } from 'vue';
 
-const useCart = useCartStore();
+const cartStore = useCartStore();
+const showComponent = ref(false);
+
+onMounted(async() => {
+  if (cartStore.cart == null) {
+    await cartStore.getCartOrders();
+  }
+  showComponent.value = true;
+})
 </script>
 
 <template>
   <div class="container">
-    <CartPage />
+    <CartPage v-if="showComponent" />
   </div>
 </template>
 
