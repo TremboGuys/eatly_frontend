@@ -1,29 +1,34 @@
 <script setup>
+import { useRouter } from 'vue-router'
+import { useOrderStore } from '@/stores';
+
+const orderStore = useOrderStore();
 const props = defineProps({
     tab: {
         type: String,
         required: true
     }
-})
-const emit = defineEmits(['update-tab'])
+});
+const emit = defineEmits(['update-tab']);
 const changeTab = (newTab) => {
     emit('update-tab', newTab)
-}
+};
+
+const router = useRouter();
 </script>
 <template>
     <header class="orderHeaderContainer">
         <div class="ArrowAvailable">
-            <i class="fa-solid fa-arrow-left"></i>
+            <i class="fa-solid fa-arrow-left" @click="router.push('/profile')"></i>
             <h2>Meus Pedidos</h2>
         </div>
-        <h3>Hamburgueria - Magia Urbana</h3>
         <div class="AvailableStatus">
             <div class="statusGroup">
                 <span class="status" :class="{ 'is-active': props.tab === 'in-progress' }"
                     @click="changeTab('in-progress')">
                     Em andamento
                 </span>
-                <span class="status" :class="{ 'is-active': props.tab === 'history' }" @click="changeTab('history')">
+                <span class="status" :class="{ 'is-active': props.tab === 'history' }" @click="changeTab('history'); orderStore.getOrdersDelivered()">
                     Histórico
                 </span>
             </div>

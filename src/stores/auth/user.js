@@ -6,7 +6,7 @@ import { useRouter } from "vue-router";
 import { reactive } from "vue";
 import router from "@/router";
 
-export const useUserStore = defineStore('client', () => {
+export const useUserStore = defineStore('user', () => {
     const state = reactive({
         successLoginGoogle: false,
         userGoogle: {
@@ -14,7 +14,9 @@ export const useUserStore = defineStore('client', () => {
             name: '',
             email: '',
             photo: ''
-        }
+        },
+        loading: false,
+        popUp: false
     })
     const useLogin = useLoginComposable();
     const toastStore = useToastStore();
@@ -31,6 +33,7 @@ export const useUserStore = defineStore('client', () => {
         }
 
         try {
+            state.loading = true;
             const formDataUser = new FormData();
             formDataUser.append("email", user.user.email);
             formDataUser.append("password", user.user.password);
@@ -38,23 +41,21 @@ export const useUserStore = defineStore('client', () => {
             if (Object.hasOwn(user.user, "file")) {
                 formDataUser.append("file", user.user.file);
             }
-            const tokenResponse = await UserService.registerUser(formDataUser);
-            localStorage.setItem("access", tokenResponse.access);
-            localStorage.setItem("refresh", tokenResponse.refresh);
+
+            const userResponse = await UserService.registerUser(formDataUser);
+            user.natural_person['user'] = userResponse.id;
+            user.telephone['user'] = userResponse.id;
+
             await UserService.registerNaturalPerson(user.natural_person);
             await UserService.registerTelephone(user.telephone);
             if (user.user.role != "client") {
                 await UserService.regiterAddress(user.address);
             }
-            routerComponent.push("/dashboard");
-            router.afterEach((to) => {
-                if (to.path == "/dashboard") {
-                    toastStore.notify("Login realizado com sucesso!", "success");
-                }
-            })
+            state.loading = false;
+            state.popUp = true;
         } catch(error) {
             console.error('Erro ao criar o cadastro do cliente: ', error);
-
+            state.loading = false;
             if (Object.hasOwn(error.response.data, "email")) {
                 toastStore.notify("Já existe um usuário com este email!", "error");
             }
@@ -63,7 +64,10 @@ export const useUserStore = defineStore('client', () => {
 
     async function sendTokenToRegisterByGoogle(data) {
         try {
+            state.loading = true;
             const userResponse = await UserService.registerByGoogle(data);
+            state.loading = false;
+
             state.successLoginGoogle = true;
             state.userGoogle.id = userResponse.id;
             state.userGoogle.photo = userResponse.photo;
@@ -72,16 +76,21 @@ export const useUserStore = defineStore('client', () => {
             localStorage.setItem("access", userResponse.access);
             localStorage.setItem("refresh", userResponse.refresh);
         } catch(error) {
+            state.loading = false;
             console.error("Error in POST Google Token: ", error);
         }
     }
 
     async function registerByGoogle(user) {
+        user.natural_person['user'] = state.userGoogle.id;
+        user.telephone['user'] = state.userGoogle.id;
+        state.loading = true;
         try {
-            await UserService.updateNaturalPerson(user.natural_person);
+            await UserService.updateNaturalPersonGoogle(user.natural_person);
         } catch(error) {
             console.error("Error in PATCH natural person: ", error);
             toastStore.notify("Erro ao criar sua conta!", "error");
+            state.loading = false;
             return;
         }
         try {
@@ -89,8 +98,10 @@ export const useUserStore = defineStore('client', () => {
         } catch(error) {
             console.error("Error in PATCH telephone: ", error);
             toastStore.notify("Erro ao criar sua conta!", "error");
+            state.loading = false;
             return;
         }
+        state.loading = false;
         routerComponent.push("/dashboard");
     }
 
@@ -101,14 +112,17 @@ export const useUserStore = defineStore('client', () => {
         }
 
         try {
+            state.loading = true;
             const response = await AuthService.login(user);
             localStorage.setItem("access", response.access);
             localStorage.setItem("refresh", response.refresh);
             authStore.state.logged = true;
             toastStore.notify("Login realizado com sucesso!", "success");
             routerComponent.push("/dashboard");
+            state.loading = false;
         } catch(error) {
             console.error("Erro ao realizar o login: ", error);
+            state.loading = false;
             toastStore.notify("Erro ao realizar o login", "error");
         }
     }
@@ -125,12 +139,27 @@ export const useUserStore = defineStore('client', () => {
         }
     }
 
+    async function verifyEmail(tokenEmail) {
+        try {
+            state.loading = true;
+            const tokenResponse = await UserService.verifyEmail(tokenEmail);
+            localStorage.setItem("access", tokenResponse.access);
+            localStorage.setItem("refresh", tokenResponse.refresh);
+            state.loading = false;
+            state.popUp = true;
+        }
+        catch(error) {
+            console.error('Error in verify token pass to email: ', error);
+        }
+    }
+
     return {
         state,
         register,
         login,
         sendTokenToRegisterByGoogle,
         registerByGoogle,
-        loginByGoogle
+        loginByGoogle,
+        verifyEmail
     };
 });

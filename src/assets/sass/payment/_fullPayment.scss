@@ -1,0 +1,48 @@
+@media (max-width: 425px) {
+    .overlay {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 25vh;
+        display: flex;
+        flex-direction: column;
+        pointer-events: none;
+        .summary-box {
+            height: 25vh;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 20px 20px 0 0;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, .1);
+            padding: 1.2rem;
+            font-family: "Poppins", sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 6px;
+            pointer-events: all;
+            .row {
+                display: flex;
+                justify-content: space-between;
+                font-size: 1rem;
+                font-weight: 300;
+                &.total {
+                    font-size: 1.15rem;
+                    font-weight: 500;
+                }
+                .discount {
+                    color: #d62828;
+                }
+            }
+            .divider {
+                border-top: 1px solid #ddd;
+                margin: 6px 0;
+            }
+        }
+        .bottom-space {
+            height: 0vh;
+            background: transparent;
+        }
+    }
+
+}

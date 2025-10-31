@@ -1,48 +1,47 @@
 <script setup>
 import { ref, computed, onMounted } from "vue";
 import FoodCategory from "./FoodCategory.vue";
-import { useCategoryComposable } from "@/composables/category";
+import { useCategoryStore, useRestaurantStore } from "@/stores";
 
-const props = defineProps({
-  query: { type: String, default: "" },
-});
-
-const allCategories = ref([]);
-const { getCategories } = useCategoryComposable();
-
-onMounted(async () => {
-  //MOCK temporário
-  // allCategories.value = [
-  //   { id: 1, name: 'Pizzas',   url_image: 'pizza-category.png' },
-  //   { id: 2, name: 'Burgers',  url_image: 'burger-category.png' },
-  //   { id: 3, name: 'Sushi',    url_image: 'sushi-category.png' },
-  //   { id: 4, name: 'Salads',   url_image: 'salad-category.png' },
-  //   { id: 5, name: 'Desserts', url_image: 'dessert-category.png' }
-  // ]
-
-  allCategories.value = await getCategories();
-});
-
-const currentCategories = computed(() => {
-  const q = props.query?.trim().toLowerCase();
-  if (!q) return allCategories.value;
-  return allCategories.value.filter((c) => c.name.toLowerCase().includes(q));
-});
+const categoryStore = useCategoryStore();
+const restaurantStore = useRestaurantStore();
 </script>
-
 <template>
   <div class="list-container">
-    <h1>Categorias</h1>
-    <div class="list">
-      <FoodCategory
-        v-for="category in currentCategories"
-        :key="category.id"
-        :category="category"
-      />
+    <h1>{{ (Object.keys(restaurantStore.filters) > 0 || restaurantStore.state.searching) ? "Resultados" : "Categorias" }}</h1>
+    <div v-if="Object.keys(restaurantStore.filters) == 0" class="list">
+      <FoodCategory v-for="category in categoryStore.categories" :key="category.id" :category="category" />
     </div>
+    <ul v-else class="results">
+      <li v-for="(restaurant, restaurantIndex) in restaurantStore.restaurantsFiltered" :key="restaurantIndex" class="card">
+        <RouterLink class="card-link" :to="`/restaurant/${restaurant.id}`">
+          <div class="badge">
+            <img :src="restaurant.photo" :alt="restaurant.name" />
+          </div>
+          <div class="body">
+            <div class="name">
+              {{ restaurant.name }}
+            </div>
+            <div class="meta">
+              <span class="stars"><i class="fa-regular fa-star"></i>{{ restaurant.note }}</span>
+              <span>{{ restaurant.average_delivery_time }}min</span>
+              <span>$$</span>
+              <!-- <span class="cat">{{ restaurant.category }}</span> -->
+              <!-- <span class="dist">{{ restaurant.distance }}</span> -->
+            </div>
+            <div class="sla-price">
+            </div>
+            <!-- <div v-if="restaurant.reorder" class="reorder-chip">
+              {{ restaurant.reorder }}
+            </div> -->
+            <!-- <div v-if="restaurant.closed" class="closed">Fechado</div> -->
+          </div>
+          <i class="fa-regular fa-heart" aria-label="favorito"></i>
+        </RouterLink>
+      </li>
+    </ul>
   </div>
 </template>
-
 <style scoped>
 @import "@/assets/sass/searchPage/_searchList.scss";
 </style>

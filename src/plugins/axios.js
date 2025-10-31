@@ -5,8 +5,8 @@ import { useToastStore } from '@/stores';
 import router from '@/router';
 
 export const api = axios.create({
-  baseURL: 'https://eatly-backend-cbai.onrender.com/api/',
-  // baseURL: 'http://127.0.0.1:8000/api/',
+  // baseURL: 'https://eatly-backend-cbai.onrender.com/api/',
+  baseURL: 'http://127.0.0.1:8000/api/',
   withCredentials: true,        
 });
 
@@ -31,9 +31,9 @@ api.interceptors.response.use(
       router.push({ path: "/signin" });
 
       router.afterEach((to) => {
-        if (to.path == "/signin") {
-          toastStore.notify("Seu login expirou, por favor, logue novamente!", "error");
-        }
+        // if (to.path == "/signin") {
+        //   toastStore.notify("Seu login expirou, por favor, logue novamente!", "error");
+        // }
       })
     }
     return Promise.reject(err);

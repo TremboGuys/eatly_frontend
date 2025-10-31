@@ -2,26 +2,33 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 import { FavoriteService } from "@/services";
 import { useToastStore } from "./toastStore";
+import { reactive } from "vue";
 
 export const useFavoriteStore = defineStore('favorite', () => {
-    const favorites = ref([]);
+    const state = reactive({
+        loading: true,
+    });
+    const favorites = ref(null);
     const isFavorite = ref(false);
     const toastStore = useToastStore();
 
     async function getFavorites() {
-        try {
-            const response = await FavoriteService.getFavorites();
-            favorites.value = response;
-        } catch(error) {
-            console.error('Error in GET favorites: ', error);
-            toastStore.notify("Erro ao ver seus favoritos!", "error");
+        if (favorites.value == null) {
+            try {
+                const response = await FavoriteService.getFavorites();
+                favorites.value = response;
+            } catch(error) {
+                console.error('Error in GET favorites: ', error);
+                toastStore.notify("Erro ao ver seus favoritos!", "error");
+            }
         }
+        state.loading = false;
     }
 
     async function createFavorite(idProduct) {
         try {
             const response = await FavoriteService.createFavorite(idProduct);
-            favorites.value.push(response);
+            favorites.value = response;
             return true;
         } catch(error) {
             console.error('Error in POST favorite: ', error);
@@ -31,10 +38,14 @@ export const useFavoriteStore = defineStore('favorite', () => {
 
     async function deleteFavorite(idProduct) {
         try {
-            const response = await FavoriteService.deleteFavorite(idProduct);
+            const indexFavorite = getIndexFavorite(idProduct);
+
+            const favorite = favorites.value[indexFavorite];
+
+            const response = await FavoriteService.deleteFavorite(favorite.id);
 
             if (favorites.value.length > 0) {
-                const index = favorites.value.findIndex(i => i.id == idProduct);
+                const index = favorites.value.findIndex(i => i.id = favorite.id);
                 favorites.value.splice(index, 1);
             }
             return true;
@@ -46,15 +57,22 @@ export const useFavoriteStore = defineStore('favorite', () => {
     }
 
     async function verifyProductIsFavoriteById(idProduct) {
-        if (favorites.value.length == 0) {
+        if (favorites.value == null) {
             await getFavorites();
         }
-        const product = favorites.value.findIndex(p => p.id == idProduct);
+        const favorite = getIndexFavorite(idProduct);
+        
+        isFavorite.value = (favorite == -1) ? false : true;
+    }
 
-        isFavorite.value = (product == -1) ? false : true;
+    function getIndexFavorite(idProduct) {
+        const product = favorites.value.findIndex(p => p.product.id == idProduct);
+
+        return product;
     }
 
     return {
+        state,
         favorites,
         isFavorite,
         getFavorites,

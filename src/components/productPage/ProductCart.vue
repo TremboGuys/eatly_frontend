@@ -1,40 +1,28 @@
 <script setup>
-import { ref } from 'vue';
+import { reactive, ref } from 'vue';
+import { useProductComposable } from '@/composables';
 import { useCartStore } from '@/stores/cartStore';
+import { useRoute } from 'vue-router';
 
 const cartStore = useCartStore();
-
-const props = defineProps({
-    product: {
-        type: Object,
-        required: true
-    }
-});
-
-const quantity = ref(1);
-
-const addToCart = () => quantity.value++;
-const removeFromCart = () => {
-    if (quantity.value > 1) quantity.value--;
-};
-const addItem = () => {
-  cartStore.addToCart({ ...props.product, quantity: quantity.value });
-};
+const { product } = useProductComposable();
+const useCart = useCartStore();
+const route = useRoute();
 </script>
 <template>
     <div class="container">
         <div class="top-section">
-            <span class="priceValue" v-if="Object.hasOwn(product, 'price')">R$ {{ quantity == 0 ? '40,00' : (props.product.price * (quantity)).toFixed(2).toString().replace(".", ",") }}</span>
-            <span class="quantityLabel">Qtd: {{ quantity }}</span>
+            <span class="priceValue" v-if="Object.hasOwn(product, 'price')">R$ {{ useCart.product.quantity == 1 ? '40,00' : (product.price * (useCart.product.quantity)).toFixed(2).toString().replace(".", ",") }}</span>
+            <span class="product.quantityLabel">Qtd: {{ useCart.product.quantity }}</span>
         </div>
         <div class="bottom-section">
             <div class="quantity">
                 <button class="button remove"
-                    @click="cartStore.removeFromCart({ ...props.product }); quantity > 0 ? quantity-- : quantity">-</button>
-                <span class="number">{{ quantity }}</span>
-                <button class="button add" @click="quantity++">+</button>
+                    @click="useCart.product.quantity > 1 ? useCart.product.quantity-- : useCart.product.quantity">-</button>
+                <span class="number">{{ useCart.product.quantity }}</span>
+                <button class="button add" @click="useCart.product.quantity++">+</button>
             </div>
-            <button class="addCart" @click="cartStore.addToCart({ ...props.product, quantity: quantity, total: props.product.price * quantity}); console.log(props.product)">
+            <button class="addCart" @click="cartStore.addToCart(route.params.idRestaurant)">
                 Adicionar ao carrinho
             </button>
         </div>
