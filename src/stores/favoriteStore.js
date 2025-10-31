@@ -36,12 +36,16 @@ export const useFavoriteStore = defineStore('favorite', () => {
         }
     }
 
-    async function deleteFavorite(idFavorite) {
+    async function deleteFavorite(idProduct) {
         try {
-            const response = await FavoriteService.deleteFavorite(idFavorite);
+            const indexFavorite = getIndexFavorite(idProduct);
+
+            const favorite = favorites.value[indexFavorite];
+
+            const response = await FavoriteService.deleteFavorite(favorite.id);
 
             if (favorites.value.length > 0) {
-                const index = favorites.value.findIndex(i => i.id == idFavorite);
+                const index = favorites.value.findIndex(i => i.id = favorite.id);
                 favorites.value.splice(index, 1);
             }
             return true;
@@ -56,9 +60,15 @@ export const useFavoriteStore = defineStore('favorite', () => {
         if (favorites.value == null) {
             await getFavorites();
         }
-        const product = favorites.value.findIndex(p => p.product == idProduct);
+        const favorite = getIndexFavorite(idProduct);
+        
+        isFavorite.value = (favorite == -1) ? false : true;
+    }
 
-        isFavorite.value = (product == -1) ? false : true;
+    function getIndexFavorite(idProduct) {
+        const product = favorites.value.findIndex(p => p.product.id == idProduct);
+
+        return product;
     }
 
     return {

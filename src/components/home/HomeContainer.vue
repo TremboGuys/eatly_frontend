@@ -10,7 +10,7 @@ const {width} = useWindowSize();
         <HeaderDesktop v-if="width > 425" />
         <LogoArea v-else />
         <HomeCarousel />
-        <HomeCategories />
+        <!-- <HomeCategories /> -->
         <BestSellersList />
         <SeenPreviously />
     </div>

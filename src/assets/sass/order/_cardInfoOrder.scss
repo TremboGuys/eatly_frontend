@@ -18,7 +18,8 @@
     .cardInfoContainer {
         align-items: center;
         width: 80vw;
-        min-height: 20vh;
+        min-height: 12vh;
+        padding: 1em 1em 1em 0;
 
         .card-header {
             width: 100%;
@@ -28,6 +29,7 @@
             font-size: 0.8em;
             color: rgb(87, 87, 87);
             justify-content: space-between;
+            padding-left: 1em;
         }
 
         .card-body {

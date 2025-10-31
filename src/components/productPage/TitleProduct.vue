@@ -7,14 +7,14 @@ const props = defineProps({
   idProduct: { type: String, required: true }
 });
 
-const toggleActive = async () => {
-  favoriteStore.isFavorite = !favoriteStore.isFavorite;
-
-  const response = await favoriteStore.createFavorite({ product: props.idProduct });
-
-  if (!response) {
-    favoriteStore.isFavorite = !favoriteStore.isFavorite;
+const toggleActive = async () => {  
+  if (!favoriteStore.isFavorite) {  
+    await favoriteStore.createFavorite({ product: props.idProduct });
   }
+  else {
+    await favoriteStore.deleteFavorite(props.idProduct);
+  }
+  favoriteStore.isFavorite = !favoriteStore.isFavorite;
 };
 </script>
 <template>

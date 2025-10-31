@@ -9,6 +9,10 @@ class OrderService {
         const response = await api.get('orders/preparing/');
         return response.data;
     };
+    async getOrderRetrieve(idOrder) {
+        const response = await api.get(`orders/${idOrder}/`);
+        return response.data;
+    }
     async getOrdersDelivered() {
         const response = await api.get('orders/delivered/');
         return response.data;

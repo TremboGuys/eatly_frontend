@@ -1,16 +1,21 @@
 <script setup>
-
+const props = defineProps({
+    product: {
+        type: Object,
+        required: true
+    }
+})
 </script>
 
 <template>
 <div class="OLContainer">
-    <div class="foodImg"><img src="../../assets/img/burger.png" alt=""></div>
+    <div class="foodImg"><img :src="props.product.product.url_file" alt=""></div>
     <div class="foodInfo">
         <div class="basic">
-            <div class="foodName"><p>Aborgue</p></div>
-            <div class="foodPrice">R$ 25,00</div>
+            <div class="foodName"><p>{{ props.product.product.name }}</p></div>
+            <div class="foodPrice">R${{ props.product.product.price.toFixed(2).replace(".", ",") }}</div>
         </div>
-        <div class="foodQuantity">1 un. </div>
+        <div class="foodQuantity">{{ props.product.quantity }} un. </div>
     </div>
     
 </div>

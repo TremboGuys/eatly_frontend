@@ -77,13 +77,11 @@ const toggleFavorite = async () => {
         <i class="fa fa-circle"></i>
       </button>
       
-      <i style="font-size: 1.3em; color: gray ;" class="fa fa-circle"></i>
-
       <div v-if="showMenu" class="overlay" @click="closeMenu"></div>
 
       <ul v-if="showMenu" class="dropdown-menu">
         <li>Compartilhar <i class="fa-solid fa-share"></i></li>
-        <li class="AddOrRemFav" @click="favoriteStore.deleteFavorite(props.favorite.id)">
+        <li class="AddOrRemFav" @click="favoriteStore.deleteFavorite(props.favorite.product.id)">
           Remover dos favoritos
           <span><i class="fa-sharp fa-solid fa-trash"></i></span>
         </li>
