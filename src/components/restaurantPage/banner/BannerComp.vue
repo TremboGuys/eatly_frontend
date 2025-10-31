@@ -28,7 +28,7 @@ const toggleFavorite = () => {
             </div> -->
         </div>
         <div class="img">
-            <img class="banner" src="@/assets/img/banner.png" alt="banner" />
+            <img class="banner" src="@/assets/img/banner.jpeg" alt="banner" />
         </div>
     </div>
 </template>
