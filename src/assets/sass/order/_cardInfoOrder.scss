@@ -1,0 +1,93 @@
+.cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+
+    .cardInfoContainer,
+    .cardPaymentContainer,
+    .cardAdressContainer,
+    .cardRatingContainer {
+        display: flex;
+        flex-direction: column;
+        padding: 1em;
+        background-color: rgb(255, 255, 255);
+        border-radius: 6px;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
+    }
+
+    .cardInfoContainer {
+        align-items: center;
+        width: 80vw;
+        min-height: 20vh;
+
+        .card-header {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            padding: 0 0.4em 0.4em;
+            font-size: 0.8em;
+            color: rgb(87, 87, 87);
+            justify-content: space-between;
+        }
+
+        .card-body {
+            .order-list {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    }
+
+    .cardPaymentContainer {
+        width: 80vw;
+        min-height: 10vh;
+        align-items: center;
+
+        .subtotal,
+        .discount,
+        .total {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            justify-content: space-between;
+            font-size: 0.9em;
+        }
+
+        .subtotal,
+        .discount {
+            color: rgb(128, 128, 128);
+        }
+    }
+
+    .cardAdressContainer {
+        width: 80vw;
+        min-height: 10vh;
+
+        p {
+            font-size: 0.9em;
+        }
+    }
+
+    .cardAdressContainer,
+    .cardRatingContainer {
+        h2 {
+            font-weight: 500;
+            font-size: 1.1em;
+        }
+    }
+
+    .cardRatingContainer {
+        width: 80vw;
+        min-height: 10vh;
+        align-items: center;
+        gap: 10px;
+
+        .stars {
+            i {
+                font-size: 1.5em;
+                color: rgb(128, 128, 128);
+            }
+        }
+    }
+}

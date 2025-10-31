@@ -6,6 +6,7 @@ const props = defineProps({
   name: { type: String, required: true },
   idProduct: { type: String, required: true }
 });
+
 const toggleActive = async () => {
   favoriteStore.isFavorite = !favoriteStore.isFavorite;
 

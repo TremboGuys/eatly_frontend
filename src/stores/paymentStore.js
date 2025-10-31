@@ -8,7 +8,8 @@ export const usePaymentStore = defineStore('payment', () => {
     const state = reactive({
         loading: false,
         order: null,
-        indexOrder: null
+        indexOrder: null,
+        createPayment: false,
     });
     const payment = ref({});
     const cartStore = useCartStore();
@@ -16,6 +17,7 @@ export const usePaymentStore = defineStore('payment', () => {
 
     async function createPayment() {
         state.loading = true;
+        state.createPayment = true;
         try {
             const response = await axios.post('https://7b82f925e548.ngrok-free.app/payment/', {
                 mp: {
@@ -37,7 +39,13 @@ export const usePaymentStore = defineStore('payment', () => {
             toastStore.notify('Erro ao criar as informações para pagamento!', 'error');
         }
         state.loading = false;
+        state.createPayment = false;
     };
 
-    return { state, payment, createPayment };
+    function copyQrCodeClipboard() {
+        navigator.clipboard.writeText(payment.value.qr_code);
+        toastStore.notify("Pix copiado para a área de transferência!", "success");
+    }
+
+    return { state, payment, createPayment, copyQrCodeClipboard };
 });
