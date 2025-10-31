@@ -38,13 +38,13 @@ onBeforeRouteLeave((to, from, next) => {
 </script>
 
 <template>
-  <div v-if="enableTemplate" class="container">
+  <div v-if="enableTemplate" class="RestaurantContainer">
     <div class="banner">
       <BannerComp />
       <BasicInfo />
     </div>
     <div class="optionsScroll">
-      <OptionsScroll :categoriesRestaurant="restaurantStore.categoriesRestaurant" :activeIndex="activeIndex" @selectCategory="scrollToCategory" />
+      <!-- <OptionsScroll :categoriesRestaurant="restaurantStore.categoriesRestaurant" :activeIndex="activeIndex" @selectCategory="scrollToCategory" /> -->
     </div>
     <div class="menu">
       <ItemMenu ref="itemsMenu" v-model="activeIndex" />
