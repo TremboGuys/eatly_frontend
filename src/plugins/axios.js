@@ -5,8 +5,8 @@ import { useToastStore } from '@/stores';
 import router from '@/router';
 
 export const api = axios.create({
-  baseURL: 'https://eatly-backend-cbai.onrender.com/api/',
-  // baseURL: 'http://127.0.0.1:8000/api/',
+  // baseURL: 'https://eatly-backend-cbai.onrender.com/api/',
+  baseURL: 'http://127.0.0.1:8000/api/',
   withCredentials: true,        
 });
 
