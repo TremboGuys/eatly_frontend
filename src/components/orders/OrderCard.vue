@@ -1,18 +1,21 @@
 <script setup>
 import { useOrderStore } from '@/stores';
+import { useRouter } from 'vue-router';
 
 const props = defineProps({
     arrayOrder: {
         type: Array,
     }
-})
+});
+
+const router = useRouter();
 
 const orderStore = useOrderStore();
 </script>
 
 <template>
     <div v-for="(order, orderIndex) in props.arrayOrder" :key="orderIndex" class="card">
-        <div class="orderHeader">
+        <div class="orderHeader" @click="router.push(`/order/${order.id}`)">
             <div class="restaurantInfo">
                 <img class="logo" :src="order.restaurant.photo" alt="Logo" />
                 <div class="details">
@@ -23,7 +26,7 @@ const orderStore = useOrderStore();
                 </div>
             </div>
         </div>
-        <div class="orderBody">
+        <div class="orderBody" @click="router.push(`/order/${order.id}`)">
             <div class="itemText">
                 <span v-for="(product, productIndex) in order.products" :key="productIndex">{{ product.quantity }}x {{ product.name }} </span>
             </div>

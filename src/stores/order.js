@@ -1,10 +1,15 @@
 import { defineStore } from "pinia";
 import { OrderService } from "@/services";
 import { ref } from "vue";
+import { reactive } from "vue";
 
 export const useOrderStore = defineStore('order', () => {
+    const state = reactive({
+        loading: false
+    })
     const ordersActive = ref(null);
     const ordersDelivered = ref(null);
+    const orderRetrieve = ref(null);
 
     async function getOrdersActive() {
         if (ordersActive.value == null) {
@@ -17,6 +22,18 @@ export const useOrderStore = defineStore('order', () => {
             }
         }
     };
+
+    async function getOrderRetrieve(idOrder) {
+        state.loading = true;
+        try {
+            const order = await OrderService.getOrderRetrieve(idOrder);
+            orderRetrieve.value = order;
+        }
+        catch(error) {
+            console.error('Error in GET retrieve order: ', error);
+        }
+        state.loading = false;
+    }
 
     async function getOrdersDelivered() {
         if (ordersDelivered.value == null) {
@@ -31,6 +48,6 @@ export const useOrderStore = defineStore('order', () => {
     };
 
     return {
-        ordersActive, ordersDelivered, getOrdersActive, getOrdersDelivered
+        state, ordersActive, ordersDelivered, orderRetrieve, getOrdersActive, getOrderRetrieve, getOrdersDelivered
     }
 });

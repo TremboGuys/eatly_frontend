@@ -131,7 +131,7 @@ const router = createRouter({
     {
       path: '/order/:id',
       name: 'order',
-      component: () => import('@/views/order/OrderRetrieve.vue'),
+      component: () => import('@/views/order/OrderRetrieveView.vue'),
       meta: { requiresAuth: true }
     }
   ],
