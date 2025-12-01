@@ -13,7 +13,8 @@ export const useCartStore = defineStore("cart", () => {
         updateProduct: {
             isUpdate: false,
             indexProduct: null
-        }
+        },
+        loading: false
     });
     const product = reactive({
         product: null,
@@ -42,6 +43,7 @@ export const useCartStore = defineStore("cart", () => {
     }
 
     async function addToCart(restaurant) {
+        state.loading = true;
         if (cart.value == null) await getCartOrders();
         const orderObject = cart.value.findIndex(o => o.restaurant.id == restaurant);
         console.log(orderObject, restaurant);
@@ -89,6 +91,7 @@ export const useCartStore = defineStore("cart", () => {
                 console.error('Error in POST order: ', error);
             }
         }
+        state.loading = false;
     }
     async function updateProductInOrder(existingProduct, indexRestaurant) {
         try {

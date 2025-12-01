@@ -16,6 +16,8 @@
     "axios": "^1.12.2",
     "buffer": "^6.0.3",
     "getenv": "^2.0.0",
+    "leaflet": "^1.9.4",
+    "leaflet-routing-machine": "^3.2.12",
     "pinia": "^3.0.1",
     "qrcode-pix": "^5.0.0",
     "qrcode.vue": "^3.6.0",

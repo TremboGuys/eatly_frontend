@@ -9,7 +9,7 @@ const props = defineProps({
 
 <template>
     <div class="back">
-        <router-link :to="`/${props.route}`" class="back-link">
+        <router-link :to="`/profile`" class="back-link">
             <i class="fa-solid fa-arrow-left"></i>
         </router-link>
         <div class="nameRestaurant">

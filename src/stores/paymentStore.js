@@ -19,7 +19,7 @@ export const usePaymentStore = defineStore('payment', () => {
         state.loading = true;
         state.createPayment = true;
         try {
-            const response = await axios.post('https://7b82f925e548.ngrok-free.app/payment/', {
+            const response = await axios.post('https://ms-pix-liy6.onrender.com/payment/', {
                 mp: {
                     transaction_amount: 0.01,
                     description: `Criação do pagamento referente ao pedido nº ${state.order}`,

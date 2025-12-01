@@ -87,6 +87,11 @@ const router = createRouter({
           path: '/logout',
           name: 'logout',
           component: () => import('@/views/auth/LogoutView.vue')
+        },
+        {
+          path: '/location',
+          name: 'locationTracker',
+          component: () => import('@/views/location/LocationTrackerView.vue')
         }
       ],
       meta: { requiresAuth: true } 

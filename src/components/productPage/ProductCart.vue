@@ -3,6 +3,7 @@ import { reactive, ref } from 'vue';
 import { useProductComposable } from '@/composables';
 import { useCartStore } from '@/stores/cartStore';
 import { useRoute } from 'vue-router';
+import { VueSpinner } from 'vue3-spinners';
 
 const cartStore = useCartStore();
 const { product } = useProductComposable();
@@ -22,8 +23,11 @@ const route = useRoute();
                 <span class="number">{{ useCart.product.quantity }}</span>
                 <button class="button add" @click="useCart.product.quantity++">+</button>
             </div>
-            <button class="addCart" @click="cartStore.addToCart(route.params.idRestaurant)">
+            <button v-if="!cartStore.state.loading" class="addCart" @click="cartStore.addToCart(route.params.idRestaurant)">
                 Adicionar ao carrinho
+            </button>
+            <button class="addCart" v-else>
+                <VueSpinner :size="10" :color="'#FFFFFF'" />
             </button>
         </div>
     </div>
