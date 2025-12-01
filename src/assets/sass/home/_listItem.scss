@@ -1,7 +1,7 @@
 @media(max-width:425px) {
 
     .listItem {
-        
+
         height: 9vh;
         display: flex;
         // justify-content: space-between;
@@ -27,11 +27,15 @@
                 .logo img {
                     width: 100px;
                     height: 80px;
+                    object-fit: cover;
+                    /* 👈 mantém o tamanho sem deformar */
+                    border-radius: 8px;
+                    /* opcional, só pra ficar bonito */
                 }
 
                 .logo {
                     height: 100%;
-                    width: 25%;
+                    width: 20vw;
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -96,6 +100,6 @@
 
         }
 
-        
+
     }
 }

@@ -4,6 +4,9 @@ import { useToastStore } from "@/stores";
 import { ref, reactive } from "vue";
 
 export const useProfileStore = defineStore('profile', () => {
+    const state = reactive({
+        loading: false,
+    });
     const editImage = ref(false);
     const profile = ref(null);
     const newProfile = ref({});
@@ -22,6 +25,7 @@ export const useProfileStore = defineStore('profile', () => {
     }
 
     async function updateProfile() {
+        state.loading = true;
         try {
             if (newProfile.value.hasOwnProperty('user')) {
                 const formDataUser = new FormData();
@@ -38,14 +42,18 @@ export const useProfileStore = defineStore('profile', () => {
             if (newProfile.value.hasOwnProperty('telephone')) {
                 await UserService.updateTelephone(newProfile.value['telephone']);
             }
+            await getProfile();
+            newProfile.value = {};
+            toastStore.notify('Perfil atualizado com sucesso!', "success");
         }
         catch(error) {
             console.error('Erro in PATCH profile: ', error);
             toastStore.notify('Erro ao atualizar seu perfil :(', 'error');
         }
+        state.loading = false;
     }
 
     return {
-        editImage, profile, newProfile, getProfile, updateProfile
+        state, editImage, profile, newProfile, getProfile, updateProfile
     }
 });

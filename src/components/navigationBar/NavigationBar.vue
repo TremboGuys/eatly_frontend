@@ -4,7 +4,6 @@ import NavIcons from './NavIcons.vue'
 
 <template>
     <div class="navContainer">
-
         <NavIcons />
     </div>
 </template>
