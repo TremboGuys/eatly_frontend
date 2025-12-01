@@ -1,8 +1,9 @@
 <script setup>
 import InputsProps from "../inputs/InputsProps.vue";
 import backButton from "./backButton.vue";
-import { ButtonSubmit, InputFile } from "@/components";
 import Burguer from '../../assets/img/burger.png';
+import { ButtonSubmit, InputFile } from "@/components";
+import { createURL } from "@/utils/createURL";
 import { useProfileStore } from "@/stores";
 
 const profileStore = useProfileStore();
@@ -13,6 +14,10 @@ function changeDataUser(data) {
       profileStore.newProfile['user'] = {};
     }
     profileStore.newProfile['user'][data.field] = data.value;
+
+    if (data.field === 'file') {
+      profileStore.newProfile['preViewFile'] = createURL(data.value);
+    }
   }
   else if (['name', 'date_birth'].includes(data.field)) {
     if (!profileStore.newProfile.hasOwnProperty('natural_person')) {
@@ -35,7 +40,7 @@ function changeDataUser(data) {
       <backButton />
       <form class="editArea" @submit.prevent="profileStore.updateProfile()">
         <div class="profile-pic">
-          <img :src="profileStore.profile.photo != '' ? profileStore.profile.photo : Burguer" alt="" />
+          <img :src="profileStore.newProfile['preViewFile'] != null ? profileStore.newProfile['preViewFile'] : profileStore.profile.photo != '' ? profileStore.profile.photo : Burguer" alt="" />
           <i class="fa-solid fa-pencil" @click="profileStore.editImage = true;"></i>
           <InputFile field="file" :invisible="true" @change-data-user="changeDataUser" />
         </div>
@@ -77,7 +82,8 @@ function changeDataUser(data) {
         />
         <div class="save-area">
           <!-- <button class="save-button" @click="saveProfile">Salvar</button> -->
-           <ButtonSubmit name="Salvar" />
+           <ButtonSubmit v-if="!profileStore.state.loading" name="Salvar" :loading="false" />
+           <ButtonSubmit v-else :loading="true" />
         </div>
       </form>
     </div>
